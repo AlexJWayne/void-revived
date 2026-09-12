@@ -4,10 +4,11 @@
   "version": "0.0.1",
   "type": "module",
   "scripts": {
-    "dev": "vite --host 0.0.0.0",
-    "build": "tsc -b && vite build",
+    "dev": "npm run assets && vite --host 0.0.0.0",
+    "assets": "node scripts/build-content.mjs",
+    "build": "npm run assets && tsc -b && vite build",
     "preview": "vite preview --host 0.0.0.0",
-    "test": "node --experimental-strip-types --test tests/*.test.ts",
+    "test": "npm run assets && node --experimental-strip-types --test tests/*.test.ts",
     "check": "npm test && npm run build"
   },
   "dependencies": {
