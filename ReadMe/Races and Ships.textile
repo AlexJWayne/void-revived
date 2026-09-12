@@ -1,0 +1,116 @@
+h1. Ship Definition Variables
+
+* pilotable: Boolean.  True if the player can purchase and fly the ship.  False if the ship only spawns as an enemy (Crates, Freighters, stationary guns, etc).
+* energy: Maximum weapon energy.
+* energyRecharge: Weapon energy regenerated per frame.  Energy regenerates constantly, whether firing or not.
+* size: Size of the ship.  This affects the collision size, as well as the scale of the model.
+* mass: Heavy ships are affected by forces less, according to f=ma.  Total mass of ship is base mass + equipped weapons mass + equipment mass.
+* turnSpeed: Degrees per frame the ship can turn.
+* maxSpeed: Maximum units per frame the ship can travel.
+* thrusterForce: Amount of force the thruster applies to the ship.  Acceleration is affected by mass.
+* brakeForce: Amount of force applied to the ship by the braking.  Force is always applied in the opposite direction of the movement.  How quickly you come to a stop is affected by mass.
+* armor: Max armor value.  Armor does not replenish during a stage.
+* shields: Max shield value.  Shields replenish over time up to their max.
+* shieldRecharge: Shields recharged per frame.
+* shieldDelay: Number of frames that must pass without taking damage before shields start the regenerate.
+* gunHardpoints: An array of hardpoint positions.  Each item is a dictionary with x, y and z value which place the hardpoint on the ship.  Hardpoint locations should be nomrmalized from [1,1,1] to [-1,-1,-1] just like the models.The number of entries is the number of weapons that can be mounted.
+* equipmentSlots: An integer that is the number of equipment items that can be mounted.  Equipment does not show on the ship model.
+
+h3. Cosmetic properties
+
+* thrusterSound: Name of the sound to play when this ship thrusts.
+* explosionSound: Name of sound that play when the ship explodes.
+* explosionSprite: Name of animated sprite to load as the explosion when the ship is destroyed.
+* thrusterModelName: Name of model to load that represents the visible thruster.
+* thrusterTexture: Name of texture to load on the thruster model.
+* model: An array of dictionaries that define model parts.  Building models out of multiple parts allows different effects to be applied to different pieces.  For example energy ships have a solid piece and a glowing ball piece.  Items are rendered in the order they are declared.  In general, opaque objects need to be rendered before translucent objects.  Each item is a dictionary with the following keys.
+** modelName: Name of model to load
+** style: Blending mode to apply to the model.  Current supported are "opaque" and "add".  a "2" can be appended to render back faces as well.
+** texture: Name of texture to apply to this model part.
+
+
+
+
+h1. Ship Classes:
+
+_Draft, open to review._
+
+Each race will have at least one ship in most of these categories.  Lists are in order of relative power.
+
+Small Ships:
+
+* Shuttle
+** Small civilian craft for getting around.  Player will start with one of these.
+* Fighter
+** A small craft for making quick attacks on targets.
+* Heavy Fighter
+** A tough and slower designed for longer range tactical battles.
+* Gunboat
+** A small craft packed with offensive ability.  Slightly more sturdy than a heavy fighter, but with a major focus on offense.
+
+Larger Warships:
+* Frigate
+** The weakest of the capital ships.
+* Destroyer
+** Larger and slower, but tougher and more dangerous.
+* Dreadnought
+** Gargantuan death dealer.  It's big, its tough and and it's packed to the gills with large guns.  Most powerful ship in the game.
+
+Other:
+* Carrier
+** A large ship with a fighter escort
+* Crates or storage containers
+** Stationary objects that exist to hold loot
+* Freighters
+** huge and slow, carries lots of cargo
+* Civilian ships like passenger liners
+** Civilian sometimes get in the way of battle.  Sucks for them.
+* Space stations.
+* Stationary guns.
+
+
+
+h1. Races
+
+There are four races.  Each race has a region of space, and stages become more difficult the closer you get to each homeworld.
+
+Any weapon or equipment upgrade may be equipped to any ship.  But some weapons may be completely impractical on small ships due to their weight (making the ship almost immobile), or energy requirements (the max energy of the ship may not even be able to fire the gun).
+
+*Cyber*
+
+A race of cybernetic creature with no organic component.
+
+* Look: dirty industrial, and slightly retro-scifi.  Ships are made of metal, propelled by chemical rockets.
+* Ships: well rounded between mobility/shields/armor/offensive capability.
+* Weapons: Machine guns, railguns, bombs and missles.  These weapons fire physical objects.
+
+
+*Crystal*
+
+This race's planets are covered in naturally occurring crystal (think Starcraft minerals looking things), and their tech is based around this.
+
+* Look: Ships are made of crystalline formations
+* Ships: Tanks.  Slow and heavy.  Their crystal structure is strong and gives them huge amounts of armor, but very little or no shields.
+* Weapons: A mix of energy weapons and guns that sling crystal shards.
+
+
+*Organic*
+
+Zergish. All their ships are living creatures. Their style is diverse.
+
+* Look: All ships are living creatures.  Some are insect like, some lumps of bulbous flesh, some have a hard armored exoskeleton.
+* Ships: Some are fast and fragile, some are big and slow.  They have no real tactical theme.
+* Weapons: Mostly shoots spines/spores/acid and other types of biological attacks.
+
+
+*Energy*
+
+This race is made of pure energy.  And their tech is all about manipulating energy.
+
+*Look*
+
+Their ships are a tiny physical component which projects large glowing energy fields that give the ship most of its size.
+
+* Look: The ships are made of round glowing volumes.
+* Ships: Ninjas.  They are fast and fragile with a decent amount of shields and almost zero armor. They rely on agility to survive.
+* Weapons: Plasma, lasers, and other types of energy weapons.

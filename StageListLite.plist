@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<string>Discipulus Major</string>
+	<string>Discipulus Medius</string>
+	<string>Discipulus Minor</string>
+	<string>Nunki</string>
+	<string>Zaurak</string>
+	<string>Alnitak</string>
+	<string>Cursa</string>
+	<string>Minkar</string>
+	<string>Gacrux</string>
+	<string>Castor</string>
+	<string>Lesath</string>
+	<string>Arneb</string>
+	<string>Caelum</string>
+	<string>Atria</string>
+	<string>Corvus</string>
+	<string>Centarus</string>
+</array>
+</plist>

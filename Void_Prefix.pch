@@ -1,0 +1,9 @@
+//
+// Prefix header for all source files of the 'Void' target in the 'Void' project
+//
+
+#ifdef __OBJC__
+    #import <Foundation/Foundation.h>
+    #import <UIKit/UIKit.h>
+    #import "OpenFeintPrefix.pch"
+#endif

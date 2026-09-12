@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>ownedShips</key>
+	<array>
+		<string>Cyber Shuttle</string>
+	</array>
+	<key>newShipCount</key>
+	<integer>0</integer>
+	<key>newWeaponCount</key>
+	<integer>0</integer>
+	<key>buybackWeapons</key>
+	<array/>
+	<key>buybackWeaponsValue</key>
+	<integer>1</integer>
+	<key>newEquipmentCount</key>
+	<integer>0</integer>
+	<key>buybackEquipment</key>
+	<array/>
+	<key>buybackEquipmentValue</key>
+	<integer>1</integer>
+	<key>credits</key>
+	<integer>5000000</integer>
+	<key>currentStage</key>
+	<string>Discipulus Minor</string>
+	<key>completedStages</key>
+	<array>
+		<string>Alcor</string>
+		<string>Alcyone</string>
+		<string>Aldebran</string>
+		<string>Algorab</string>
+		<string>Alioth</string>
+		<string>Alnitak</string>
+		<string>Altair</string>
+		<string>Alula</string>
+		<string>Alya</string>
+		<string>Antares</string>
+		<string>Antila</string>
+		<string>Arkab</string>
+		<string>Arneb</string>
+		<string>Arrakis</string>
+		<string>Ascella</string>
+		<string>Asterope</string>
+		<string>Atlas</string>
+		<string>Atria</string>
+		<string>Australis</string>
+		<string>Bali</string>
+		<string>Caelum</string>
+		<string>Capella</string>
+		<string>Carina</string>
+		<string>Cassiopeia</string>
+		<string>Castor</string>
+		<string>Celaeno</string>
+		<string>Centarus</string>
+		<string>Cepheus</string>
+		<string>Chow</string>
+		<string>Corona</string>
+		<string>Corvus</string>
+		<string>Crux</string>
+		<string>Cursa</string>
+		<string>Cygnus</string>
+		<string>Deneb</string>
+		<string>Discipulus Major</string>
+		<string>Discipulus Medius</string>
+		<string>Discipulus Minor</string>
+		<string>Electra</string>
+		<string>Eridani</string>
+		<string>Fomalhaut</string>
+		<string>Gacrux</string>
+		<string>Graffias</string>
+		<string>Grumium</string>
+		<string>Jabbah</string>
+		<string>Kaus</string>
+		<string>Lesath</string>
+		<string>Maia</string>
+		<string>Marfik</string>
+		<string>Megrez</string>
+		<string>Merope</string>
+		<string>Minkar</string>
+		<string>Mintaka</string>
+		<string>Mizar</string>
+		<string>Mulu</string>
+		<string>Naos</string>
+		<string>Nath</string>
+		<string>Nihal</string>
+		<string>Nunki</string>
+		<string>Pleione</string>
+		<string>Polaris</string>
+		<string>Pollux</string>
+		<string>Propus</string>
+		<string>Pyxis</string>
+		<string>Regor</string>
+		<string>Regulus</string>
+		<string>Rigel</string>
+		<string>Rukbat</string>
+		<string>Sadal</string>
+		<string>Sargas</string>
+		<string>Sarin</string>
+		<string>Scutum</string>
+		<string>Shaula</string>
+		<string>Sheliar</string>
+		<string>Situla</string>
+		<string>Talitha</string>
+		<string>Thuban</string>
+		<string>Vega</string>
+		<string>Yildun</string>
+		<string>Zaurak</string>
+		<string>Zozma</string>
+	</array>
+	<key>ship</key>
+	<dict>
+		<key>type</key>
+		<string>Cyber Shuttle</string>
+		<key>weaponGroups</key>
+		<array>
+			<array>
+				<integer>0</integer>
+			</array>
+			<array>
+				<integer>0</integer>
+			</array>
+			<array>
+				<integer>0</integer>
+			</array>
+		</array>
+		<key>equipment</key>
+		<array>
+			<string>&lt;Empty&gt;</string>
+		</array>
+		<key>guns</key>
+		<array>
+			<string>Genjuro Blaster</string>
+		</array>
+	</dict>
+	<key>inventory</key>
+	<dict>
+		<key>weapons</key>
+		<array>
+			<string>Genjuro Blaster</string>
+			<string>Machine Gun</string>
+			<string>Repeater</string>
+			<string>Vulcan Cannon</string>
+			<string>Gatling Gun</string>
+			<string>Multi-Gat</string>
+			<string>Dart</string>
+			<string>Arrow</string>
+			<string>Javelin</string>
+			<string>Shuriken</string>
+			<string>Nuke</string>
+			<string>Nuke</string>
+			<string>Magnetic Accelerator</string>
+			<string>Mass Driver</string>
+			<string>Mass Cannon</string>
+			<string>Gauss Cannon</string>
+			<string>Railgun</string>
+			<string>Edge</string>
+			<string>Shard</string>
+			<string>Blade</string>
+			<string>Razor</string>
+			<string>Gladiate</string>
+			<string>Charged Pulse</string>
+			<string>Energy Pulse</string>
+			<string>Ion Pulse</string>
+			<string>Plasma Pulse</string>
+			<string>Antimatter Pulse</string>
+			<string>Frag Mine</string>
+			<string>Shard Mine</string>
+			<string>Blade Mine</string>
+			<string>Spine Hurler</string>
+			<string>Quill Flinger</string>
+			<string>Spike Launcher</string>
+			<string>Protozoa</string>
+			<string>Phase Fungi</string>
+			<string>Plasma Spore</string>
+			<string>Boom Worm</string>
+			<string>Kinetic Pollup</string>
+			<string>Acid Larvae</string>
+			<string>Acid Gland</string>
+			<string>Energy Organ</string>
+			<string>Sulfuric Sac</string>
+			<string>Plasma Pore</string>
+			<string>Hydrochloric Sphincter</string>
+			<string>Mining Laser</string>
+			<string>Plasma Cutter</string>
+			<string>Ion Stream</string>
+			<string>Fusion Field</string>
+			<string>Dimensional Ripper</string>
+			<string>Tractor Pod</string>
+			<string>Force Beam</string>
+			<string>Repulsion Mine</string>
+			<string>Kinetic Shockwave</string>
+			<string>Singularity</string>
+		</array>
+		<key>equipment</key>
+		<array>
+			<string>Dimensional Shift</string>
+			<string>Dimensional Pocket</string>
+			<string>Dimensional Gate</string>
+			<string>Dimensional Rift</string>
+			<string>Dimensional Singularity</string>
+			<string>Inertial Lock Telemetry Controller</string>
+			<string>Inertial Diverter</string>
+			<string>Inertial Clamp</string>
+			<string>Turn Thruster</string>
+			<string>Turn Boosters</string>
+			<string>Etherdynamic Coating</string>
+			<string>Etherdynamic Lattice</string>
+			<string>Etherdynamic Sheath</string>
+			<string>Etherdynamic Membrane</string>
+			<string>Graviton Accelerator</string>
+			<string>Graviton Deformer</string>
+			<string>Endocrine Gland</string>
+			<string>Adrenal Gland</string>
+			<string>Beta Defensive Inverter</string>
+			<string>Delta Defensive Inverter</string>
+			<string>Omega Defensive Inverter</string>
+			<string>Nanomites</string>
+			<string>Nanobots</string>
+			<string>Nanoshards</string>
+			<string>Nanosparks</string>
+			<string>Matter Converter</string>
+			<string>Matter Manipulator</string>
+			<string>Energy Converter</string>
+			<string>Energy Manipulator</string>
+			<string>Alpha Shield Diffractor</string>
+			<string>Beta Shield Diffractor</string>
+			<string>Gamma Shield Diffractor</string>
+			<string>Delta Shield Diffractor</string>
+			<string>Omega Shield Diffractor</string>
+			<string>Alpha Shield Fluxion</string>
+			<string>Beta Shield Fluxion</string>
+			<string>Gamma Shield Fluxion</string>
+			<string>Delta Shield Fluxion</string>
+			<string>Omega Shield Fluxion</string>
+			<string>Alpha Carapace</string>
+			<string>Beta Carapace</string>
+			<string>Gamma Carapace</string>
+			<string>Delta Carapace</string>
+			<string>Omega Carapace</string>
+			<string>Alpha Plating</string>
+			<string>Beta Plating</string>
+			<string>Gamma Plating</string>
+			<string>Delta Plating</string>
+			<string>Omega Plating</string>
+			<string>Beta Offensive Inverter</string>
+			<string>Delta Offensive Inverter</string>
+			<string>Omega Offensive Inverter</string>
+			<string>Targeting System Mark I</string>
+			<string>Targeting System Mark II</string>
+			<string>Targeting System Mark III</string>
+			<string>Pressure Pore</string>
+			<string>Pressure Sac</string>
+			<string>Pressure Duct</string>
+			<string>Synthesis Pore</string>
+			<string>Synthesis Sac</string>
+			<string>Synthesis Duct</string>
+			<string>Neutrino Field</string>
+			<string>Hadron Field</string>
+			<string>Lepton Field</string>
+			<string>Tachyon Field</string>
+			<string>Fermion Field</string>
+			<string>Gluon Field</string>
+			<string>Muon Field</string>
+			<string>Alpha Stasis</string>
+			<string>Gamma Stasis</string>
+			<string>Omega Stasis</string>
+			<string>Alpha Tactical System</string>
+			<string>Gamma Tactical System</string>
+			<string>Omega Tactical System</string>
+			<string>Alpha Resonator</string>
+			<string>Gamma Resonator</string>
+			<string>Omega Resonator</string>
+			<string>Alpha Emitter</string>
+			<string>Gamma Emitter</string>
+			<string>Omega Emitter</string>
+		</array>
+	</dict>
+</dict>
+</plist>

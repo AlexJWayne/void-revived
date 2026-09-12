@@ -1,0 +1,5425 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" ""><plist version="1.0"><dict><key>Cyber Crate - Sure Loot</key>
+	<dict>
+		<key>type</key>
+		<string>Cyber Crate</string>
+		<key>aiType</key>
+		<string>Crate</string>
+		<key>guns</key>
+		<array>
+		</array>
+		<key>equipment</key>
+		<array>
+			<string>Handicap 20</string>
+		</array>
+		<key>loot</key>
+		<dict>
+		<key>Cyber Tier 1</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>1</real>
+		</dict>
+		<key>Cyber Equipment Tier 1</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.1</real>
+		</dict>
+		<key>credits</key>
+		<dict>
+			<key>min</key>
+			<integer>5</integer>
+			<key>max</key>
+			<integer>7</integer>
+		</dict>
+		</dict>
+	</dict><key>Cyber Crate</key>
+	<dict>
+		<key>type</key>
+		<string>Cyber Crate</string>
+		<key>aiType</key>
+		<string>Crate</string>
+		<key>guns</key>
+		<array>
+		</array>
+		<key>equipment</key>
+		<array>
+		</array>
+		<key>loot</key>
+		<dict>
+		<key>Cyber Tier 1</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.1</real>
+		</dict>
+		<key>Cyber Tier 2</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.02</real>
+		</dict>
+		<key>Cyber Equipment Tier 1</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.08</real>
+		</dict>
+		<key>Cyber Equipment Tier 2</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.02</real>
+		</dict>
+		<key>credits</key>
+		<dict>
+			<key>min</key>
+			<integer>5</integer>
+			<key>max</key>
+			<integer>7</integer>
+		</dict>
+		</dict>
+	</dict><key>Cyber Crate 2</key>
+	<dict>
+		<key>type</key>
+		<string>Cyber Crate 2</string>
+		<key>aiType</key>
+		<string>Crate</string>
+		<key>guns</key>
+		<array>
+		</array>
+		<key>equipment</key>
+		<array>
+		</array>
+		<key>loot</key>
+		<dict>
+		<key>Cyber Tier 1</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.04</real>
+		</dict>
+		<key>Cyber Tier 2</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.05</real>
+		</dict>
+		<key>Cyber Tier 3</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.01</real>
+		</dict>
+		<key>Cyber Equipment Tier 1</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.03</real>
+		</dict>
+		<key>Cyber Equipment Tier 2</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.04</real>
+		</dict>
+		<key>Cyber Equipment Tier 3</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.01</real>
+		</dict>
+		<key>credits</key>
+		<dict>
+			<key>min</key>
+			<integer>7</integer>
+			<key>max</key>
+			<integer>9</integer>
+		</dict>
+		</dict>
+	</dict><key>Cyber Crate 3</key>
+	<dict>
+		<key>type</key>
+		<string>Cyber Crate 3</string>
+		<key>aiType</key>
+		<string>Crate</string>
+		<key>guns</key>
+		<array>
+		</array>
+		<key>equipment</key>
+		<array>
+		</array>
+		<key>loot</key>
+		<dict>
+		<key>Cyber Tier 2</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.04</real>
+		</dict>
+		<key>Cyber Tier 3</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.05</real>
+		</dict>
+		<key>Cyber Tier 4</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.01</real>
+		</dict>
+		<key>Cyber Equipment Tier 2</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.03</real>
+		</dict>
+		<key>Cyber Equipment Tier 3</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.04</real>
+		</dict>
+		<key>Cyber Equipment Tier 4</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.01</real>
+		</dict>
+		<key>credits</key>
+		<dict>
+			<key>min</key>
+			<integer>8</integer>
+			<key>max</key>
+			<integer>11</integer>
+		</dict>
+		</dict>
+	</dict><key>Cyber Crate 4</key>
+	<dict>
+		<key>type</key>
+		<string>Cyber Crate 4</string>
+		<key>aiType</key>
+		<string>Crate</string>
+		<key>guns</key>
+		<array>
+		</array>
+		<key>equipment</key>
+		<array>
+		</array>
+		<key>loot</key>
+		<dict>
+		<key>Cyber Tier 3</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.04</real>
+		</dict>
+		<key>Cyber Tier 4</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.05</real>
+		</dict>
+		<key>Cyber Tier 5</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.01</real>
+		</dict>
+		<key>Cyber Equipment Tier 3</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.03</real>
+		</dict>
+		<key>Cyber Equipment Tier 4</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.04</real>
+		</dict>
+		<key>Cyber Equipment Tier 5</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.01</real>
+		</dict>
+		<key>credits</key>
+		<dict>
+			<key>min</key>
+			<integer>8</integer>
+			<key>max</key>
+			<integer>12</integer>
+		</dict>
+		</dict>
+	</dict><key>Cyber Crate 5</key>
+	<dict>
+		<key>type</key>
+		<string>Cyber Crate 5</string>
+		<key>aiType</key>
+		<string>Crate</string>
+		<key>guns</key>
+		<array>
+		</array>
+		<key>equipment</key>
+		<array>
+		</array>
+		<key>loot</key>
+		<dict>
+		<key>Cyber Tier 4</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.04</real>
+		</dict>
+		<key>Cyber Tier 5</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.05</real>
+		</dict>
+		<key>Cyber Equipment Tier 4</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.03</real>
+		</dict>
+		<key>Cyber Equipment Tier 5</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.04</real>
+		</dict>
+		<key>credits</key>
+		<dict>
+			<key>min</key>
+			<integer>10</integer>
+			<key>max</key>
+			<integer>20</integer>
+		</dict>
+		</dict>
+	</dict><key>Cyber Liner</key>
+	<dict>
+		<key>type</key>
+		<string>Cyber Liner</string>
+		<key>aiType</key>
+		<string>Warship</string>
+		<key>guns</key>
+		<array>
+			<string>Vulcan Cannon</string>
+		</array>
+		<key>equipment</key>
+		<array>
+		</array>
+		<key>loot</key>
+		<dict>
+		<key>Cyber Tier 2</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.1</real>
+		</dict>
+		<key>Cyber Tier 3</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.03</real>
+		</dict>
+		<key>Cyber Tier 4</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.01</real>
+		</dict>
+		<key>Cyber Equipment Tier 2</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.08</real>
+		</dict>
+		<key>Cyber Equipment Tier 3</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.025</real>
+		</dict>
+		<key>Cyber Equipment Tier 4</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.01</real>
+		</dict>
+		<key>credits</key>
+		<dict>
+			<key>min</key>
+			<integer>12</integer>
+			<key>max</key>
+			<integer>23</integer>
+		</dict>
+		</dict>
+	</dict><key>Cyber Freighter</key>
+	<dict>
+		<key>type</key>
+		<string>Cyber Freighter</string>
+		<key>aiType</key>
+		<string>Warship</string>
+		<key>guns</key>
+		<array>
+			<string>Repeater</string>
+			<string>Repeater</string>
+		</array>
+		<key>equipment</key>
+		<array>
+		</array>
+		<key>loot</key>
+		<dict>
+		<key>Cyber Tier 3</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.15</real>
+		</dict>
+		<key>Cyber Tier 4</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.03</real>
+		</dict>
+		<key>Cyber Equipment Tier 3</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.12</real>
+		</dict>
+		<key>Cyber Equipment Tier 4</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.03</real>
+		</dict>
+		<key>credits</key>
+		<dict>
+			<key>min</key>
+			<integer>17</integer>
+			<key>max</key>
+			<integer>28</integer>
+		</dict>
+		</dict>
+	</dict><key>Cyber Gun</key>
+	<dict>
+		<key>type</key>
+		<string>Cyber Gun</string>
+		<key>aiType</key>
+		<string>Stationary</string>
+		<key>guns</key>
+		<array>
+			<string>Genjuro Blaster</string>
+		</array>
+		<key>equipment</key>
+		<array>
+			<string>Handicap 20</string>
+		</array>
+		<key>loot</key>
+		<dict>
+		<key>Cyber Tier 1</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.05</real>
+		</dict>
+		<key>Cyber Tier 2</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.01</real>
+		</dict>
+		<key>Cyber Equipment Tier 1</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.04</real>
+		</dict>
+		<key>Cyber Equipment Tier 2</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.01</real>
+		</dict>
+		<key>credits</key>
+		<dict>
+			<key>min</key>
+			<integer>2</integer>
+			<key>max</key>
+			<integer>5</integer>
+		</dict>
+		</dict>
+	</dict><key>Cyber Gun 2</key>
+	<dict>
+		<key>type</key>
+		<string>Cyber Gun 2</string>
+		<key>aiType</key>
+		<string>Stationary</string>
+		<key>guns</key>
+		<array>
+			<string>Repeater</string>
+		</array>
+		<key>equipment</key>
+		<array>
+			<string>Handicap 10</string>
+		</array>
+		<key>loot</key>
+		<dict>
+		<key>Cyber Tier 2</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.05</real>
+		</dict>
+		<key>Cyber Tier 3</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.01</real>
+		</dict>
+		<key>Cyber Equipment Tier 2</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.04</real>
+		</dict>
+		<key>Cyber Equipment Tier 3</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.01</real>
+		</dict>
+		<key>credits</key>
+		<dict>
+			<key>min</key>
+			<integer>3</integer>
+			<key>max</key>
+			<integer>7</integer>
+		</dict>
+		</dict>
+	</dict><key>Cyber Gun 3</key>
+	<dict>
+		<key>type</key>
+		<string>Cyber Gun 3</string>
+		<key>aiType</key>
+		<string>Stationary</string>
+		<key>guns</key>
+		<array>
+			<string>Mass Driver</string>
+		</array>
+		<key>equipment</key>
+		<array>
+		</array>
+		<key>loot</key>
+		<dict>
+		<key>Cyber Tier 3</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.05</real>
+		</dict>
+		<key>Cyber Tier 4</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.01</real>
+		</dict>
+		<key>Cyber Equipment Tier 3</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.04</real>
+		</dict>
+		<key>Cyber Equipment Tier 4</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.01</real>
+		</dict>
+		<key>credits</key>
+		<dict>
+			<key>min</key>
+			<integer>4</integer>
+			<key>max</key>
+			<integer>9</integer>
+		</dict>
+		</dict>
+	</dict><key>Cyber Gun 4</key>
+	<dict>
+		<key>type</key>
+		<string>Cyber Gun 4</string>
+		<key>aiType</key>
+		<string>Stationary</string>
+		<key>guns</key>
+		<array>
+			<string>Shuriken</string>
+		</array>
+		<key>equipment</key>
+		<array>
+			<string>Handicap 10</string>
+		</array>
+		<key>loot</key>
+		<dict>
+		<key>Cyber Tier 4</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.05</real>
+		</dict>
+		<key>Cyber Tier 5</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.01</real>
+		</dict>
+		<key>Cyber Equipment Tier 4</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.04</real>
+		</dict>
+		<key>Cyber Equipment Tier 5</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.01</real>
+		</dict>
+		<key>credits</key>
+		<dict>
+			<key>min</key>
+			<integer>5</integer>
+			<key>max</key>
+			<integer>10</integer>
+		</dict>
+		</dict>
+	</dict><key>Cyber Gun 5</key>
+	<dict>
+		<key>type</key>
+		<string>Cyber Gun 5</string>
+		<key>aiType</key>
+		<string>Stationary</string>
+		<key>guns</key>
+		<array>
+			<string>Railgun</string>
+		</array>
+		<key>equipment</key>
+		<array>
+			<string>Handicap 20</string>
+		</array>
+		<key>loot</key>
+		<dict>
+		<key>Cyber Tier 5</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.06</real>
+		</dict>
+		<key>Cyber Equipment Tier 5</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.05</real>
+		</dict>
+		<key>credits</key>
+		<dict>
+			<key>min</key>
+			<integer>6</integer>
+			<key>max</key>
+			<integer>12</integer>
+		</dict>
+		</dict>
+	</dict><key>Cyber Mine</key>
+	<dict>
+		<key>mine</key>
+		<dict>
+			<key>shieldDamage</key>
+			<integer>30</integer>
+			<key>armorDamage</key>
+			<integer>20</integer>
+			<key>size</key>
+			<real>5</real>
+		</dict>
+		<key>type</key>
+		<string>Cyber Mine</string>
+		<key>aiType</key>
+		<string>Crate</string>
+		<key>guns</key>
+		<array>
+		</array>
+		<key>equipment</key>
+		<array>
+		</array>
+		<key>loot</key>
+		<dict>
+		<key>credits</key>
+		<dict>
+			<key>min</key>
+			<integer>0</integer>
+			<key>max</key>
+			<integer>0</integer>
+		</dict>
+		</dict>
+	</dict><key>Cyber Mine 2</key>
+	<dict>
+		<key>mine</key>
+		<dict>
+			<key>shieldDamage</key>
+			<integer>200</integer>
+			<key>armorDamage</key>
+			<integer>80</integer>
+			<key>size</key>
+			<real>5.5</real>
+		</dict>
+		<key>type</key>
+		<string>Cyber Mine 2</string>
+		<key>aiType</key>
+		<string>Crate</string>
+		<key>guns</key>
+		<array>
+		</array>
+		<key>equipment</key>
+		<array>
+		</array>
+		<key>loot</key>
+		<dict>
+		<key>credits</key>
+		<dict>
+			<key>min</key>
+			<integer>0</integer>
+			<key>max</key>
+			<integer>0</integer>
+		</dict>
+		</dict>
+	</dict><key>Cyber Mine 3</key>
+	<dict>
+		<key>mine</key>
+		<dict>
+			<key>shieldDamage</key>
+			<integer>500</integer>
+			<key>armorDamage</key>
+			<integer>250</integer>
+			<key>size</key>
+			<real>6</real>
+		</dict>
+		<key>type</key>
+		<string>Cyber Mine 3</string>
+		<key>aiType</key>
+		<string>Crate</string>
+		<key>guns</key>
+		<array>
+		</array>
+		<key>equipment</key>
+		<array>
+		</array>
+		<key>loot</key>
+		<dict>
+		<key>credits</key>
+		<dict>
+			<key>min</key>
+			<integer>0</integer>
+			<key>max</key>
+			<integer>0</integer>
+		</dict>
+		</dict>
+	</dict><key>Cyber Mine 4</key>
+	<dict>
+		<key>mine</key>
+		<dict>
+			<key>shieldDamage</key>
+			<integer>1500</integer>
+			<key>armorDamage</key>
+			<integer>800</integer>
+			<key>size</key>
+			<real>6.5</real>
+		</dict>
+		<key>type</key>
+		<string>Cyber Mine 4</string>
+		<key>aiType</key>
+		<string>Crate</string>
+		<key>guns</key>
+		<array>
+		</array>
+		<key>equipment</key>
+		<array>
+		</array>
+		<key>loot</key>
+		<dict>
+		<key>credits</key>
+		<dict>
+			<key>min</key>
+			<integer>0</integer>
+			<key>max</key>
+			<integer>0</integer>
+		</dict>
+		</dict>
+	</dict><key>Cyber Mine 5</key>
+	<dict>
+		<key>mine</key>
+		<dict>
+			<key>shieldDamage</key>
+			<integer>3000</integer>
+			<key>armorDamage</key>
+			<integer>1200</integer>
+			<key>size</key>
+			<real>7</real>
+		</dict>
+		<key>type</key>
+		<string>Cyber Mine 5</string>
+		<key>aiType</key>
+		<string>Crate</string>
+		<key>guns</key>
+		<array>
+		</array>
+		<key>equipment</key>
+		<array>
+		</array>
+		<key>loot</key>
+		<dict>
+		<key>credits</key>
+		<dict>
+			<key>min</key>
+			<integer>0</integer>
+			<key>max</key>
+			<integer>0</integer>
+		</dict>
+		</dict>
+	</dict><key>Cyber Shuttle</key>
+	<dict>
+		<key>type</key>
+		<string>Cyber Shuttle</string>
+		<key>aiType</key>
+		<string>Fighter</string>
+		<key>guns</key>
+		<array>
+			<string>Genjuro Blaster</string>
+		</array>
+		<key>equipment</key>
+		<array>
+			<string>Handicap 30</string>
+		</array>
+		<key>loot</key>
+		<dict>
+		<key>Cyber Tier 1</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.05</real>
+		</dict>
+		<key>Cyber Tier 2</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.01</real>
+		</dict>
+		<key>Cyber Equipment Tier 1</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.04</real>
+		</dict>
+		<key>Cyber Equipment Tier 2</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.01</real>
+		</dict>
+		<key>credits</key>
+		<dict>
+			<key>min</key>
+			<integer>1</integer>
+			<key>max</key>
+			<integer>4</integer>
+		</dict>
+		</dict>
+	</dict><key>Cyber Light Fighter</key>
+	<dict>
+		<key>type</key>
+		<string>Cyber Light Fighter</string>
+		<key>aiType</key>
+		<string>Fighter</string>
+		<key>guns</key>
+		<array>
+			<string>Machine Gun</string>
+		</array>
+		<key>equipment</key>
+		<array>
+			<string>Handicap 20</string>
+		</array>
+		<key>loot</key>
+		<dict>
+		<key>Cyber Tier 1</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.03</real>
+		</dict>
+		<key>Cyber Tier 2</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.03</real>
+		</dict>
+		<key>Cyber Equipment Tier 1</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.03</real>
+		</dict>
+		<key>Cyber Equipment Tier 2</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.03</real>
+		</dict>
+		<key>credits</key>
+		<dict>
+			<key>min</key>
+			<integer>1</integer>
+			<key>max</key>
+			<integer>5</integer>
+		</dict>
+		</dict>
+	</dict><key>Cyber Heavy Fighter</key>
+	<dict>
+		<key>type</key>
+		<string>Cyber Heavy Fighter</string>
+		<key>aiType</key>
+		<string>Fighter</string>
+		<key>guns</key>
+		<array>
+			<string>Machine Gun</string>
+			<string>Machine Gun</string>
+		</array>
+		<key>equipment</key>
+		<array>
+			<string>Handicap 10</string>
+		</array>
+		<key>loot</key>
+		<dict>
+		<key>Cyber Tier 2</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.05</real>
+		</dict>
+		<key>Cyber Tier 3</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.01</real>
+		</dict>
+		<key>Cyber Equipment Tier 2</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.04</real>
+		</dict>
+		<key>Cyber Equipment Tier 3</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.01</real>
+		</dict>
+		<key>credits</key>
+		<dict>
+			<key>min</key>
+			<integer>2</integer>
+			<key>max</key>
+			<integer>6</integer>
+		</dict>
+		</dict>
+	</dict><key>Cyber Gunboat</key>
+	<dict>
+		<key>type</key>
+		<string>Cyber Gunboat</string>
+		<key>aiType</key>
+		<string>Fighter</string>
+		<key>guns</key>
+		<array>
+			<string>Magnetic Accelerator</string>
+			<string>Repeater</string>
+		</array>
+		<key>equipment</key>
+		<array>
+		</array>
+		<key>loot</key>
+		<dict>
+		<key>Cyber Tier 2</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.03</real>
+		</dict>
+		<key>Cyber Tier 3</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.03</real>
+		</dict>
+		<key>Cyber Equipment Tier 2</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.03</real>
+		</dict>
+		<key>Cyber Equipment Tier 3</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.03</real>
+		</dict>
+		<key>credits</key>
+		<dict>
+			<key>min</key>
+			<integer>3</integer>
+			<key>max</key>
+			<integer>7</integer>
+		</dict>
+		</dict>
+	</dict><key>Cyber Frigate</key>
+	<dict>
+		<key>type</key>
+		<string>Cyber Frigate</string>
+		<key>aiType</key>
+		<string>Warship</string>
+		<key>guns</key>
+		<array>
+			<string>Vulcan Cannon</string>
+			<string>Arrow</string>
+		</array>
+		<key>equipment</key>
+		<array>
+			<string>Handicap 10</string>
+		</array>
+		<key>loot</key>
+		<dict>
+		<key>Cyber Tier 3</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.05</real>
+		</dict>
+		<key>Cyber Tier 4</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.01</real>
+		</dict>
+		<key>Cyber Equipment Tier 3</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.04</real>
+		</dict>
+		<key>Cyber Equipment Tier 4</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.01</real>
+		</dict>
+		<key>credits</key>
+		<dict>
+			<key>min</key>
+			<integer>7</integer>
+			<key>max</key>
+			<integer>13</integer>
+		</dict>
+		</dict>
+	</dict><key>Cyber Destroyer</key>
+	<dict>
+		<key>type</key>
+		<string>Cyber Destroyer</string>
+		<key>aiType</key>
+		<string>Warship</string>
+		<key>guns</key>
+		<array>
+			<string>Vulcan Cannon</string>
+			<string>Javelin</string>
+			<string>Vulcan Cannon</string>
+		</array>
+		<key>equipment</key>
+		<array>
+			<string>Handicap 10</string>
+		</array>
+		<key>loot</key>
+		<dict>
+		<key>Cyber Tier 4</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.05</real>
+		</dict>
+		<key>Cyber Tier 5</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.01</real>
+		</dict>
+		<key>Cyber Equipment Tier 4</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.04</real>
+		</dict>
+		<key>Cyber Equipment Tier 5</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.01</real>
+		</dict>
+		<key>credits</key>
+		<dict>
+			<key>min</key>
+			<integer>10</integer>
+			<key>max</key>
+			<integer>20</integer>
+		</dict>
+		</dict>
+	</dict><key>Cyber Cruiser</key>
+	<dict>
+		<key>type</key>
+		<string>Cyber Cruiser</string>
+		<key>aiType</key>
+		<string>Warship</string>
+		<key>guns</key>
+		<array>
+			<string>Vulcan Cannon</string>
+			<string>Shuriken</string>
+			<string>Vulcan Cannon</string>
+		</array>
+		<key>equipment</key>
+		<array>
+			<string>Handicap 20</string>
+		</array>
+		<key>loot</key>
+		<dict>
+		<key>Cyber Tier 4</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.1</real>
+		</dict>
+		<key>Cyber Tier 5</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.02</real>
+		</dict>
+		<key>Cyber Equipment Tier 4</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.08</real>
+		</dict>
+		<key>Cyber Equipment Tier 5</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.02</real>
+		</dict>
+		<key>credits</key>
+		<dict>
+			<key>min</key>
+			<integer>12</integer>
+			<key>max</key>
+			<integer>22</integer>
+		</dict>
+		</dict>
+	</dict><key>Cyber Dreadnought</key>
+	<dict>
+		<key>type</key>
+		<string>Cyber Dreadnought</string>
+		<key>aiType</key>
+		<string>Warship</string>
+		<key>guns</key>
+		<array>
+			<string>Mass Cannon</string>
+			<string>Gatling Gun</string>
+			<string>Gatling Gun</string>
+			<string>Mass Cannon</string>
+		</array>
+		<key>equipment</key>
+		<array>
+			<string>Handicap 20</string>
+		</array>
+		<key>loot</key>
+		<dict>
+		<key>Cyber Tier 4</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.25</real>
+		</dict>
+		<key>Cyber Tier 5</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.15</real>
+		</dict>
+		<key>Cyber Equipment Tier 4</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.25</real>
+		</dict>
+		<key>Cyber Equipment Tier 5</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.15</real>
+		</dict>
+		<key>Cyber Equipment Tier 6</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.5</real>
+		</dict>
+		<key>credits</key>
+		<dict>
+			<key>min</key>
+			<integer>20</integer>
+			<key>max</key>
+			<integer>40</integer>
+		</dict>
+		</dict>
+	</dict><key>Cyber Derelict Destroyer</key>
+	<dict>
+		<key>type</key>
+		<string>Cyber Derelict Destroyer</string>
+		<key>aiType</key>
+		<string>Stationary</string>
+		<key>guns</key>
+		<array>
+		</array>
+		<key>equipment</key>
+		<array>
+		</array>
+		<key>loot</key>
+		<dict>
+		<key>Cyber Tier 1</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.75</real>
+		</dict>
+		<key>Cyber Tier 2</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.25</real>
+		</dict>
+		<key>Cyber Tier 3</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.05</real>
+		</dict>
+		<key>Cyber Equipment Tier 1</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.75</real>
+		</dict>
+		<key>Cyber Equipment Tier 2</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.25</real>
+		</dict>
+		<key>Cyber Equipment Tier 3</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.05</real>
+		</dict>
+		<key>credits</key>
+		<dict>
+			<key>min</key>
+			<integer>18</integer>
+			<key>max</key>
+			<integer>36</integer>
+		</dict>
+		</dict>
+	</dict><key>Crystal Crate - Sure Loot</key>
+	<dict>
+		<key>type</key>
+		<string>Crystal Crate</string>
+		<key>aiType</key>
+		<string>Crate</string>
+		<key>guns</key>
+		<array>
+		</array>
+		<key>equipment</key>
+		<array>
+			<string>Handicap 20</string>
+		</array>
+		<key>loot</key>
+		<dict>
+		<key>Crystal Tier 1</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>1</real>
+		</dict>
+		<key>Crystal Equipment Tier 1</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.1</real>
+		</dict>
+		<key>credits</key>
+		<dict>
+			<key>min</key>
+			<integer>5</integer>
+			<key>max</key>
+			<integer>7</integer>
+		</dict>
+		</dict>
+	</dict><key>Crystal Crate</key>
+	<dict>
+		<key>type</key>
+		<string>Crystal Crate</string>
+		<key>aiType</key>
+		<string>Crate</string>
+		<key>guns</key>
+		<array>
+		</array>
+		<key>equipment</key>
+		<array>
+		</array>
+		<key>loot</key>
+		<dict>
+		<key>Crystal Tier 1</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.1</real>
+		</dict>
+		<key>Crystal Tier 2</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.02</real>
+		</dict>
+		<key>Crystal Equipment Tier 1</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.08</real>
+		</dict>
+		<key>Crystal Equipment Tier 2</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.02</real>
+		</dict>
+		<key>credits</key>
+		<dict>
+			<key>min</key>
+			<integer>5</integer>
+			<key>max</key>
+			<integer>7</integer>
+		</dict>
+		</dict>
+	</dict><key>Crystal Crate 2</key>
+	<dict>
+		<key>type</key>
+		<string>Crystal Crate 2</string>
+		<key>aiType</key>
+		<string>Crate</string>
+		<key>guns</key>
+		<array>
+		</array>
+		<key>equipment</key>
+		<array>
+		</array>
+		<key>loot</key>
+		<dict>
+		<key>Crystal Tier 1</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.04</real>
+		</dict>
+		<key>Crystal Tier 2</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.05</real>
+		</dict>
+		<key>Crystal Tier 3</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.01</real>
+		</dict>
+		<key>Crystal Equipment Tier 1</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.03</real>
+		</dict>
+		<key>Crystal Equipment Tier 2</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.04</real>
+		</dict>
+		<key>Crystal Equipment Tier 3</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.01</real>
+		</dict>
+		<key>credits</key>
+		<dict>
+			<key>min</key>
+			<integer>7</integer>
+			<key>max</key>
+			<integer>9</integer>
+		</dict>
+		</dict>
+	</dict><key>Crystal Crate 3</key>
+	<dict>
+		<key>type</key>
+		<string>Crystal Crate 3</string>
+		<key>aiType</key>
+		<string>Crate</string>
+		<key>guns</key>
+		<array>
+		</array>
+		<key>equipment</key>
+		<array>
+		</array>
+		<key>loot</key>
+		<dict>
+		<key>Crystal Tier 2</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.04</real>
+		</dict>
+		<key>Crystal Tier 3</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.05</real>
+		</dict>
+		<key>Crystal Tier 4</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.01</real>
+		</dict>
+		<key>Crystal Equipment Tier 2</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.03</real>
+		</dict>
+		<key>Crystal Equipment Tier 3</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.04</real>
+		</dict>
+		<key>Crystal Equipment Tier 4</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.01</real>
+		</dict>
+		<key>credits</key>
+		<dict>
+			<key>min</key>
+			<integer>8</integer>
+			<key>max</key>
+			<integer>11</integer>
+		</dict>
+		</dict>
+	</dict><key>Crystal Crate 4</key>
+	<dict>
+		<key>type</key>
+		<string>Crystal Crate 4</string>
+		<key>aiType</key>
+		<string>Crate</string>
+		<key>guns</key>
+		<array>
+		</array>
+		<key>equipment</key>
+		<array>
+		</array>
+		<key>loot</key>
+		<dict>
+		<key>Crystal Tier 3</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.04</real>
+		</dict>
+		<key>Crystal Tier 4</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.05</real>
+		</dict>
+		<key>Crystal Tier 5</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.01</real>
+		</dict>
+		<key>Crystal Equipment Tier 3</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.03</real>
+		</dict>
+		<key>Crystal Equipment Tier 4</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.04</real>
+		</dict>
+		<key>Crystal Equipment Tier 5</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.01</real>
+		</dict>
+		<key>credits</key>
+		<dict>
+			<key>min</key>
+			<integer>8</integer>
+			<key>max</key>
+			<integer>12</integer>
+		</dict>
+		</dict>
+	</dict><key>Crystal Crate 5</key>
+	<dict>
+		<key>type</key>
+		<string>Crystal Crate 5</string>
+		<key>aiType</key>
+		<string>Crate</string>
+		<key>guns</key>
+		<array>
+		</array>
+		<key>equipment</key>
+		<array>
+		</array>
+		<key>loot</key>
+		<dict>
+		<key>Crystal Tier 4</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.04</real>
+		</dict>
+		<key>Crystal Tier 5</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.05</real>
+		</dict>
+		<key>Crystal Equipment Tier 4</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.03</real>
+		</dict>
+		<key>Crystal Equipment Tier 5</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.04</real>
+		</dict>
+		<key>credits</key>
+		<dict>
+			<key>min</key>
+			<integer>10</integer>
+			<key>max</key>
+			<integer>20</integer>
+		</dict>
+		</dict>
+	</dict><key>Crystal Liner</key>
+	<dict>
+		<key>type</key>
+		<string>Crystal Liner</string>
+		<key>aiType</key>
+		<string>Warship</string>
+		<key>guns</key>
+		<array>
+			<string>Energy Pulse</string>
+		</array>
+		<key>equipment</key>
+		<array>
+		</array>
+		<key>loot</key>
+		<dict>
+		<key>Crystal Tier 2</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.1</real>
+		</dict>
+		<key>Crystal Tier 3</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.03</real>
+		</dict>
+		<key>Crystal Tier 4</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.01</real>
+		</dict>
+		<key>Crystal Equipment Tier 2</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.08</real>
+		</dict>
+		<key>Crystal Equipment Tier 3</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.03</real>
+		</dict>
+		<key>Crystal Equipment Tier 4</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.01</real>
+		</dict>
+		<key>credits</key>
+		<dict>
+			<key>min</key>
+			<integer>12</integer>
+			<key>max</key>
+			<integer>23</integer>
+		</dict>
+		</dict>
+	</dict><key>Crystal Freighter</key>
+	<dict>
+		<key>type</key>
+		<string>Crystal Freighter</string>
+		<key>aiType</key>
+		<string>Warship</string>
+		<key>guns</key>
+		<array>
+			<string>Shard</string>
+			<string>Shard</string>
+		</array>
+		<key>equipment</key>
+		<array>
+		</array>
+		<key>loot</key>
+		<dict>
+		<key>Crystal Tier 3</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.15</real>
+		</dict>
+		<key>Crystal Tier 4</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.03</real>
+		</dict>
+		<key>Crystal Equipment Tier 3</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.12</real>
+		</dict>
+		<key>Crystal Equipment Tier 4</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.03</real>
+		</dict>
+		<key>credits</key>
+		<dict>
+			<key>min</key>
+			<integer>17</integer>
+			<key>max</key>
+			<integer>28</integer>
+		</dict>
+		</dict>
+	</dict><key>Crystal Gun</key>
+	<dict>
+		<key>type</key>
+		<string>Crystal Gun</string>
+		<key>aiType</key>
+		<string>Stationary</string>
+		<key>guns</key>
+		<array>
+			<string>Edge</string>
+		</array>
+		<key>equipment</key>
+		<array>
+			<string>Handicap 20</string>
+		</array>
+		<key>loot</key>
+		<dict>
+		<key>Crystal Tier 1</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.05</real>
+		</dict>
+		<key>Crystal Tier 2</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.01</real>
+		</dict>
+		<key>Crystal Equipment Tier 1</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.04</real>
+		</dict>
+		<key>Crystal Equipment Tier 2</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.01</real>
+		</dict>
+		<key>credits</key>
+		<dict>
+			<key>min</key>
+			<integer>2</integer>
+			<key>max</key>
+			<integer>5</integer>
+		</dict>
+		</dict>
+	</dict><key>Crystal Gun 2</key>
+	<dict>
+		<key>type</key>
+		<string>Crystal Gun 2</string>
+		<key>aiType</key>
+		<string>Stationary</string>
+		<key>guns</key>
+		<array>
+			<string>Shard</string>
+		</array>
+		<key>equipment</key>
+		<array>
+			<string>Handicap 10</string>
+		</array>
+		<key>loot</key>
+		<dict>
+		<key>Crystal Tier 2</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.05</real>
+		</dict>
+		<key>Crystal Tier 3</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.01</real>
+		</dict>
+		<key>Crystal Equipment Tier 2</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.04</real>
+		</dict>
+		<key>Crystal Equipment Tier 3</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.01</real>
+		</dict>
+		<key>credits</key>
+		<dict>
+			<key>min</key>
+			<integer>3</integer>
+			<key>max</key>
+			<integer>7</integer>
+		</dict>
+		</dict>
+	</dict><key>Crystal Gun 3</key>
+	<dict>
+		<key>type</key>
+		<string>Crystal Gun 3</string>
+		<key>aiType</key>
+		<string>Stationary</string>
+		<key>guns</key>
+		<array>
+			<string>Blade</string>
+		</array>
+		<key>equipment</key>
+		<array>
+		</array>
+		<key>loot</key>
+		<dict>
+		<key>Crystal Tier 3</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.05</real>
+		</dict>
+		<key>Crystal Tier 4</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.01</real>
+		</dict>
+		<key>Crystal Equipment Tier 3</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.04</real>
+		</dict>
+		<key>Crystal Equipment Tier 4</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.01</real>
+		</dict>
+		<key>credits</key>
+		<dict>
+			<key>min</key>
+			<integer>4</integer>
+			<key>max</key>
+			<integer>9</integer>
+		</dict>
+		</dict>
+	</dict><key>Crystal Gun 4</key>
+	<dict>
+		<key>type</key>
+		<string>Crystal Gun 4</string>
+		<key>aiType</key>
+		<string>Stationary</string>
+		<key>guns</key>
+		<array>
+			<string>Razor</string>
+		</array>
+		<key>equipment</key>
+		<array>
+			<string>Handicap 10</string>
+		</array>
+		<key>loot</key>
+		<dict>
+		<key>Crystal Tier 4</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.05</real>
+		</dict>
+		<key>Crystal Tier 5</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.01</real>
+		</dict>
+		<key>Crystal Equipment Tier 4</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.04</real>
+		</dict>
+		<key>Crystal Equipment Tier 5</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.01</real>
+		</dict>
+		<key>credits</key>
+		<dict>
+			<key>min</key>
+			<integer>5</integer>
+			<key>max</key>
+			<integer>10</integer>
+		</dict>
+		</dict>
+	</dict><key>Crystal Gun 5</key>
+	<dict>
+		<key>type</key>
+		<string>Crystal Gun 5</string>
+		<key>aiType</key>
+		<string>Stationary</string>
+		<key>guns</key>
+		<array>
+			<string>Gladiate</string>
+		</array>
+		<key>equipment</key>
+		<array>
+			<string>Handicap 20</string>
+		</array>
+		<key>loot</key>
+		<dict>
+		<key>Crystal Tier 5</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.06</real>
+		</dict>
+		<key>Crystal Equipment Tier 5</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.05</real>
+		</dict>
+		<key>credits</key>
+		<dict>
+			<key>min</key>
+			<integer>6</integer>
+			<key>max</key>
+			<integer>12</integer>
+		</dict>
+		</dict>
+	</dict><key>Crystal Mine</key>
+	<dict>
+		<key>mine</key>
+		<dict>
+			<key>shieldDamage</key>
+			<integer>15</integer>
+			<key>armorDamage</key>
+			<integer>30</integer>
+			<key>size</key>
+			<real>5</real>
+		</dict>
+		<key>type</key>
+		<string>Crystal Mine</string>
+		<key>aiType</key>
+		<string>Crate</string>
+		<key>guns</key>
+		<array>
+		</array>
+		<key>equipment</key>
+		<array>
+		</array>
+		<key>loot</key>
+		<dict>
+		<key>credits</key>
+		<dict>
+			<key>min</key>
+			<integer>0</integer>
+			<key>max</key>
+			<integer>0</integer>
+		</dict>
+		</dict>
+	</dict><key>Crystal Mine 2</key>
+	<dict>
+		<key>mine</key>
+		<dict>
+			<key>shieldDamage</key>
+			<integer>100</integer>
+			<key>armorDamage</key>
+			<integer>120</integer>
+			<key>size</key>
+			<real>5.5</real>
+		</dict>
+		<key>type</key>
+		<string>Crystal Mine 2</string>
+		<key>aiType</key>
+		<string>Crate</string>
+		<key>guns</key>
+		<array>
+		</array>
+		<key>equipment</key>
+		<array>
+		</array>
+		<key>loot</key>
+		<dict>
+		<key>credits</key>
+		<dict>
+			<key>min</key>
+			<integer>0</integer>
+			<key>max</key>
+			<integer>0</integer>
+		</dict>
+		</dict>
+	</dict><key>Crystal Mine 3</key>
+	<dict>
+		<key>mine</key>
+		<dict>
+			<key>shieldDamage</key>
+			<integer>250</integer>
+			<key>armorDamage</key>
+			<integer>375</integer>
+			<key>size</key>
+			<real>6</real>
+		</dict>
+		<key>type</key>
+		<string>Crystal Mine 3</string>
+		<key>aiType</key>
+		<string>Crate</string>
+		<key>guns</key>
+		<array>
+		</array>
+		<key>equipment</key>
+		<array>
+		</array>
+		<key>loot</key>
+		<dict>
+		<key>credits</key>
+		<dict>
+			<key>min</key>
+			<integer>0</integer>
+			<key>max</key>
+			<integer>0</integer>
+		</dict>
+		</dict>
+	</dict><key>Crystal Mine 4</key>
+	<dict>
+		<key>mine</key>
+		<dict>
+			<key>shieldDamage</key>
+			<integer>750</integer>
+			<key>armorDamage</key>
+			<integer>1200</integer>
+			<key>size</key>
+			<real>6.5</real>
+		</dict>
+		<key>type</key>
+		<string>Crystal Mine 4</string>
+		<key>aiType</key>
+		<string>Crate</string>
+		<key>guns</key>
+		<array>
+		</array>
+		<key>equipment</key>
+		<array>
+		</array>
+		<key>loot</key>
+		<dict>
+		<key>credits</key>
+		<dict>
+			<key>min</key>
+			<integer>0</integer>
+			<key>max</key>
+			<integer>0</integer>
+		</dict>
+		</dict>
+	</dict><key>Crystal Mine 5</key>
+	<dict>
+		<key>mine</key>
+		<dict>
+			<key>shieldDamage</key>
+			<integer>1500</integer>
+			<key>armorDamage</key>
+			<integer>1800</integer>
+			<key>size</key>
+			<real>7</real>
+		</dict>
+		<key>type</key>
+		<string>Crystal Mine 5</string>
+		<key>aiType</key>
+		<string>Crate</string>
+		<key>guns</key>
+		<array>
+		</array>
+		<key>equipment</key>
+		<array>
+		</array>
+		<key>loot</key>
+		<dict>
+		<key>credits</key>
+		<dict>
+			<key>min</key>
+			<integer>0</integer>
+			<key>max</key>
+			<integer>0</integer>
+		</dict>
+		</dict>
+	</dict><key>Crystal Shuttle</key>
+	<dict>
+		<key>type</key>
+		<string>Crystal Shuttle</string>
+		<key>aiType</key>
+		<string>Fighter</string>
+		<key>guns</key>
+		<array>
+			<string>Edge</string>
+		</array>
+		<key>equipment</key>
+		<array>
+			<string>Handicap 30</string>
+		</array>
+		<key>loot</key>
+		<dict>
+		<key>Crystal Tier 1</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.05</real>
+		</dict>
+		<key>Crystal Tier 2</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.01</real>
+		</dict>
+		<key>Crystal Equipment Tier 1</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.04</real>
+		</dict>
+		<key>Crystal Equipment Tier 2</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.01</real>
+		</dict>
+		<key>credits</key>
+		<dict>
+			<key>min</key>
+			<integer>1</integer>
+			<key>max</key>
+			<integer>4</integer>
+		</dict>
+		</dict>
+	</dict><key>Crystal Light Fighter</key>
+	<dict>
+		<key>type</key>
+		<string>Crystal Light Fighter</string>
+		<key>aiType</key>
+		<string>Fighter</string>
+		<key>guns</key>
+		<array>
+			<string>Charged Pulse</string>
+		</array>
+		<key>equipment</key>
+		<array>
+			<string>Handicap 20</string>
+		</array>
+		<key>loot</key>
+		<dict>
+		<key>Crystal Tier 1</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.03</real>
+		</dict>
+		<key>Crystal Tier 2</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.03</real>
+		</dict>
+		<key>Crystal Equipment Tier 1</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.03</real>
+		</dict>
+		<key>Crystal Equipment Tier 2</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.03</real>
+		</dict>
+		<key>credits</key>
+		<dict>
+			<key>min</key>
+			<integer>1</integer>
+			<key>max</key>
+			<integer>5</integer>
+		</dict>
+		</dict>
+	</dict><key>Crystal Light Fighter 2</key>
+	<dict>
+		<key>type</key>
+		<string>Crystal Light Fighter</string>
+		<key>aiType</key>
+		<string>Fighter</string>
+		<key>guns</key>
+		<array>
+			<string>Shard</string>
+		</array>
+		<key>equipment</key>
+		<array>
+			<string>Handicap 10</string>
+		</array>
+		<key>loot</key>
+		<dict>
+		<key>Crystal Tier 1</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.03</real>
+		</dict>
+		<key>Crystal Tier 2</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.03</real>
+		</dict>
+		<key>Crystal Equipment Tier 1</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.03</real>
+		</dict>
+		<key>Crystal Equipment Tier 2</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.03</real>
+		</dict>
+		<key>credits</key>
+		<dict>
+			<key>min</key>
+			<integer>2</integer>
+			<key>max</key>
+			<integer>6</integer>
+		</dict>
+		</dict>
+	</dict><key>Crystal Heavy Fighter</key>
+	<dict>
+		<key>type</key>
+		<string>Crystal Heavy Fighter</string>
+		<key>aiType</key>
+		<string>Fighter</string>
+		<key>guns</key>
+		<array>
+			<string>Shard</string>
+			<string>Edge</string>
+		</array>
+		<key>equipment</key>
+		<array>
+			<string>Handicap 10</string>
+		</array>
+		<key>loot</key>
+		<dict>
+		<key>Crystal Tier 2</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.05</real>
+		</dict>
+		<key>Crystal Tier 3</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.01</real>
+		</dict>
+		<key>Crystal Equipment Tier 2</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.04</real>
+		</dict>
+		<key>Crystal Equipment Tier 3</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.01</real>
+		</dict>
+		<key>credits</key>
+		<dict>
+			<key>min</key>
+			<integer>3</integer>
+			<key>max</key>
+			<integer>7</integer>
+		</dict>
+		</dict>
+	</dict><key>Crystal Gunboat</key>
+	<dict>
+		<key>type</key>
+		<string>Crystal Gunboat</string>
+		<key>aiType</key>
+		<string>Fighter</string>
+		<key>guns</key>
+		<array>
+			<string>Edge</string>
+			<string>Energy Pulse</string>
+			<string>Edge</string>
+		</array>
+		<key>equipment</key>
+		<array>
+		</array>
+		<key>loot</key>
+		<dict>
+		<key>Crystal Tier 2</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.03</real>
+		</dict>
+		<key>Crystal Tier 3</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.03</real>
+		</dict>
+		<key>Crystal Equipment Tier 2</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.03</real>
+		</dict>
+		<key>Crystal Equipment Tier 3</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.03</real>
+		</dict>
+		<key>credits</key>
+		<dict>
+			<key>min</key>
+			<integer>7</integer>
+			<key>max</key>
+			<integer>13</integer>
+		</dict>
+		</dict>
+	</dict><key>Crystal Frigate</key>
+	<dict>
+		<key>type</key>
+		<string>Crystal Frigate</string>
+		<key>aiType</key>
+		<string>Warship</string>
+		<key>guns</key>
+		<array>
+			<string>Shard</string>
+			<string>Energy Pulse</string>
+			<string>Shard</string>
+		</array>
+		<key>equipment</key>
+		<array>
+			<string>Handicap 10</string>
+		</array>
+		<key>loot</key>
+		<dict>
+		<key>Crystal Tier 3</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.05</real>
+		</dict>
+		<key>Crystal Tier 4</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.01</real>
+		</dict>
+		<key>Crystal Equipment Tier 3</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.04</real>
+		</dict>
+		<key>Crystal Equipment Tier 4</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.01</real>
+		</dict>
+		<key>credits</key>
+		<dict>
+			<key>min</key>
+			<integer>10</integer>
+			<key>max</key>
+			<integer>20</integer>
+		</dict>
+		</dict>
+	</dict><key>Crystal Destroyer</key>
+	<dict>
+		<key>type</key>
+		<string>Crystal Destroyer</string>
+		<key>aiType</key>
+		<string>Warship</string>
+		<key>guns</key>
+		<array>
+			<string>Energy Pulse</string>
+			<string>Blade</string>
+			<string>Blade</string>
+			<string>Energy Pulse</string>
+		</array>
+		<key>equipment</key>
+		<array>
+			<string>Handicap 10</string>
+		</array>
+		<key>loot</key>
+		<dict>
+		<key>Crystal Tier 4</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.05</real>
+		</dict>
+		<key>Crystal Tier 5</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.01</real>
+		</dict>
+		<key>Crystal Equipment Tier 4</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.04</real>
+		</dict>
+		<key>Crystal Equipment Tier 5</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.01</real>
+		</dict>
+		<key>credits</key>
+		<dict>
+			<key>min</key>
+			<integer>12</integer>
+			<key>max</key>
+			<integer>22</integer>
+		</dict>
+		</dict>
+	</dict><key>Crystal Cruiser</key>
+	<dict>
+		<key>type</key>
+		<string>Crystal Cruiser</string>
+		<key>aiType</key>
+		<string>Warship</string>
+		<key>guns</key>
+		<array>
+			<string>Edge</string>
+			<string>Razor</string>
+			<string>Razor</string>
+			<string>Edge</string>
+		</array>
+		<key>equipment</key>
+		<array>
+			<string>Handicap 20</string>
+		</array>
+		<key>loot</key>
+		<dict>
+		<key>Crystal Tier 4</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.1</real>
+		</dict>
+		<key>Crystal Tier 5</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.02</real>
+		</dict>
+		<key>Crystal Equipment Tier 4</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.08</real>
+		</dict>
+		<key>Crystal Equipment Tier 5</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.02</real>
+		</dict>
+		<key>credits</key>
+		<dict>
+			<key>min</key>
+			<integer>20</integer>
+			<key>max</key>
+			<integer>40</integer>
+		</dict>
+		</dict>
+	</dict><key>Crystal Dreadnought</key>
+	<dict>
+		<key>type</key>
+		<string>Crystal Dreadnought</string>
+		<key>aiType</key>
+		<string>Warship</string>
+		<key>guns</key>
+		<array>
+			<string>Plasma Pulse</string>
+			<string>Razor</string>
+			<string>Frag Mine</string>
+			<string>Razor</string>
+			<string>Plasma Pulse</string>
+		</array>
+		<key>equipment</key>
+		<array>
+			<string>Handicap 20</string>
+		</array>
+		<key>loot</key>
+		<dict>
+		<key>Crystal Tier 4</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.25</real>
+		</dict>
+		<key>Crystal Tier 5</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.15</real>
+		</dict>
+		<key>Crystal Equipment Tier 4</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.25</real>
+		</dict>
+		<key>Crystal Equipment Tier 5</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.15</real>
+		</dict>
+		<key>Crystal Equipment Tier 6</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.5</real>
+		</dict>
+		<key>credits</key>
+		<dict>
+			<key>min</key>
+			<integer>18</integer>
+			<key>max</key>
+			<integer>36</integer>
+		</dict>
+		</dict>
+	</dict><key>Organic Crate - Sure Loot</key>
+	<dict>
+		<key>type</key>
+		<string>Organic Crate</string>
+		<key>aiType</key>
+		<string>Crate</string>
+		<key>guns</key>
+		<array>
+		</array>
+		<key>equipment</key>
+		<array>
+			<string>Handicap 20</string>
+		</array>
+		<key>loot</key>
+		<dict>
+		<key>Organic Tier 1</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>1</real>
+		</dict>
+		<key>Organic Equipment Tier 1</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.1</real>
+		</dict>
+		<key>credits</key>
+		<dict>
+			<key>min</key>
+			<integer>5</integer>
+			<key>max</key>
+			<integer>7</integer>
+		</dict>
+		</dict>
+	</dict><key>Organic Crate</key>
+	<dict>
+		<key>type</key>
+		<string>Organic Crate</string>
+		<key>aiType</key>
+		<string>Crate</string>
+		<key>guns</key>
+		<array>
+		</array>
+		<key>equipment</key>
+		<array>
+		</array>
+		<key>loot</key>
+		<dict>
+		<key>Organic Tier 1</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.1</real>
+		</dict>
+		<key>Organic Tier 2</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.02</real>
+		</dict>
+		<key>Organic Equipment Tier 1</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.08</real>
+		</dict>
+		<key>Organic Equipment Tier 2</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.02</real>
+		</dict>
+		<key>credits</key>
+		<dict>
+			<key>min</key>
+			<integer>5</integer>
+			<key>max</key>
+			<integer>7</integer>
+		</dict>
+		</dict>
+	</dict><key>Organic Crate 2</key>
+	<dict>
+		<key>type</key>
+		<string>Organic Crate 2</string>
+		<key>aiType</key>
+		<string>Crate</string>
+		<key>guns</key>
+		<array>
+		</array>
+		<key>equipment</key>
+		<array>
+		</array>
+		<key>loot</key>
+		<dict>
+		<key>Organic Tier 1</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.04</real>
+		</dict>
+		<key>Organic Tier 2</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.05</real>
+		</dict>
+		<key>Organic Tier 3</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.01</real>
+		</dict>
+		<key>Organic Equipment Tier 1</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.03</real>
+		</dict>
+		<key>Organic Equipment Tier 2</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.04</real>
+		</dict>
+		<key>Organic Equipment Tier 3</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.01</real>
+		</dict>
+		<key>credits</key>
+		<dict>
+			<key>min</key>
+			<integer>7</integer>
+			<key>max</key>
+			<integer>9</integer>
+		</dict>
+		</dict>
+	</dict><key>Organic Crate 3</key>
+	<dict>
+		<key>type</key>
+		<string>Organic Crate 3</string>
+		<key>aiType</key>
+		<string>Crate</string>
+		<key>guns</key>
+		<array>
+		</array>
+		<key>equipment</key>
+		<array>
+		</array>
+		<key>loot</key>
+		<dict>
+		<key>Organic Tier 2</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.04</real>
+		</dict>
+		<key>Organic Tier 3</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.05</real>
+		</dict>
+		<key>Organic Tier 4</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.01</real>
+		</dict>
+		<key>Organic Equipment Tier 2</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.03</real>
+		</dict>
+		<key>Organic Equipment Tier 3</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.04</real>
+		</dict>
+		<key>Organic Equipment Tier 4</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.01</real>
+		</dict>
+		<key>credits</key>
+		<dict>
+			<key>min</key>
+			<integer>8</integer>
+			<key>max</key>
+			<integer>11</integer>
+		</dict>
+		</dict>
+	</dict><key>Organic Crate 4</key>
+	<dict>
+		<key>type</key>
+		<string>Organic Crate 4</string>
+		<key>aiType</key>
+		<string>Crate</string>
+		<key>guns</key>
+		<array>
+		</array>
+		<key>equipment</key>
+		<array>
+		</array>
+		<key>loot</key>
+		<dict>
+		<key>Organic Tier 3</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.04</real>
+		</dict>
+		<key>Organic Tier 4</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.05</real>
+		</dict>
+		<key>Organic Tier 5</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.01</real>
+		</dict>
+		<key>Organic Equipment Tier 3</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.03</real>
+		</dict>
+		<key>Organic Equipment Tier 4</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.04</real>
+		</dict>
+		<key>Organic Equipment Tier 5</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.01</real>
+		</dict>
+		<key>credits</key>
+		<dict>
+			<key>min</key>
+			<integer>8</integer>
+			<key>max</key>
+			<integer>12</integer>
+		</dict>
+		</dict>
+	</dict><key>Organic Crate 5</key>
+	<dict>
+		<key>type</key>
+		<string>Organic Crate 5</string>
+		<key>aiType</key>
+		<string>Crate</string>
+		<key>guns</key>
+		<array>
+		</array>
+		<key>equipment</key>
+		<array>
+		</array>
+		<key>loot</key>
+		<dict>
+		<key>Organic Tier 4</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.04</real>
+		</dict>
+		<key>Organic Tier 5</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.05</real>
+		</dict>
+		<key>Organic Equipment Tier 4</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.03</real>
+		</dict>
+		<key>Organic Equipment Tier 5</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.04</real>
+		</dict>
+		<key>credits</key>
+		<dict>
+			<key>min</key>
+			<integer>10</integer>
+			<key>max</key>
+			<integer>20</integer>
+		</dict>
+		</dict>
+	</dict><key>Organic Liner</key>
+	<dict>
+		<key>type</key>
+		<string>Organic Liner</string>
+		<key>aiType</key>
+		<string>Warship</string>
+		<key>guns</key>
+		<array>
+			<string>Phase Fungi</string>
+			<string>Protozoa</string>
+		</array>
+		<key>equipment</key>
+		<array>
+		</array>
+		<key>loot</key>
+		<dict>
+		<key>Organic Tier 2</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.1</real>
+		</dict>
+		<key>Organic Tier 3</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.03</real>
+		</dict>
+		<key>Organic Tier 4</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.01</real>
+		</dict>
+		<key>Organic Equipment Tier 2</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.08</real>
+		</dict>
+		<key>Organic Equipment Tier 3</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.03</real>
+		</dict>
+		<key>Organic Equipment Tier 4</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.01</real>
+		</dict>
+		<key>credits</key>
+		<dict>
+			<key>min</key>
+			<integer>12</integer>
+			<key>max</key>
+			<integer>23</integer>
+		</dict>
+		</dict>
+	</dict><key>Organic Freighter</key>
+	<dict>
+		<key>type</key>
+		<string>Organic Freighter</string>
+		<key>aiType</key>
+		<string>Warship</string>
+		<key>guns</key>
+		<array>
+			<string>Phase Fungi</string>
+			<string>Acid Gland</string>
+			<string>Phase Fungi</string>
+		</array>
+		<key>equipment</key>
+		<array>
+		</array>
+		<key>loot</key>
+		<dict>
+		<key>Organic Tier 3</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.15</real>
+		</dict>
+		<key>Organic Tier 4</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.03</real>
+		</dict>
+		<key>Organic Equipment Tier 3</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.12</real>
+		</dict>
+		<key>Organic Equipment Tier 4</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.03</real>
+		</dict>
+		<key>credits</key>
+		<dict>
+			<key>min</key>
+			<integer>17</integer>
+			<key>max</key>
+			<integer>28</integer>
+		</dict>
+		</dict>
+	</dict><key>Organic Gun</key>
+	<dict>
+		<key>type</key>
+		<string>Organic Gun</string>
+		<key>aiType</key>
+		<string>Stationary</string>
+		<key>guns</key>
+		<array>
+			<string>Protozoa</string>
+		</array>
+		<key>equipment</key>
+		<array>
+			<string>Handicap 20</string>
+			<string>Pressure Sac</string>
+		</array>
+		<key>loot</key>
+		<dict>
+		<key>Organic Tier 1</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.05</real>
+		</dict>
+		<key>Organic Tier 2</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.01</real>
+		</dict>
+		<key>Organic Equipment Tier 1</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.04</real>
+		</dict>
+		<key>Organic Equipment Tier 2</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.01</real>
+		</dict>
+		<key>credits</key>
+		<dict>
+			<key>min</key>
+			<integer>2</integer>
+			<key>max</key>
+			<integer>5</integer>
+		</dict>
+		</dict>
+	</dict><key>Organic Gun 2</key>
+	<dict>
+		<key>type</key>
+		<string>Organic Gun 2</string>
+		<key>aiType</key>
+		<string>Stationary</string>
+		<key>guns</key>
+		<array>
+			<string>Quill Flinger</string>
+		</array>
+		<key>equipment</key>
+		<array>
+			<string>Handicap 10</string>
+			<string>Pressure Sac</string>
+		</array>
+		<key>loot</key>
+		<dict>
+		<key>Organic Tier 2</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.05</real>
+		</dict>
+		<key>Organic Tier 3</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.01</real>
+		</dict>
+		<key>Organic Equipment Tier 2</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.04</real>
+		</dict>
+		<key>Organic Equipment Tier 3</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.01</real>
+		</dict>
+		<key>credits</key>
+		<dict>
+			<key>min</key>
+			<integer>3</integer>
+			<key>max</key>
+			<integer>7</integer>
+		</dict>
+		</dict>
+	</dict><key>Organic Gun 3</key>
+	<dict>
+		<key>type</key>
+		<string>Organic Gun 3</string>
+		<key>aiType</key>
+		<string>Stationary</string>
+		<key>guns</key>
+		<array>
+			<string>Plasma Spore</string>
+		</array>
+		<key>equipment</key>
+		<array>
+			<string>Pressure Sac</string>
+		</array>
+		<key>loot</key>
+		<dict>
+		<key>Organic Tier 3</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.05</real>
+		</dict>
+		<key>Organic Tier 4</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.01</real>
+		</dict>
+		<key>Organic Equipment Tier 3</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.04</real>
+		</dict>
+		<key>Organic Equipment Tier 4</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.01</real>
+		</dict>
+		<key>credits</key>
+		<dict>
+			<key>min</key>
+			<integer>4</integer>
+			<key>max</key>
+			<integer>9</integer>
+		</dict>
+		</dict>
+	</dict><key>Organic Gun 4</key>
+	<dict>
+		<key>type</key>
+		<string>Organic Gun 4</string>
+		<key>aiType</key>
+		<string>Stationary</string>
+		<key>guns</key>
+		<array>
+			<string>Boom Worm</string>
+		</array>
+		<key>equipment</key>
+		<array>
+			<string>Handicap 10</string>
+			<string>Pressure Sac</string>
+		</array>
+		<key>loot</key>
+		<dict>
+		<key>Organic Tier 4</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.05</real>
+		</dict>
+		<key>Organic Tier 5</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.01</real>
+		</dict>
+		<key>Organic Equipment Tier 4</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.04</real>
+		</dict>
+		<key>Organic Equipment Tier 5</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.01</real>
+		</dict>
+		<key>credits</key>
+		<dict>
+			<key>min</key>
+			<integer>5</integer>
+			<key>max</key>
+			<integer>10</integer>
+		</dict>
+		</dict>
+	</dict><key>Organic Gun 5</key>
+	<dict>
+		<key>type</key>
+		<string>Organic Gun 5</string>
+		<key>aiType</key>
+		<string>Stationary</string>
+		<key>guns</key>
+		<array>
+			<string>Kinetic Pollup</string>
+		</array>
+		<key>equipment</key>
+		<array>
+			<string>Handicap 20</string>
+			<string>Pressure Sac</string>
+		</array>
+		<key>loot</key>
+		<dict>
+		<key>Organic Tier 5</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.06</real>
+		</dict>
+		<key>Organic Equipment Tier 5</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.05</real>
+		</dict>
+		<key>credits</key>
+		<dict>
+			<key>min</key>
+			<integer>6</integer>
+			<key>max</key>
+			<integer>12</integer>
+		</dict>
+		</dict>
+	</dict><key>Organic Mine</key>
+	<dict>
+		<key>mine</key>
+		<dict>
+			<key>shieldDamage</key>
+			<integer>25</integer>
+			<key>armorDamage</key>
+			<integer>25</integer>
+			<key>size</key>
+			<real>5</real>
+		</dict>
+		<key>type</key>
+		<string>Organic Mine</string>
+		<key>aiType</key>
+		<string>Crate</string>
+		<key>guns</key>
+		<array>
+		</array>
+		<key>equipment</key>
+		<array>
+		</array>
+		<key>loot</key>
+		<dict>
+		<key>credits</key>
+		<dict>
+			<key>min</key>
+			<integer>0</integer>
+			<key>max</key>
+			<integer>0</integer>
+		</dict>
+		</dict>
+	</dict><key>Organic Mine 2</key>
+	<dict>
+		<key>mine</key>
+		<dict>
+			<key>shieldDamage</key>
+			<integer>160</integer>
+			<key>armorDamage</key>
+			<integer>95</integer>
+			<key>size</key>
+			<real>5.5</real>
+		</dict>
+		<key>type</key>
+		<string>Organic Mine 2</string>
+		<key>aiType</key>
+		<string>Crate</string>
+		<key>guns</key>
+		<array>
+		</array>
+		<key>equipment</key>
+		<array>
+		</array>
+		<key>loot</key>
+		<dict>
+		<key>credits</key>
+		<dict>
+			<key>min</key>
+			<integer>0</integer>
+			<key>max</key>
+			<integer>0</integer>
+		</dict>
+		</dict>
+	</dict><key>Organic Mine 3</key>
+	<dict>
+		<key>mine</key>
+		<dict>
+			<key>shieldDamage</key>
+			<integer>400</integer>
+			<key>armorDamage</key>
+			<integer>300</integer>
+			<key>size</key>
+			<real>6</real>
+		</dict>
+		<key>type</key>
+		<string>Organic Mine 3</string>
+		<key>aiType</key>
+		<string>Crate</string>
+		<key>guns</key>
+		<array>
+		</array>
+		<key>equipment</key>
+		<array>
+		</array>
+		<key>loot</key>
+		<dict>
+		<key>credits</key>
+		<dict>
+			<key>min</key>
+			<integer>0</integer>
+			<key>max</key>
+			<integer>0</integer>
+		</dict>
+		</dict>
+	</dict><key>Organic Mine 4</key>
+	<dict>
+		<key>mine</key>
+		<dict>
+			<key>shieldDamage</key>
+			<integer>1200</integer>
+			<key>armorDamage</key>
+			<integer>960</integer>
+			<key>size</key>
+			<real>6.5</real>
+		</dict>
+		<key>type</key>
+		<string>Organic Mine 4</string>
+		<key>aiType</key>
+		<string>Crate</string>
+		<key>guns</key>
+		<array>
+		</array>
+		<key>equipment</key>
+		<array>
+		</array>
+		<key>loot</key>
+		<dict>
+		<key>credits</key>
+		<dict>
+			<key>min</key>
+			<integer>0</integer>
+			<key>max</key>
+			<integer>0</integer>
+		</dict>
+		</dict>
+	</dict><key>Organic Mine 5</key>
+	<dict>
+		<key>mine</key>
+		<dict>
+			<key>shieldDamage</key>
+			<integer>2400</integer>
+			<key>armorDamage</key>
+			<integer>1440</integer>
+			<key>size</key>
+			<real>7</real>
+		</dict>
+		<key>type</key>
+		<string>Organic Mine 5</string>
+		<key>aiType</key>
+		<string>Crate</string>
+		<key>guns</key>
+		<array>
+		</array>
+		<key>equipment</key>
+		<array>
+		</array>
+		<key>loot</key>
+		<dict>
+		<key>credits</key>
+		<dict>
+			<key>min</key>
+			<integer>0</integer>
+			<key>max</key>
+			<integer>0</integer>
+		</dict>
+		</dict>
+	</dict><key>Organic Shuttle</key>
+	<dict>
+		<key>type</key>
+		<string>Organic Shuttle</string>
+		<key>aiType</key>
+		<string>Fighter</string>
+		<key>guns</key>
+		<array>
+			<string>Protozoa</string>
+		</array>
+		<key>equipment</key>
+		<array>
+			<string>Handicap 30</string>
+		</array>
+		<key>loot</key>
+		<dict>
+		<key>Organic Tier 1</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.05</real>
+		</dict>
+		<key>Organic Tier 2</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.01</real>
+		</dict>
+		<key>Organic Equipment Tier 1</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.04</real>
+		</dict>
+		<key>Organic Equipment Tier 2</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.01</real>
+		</dict>
+		<key>credits</key>
+		<dict>
+			<key>min</key>
+			<integer>1</integer>
+			<key>max</key>
+			<integer>4</integer>
+		</dict>
+		</dict>
+	</dict><key>Organic Light Fighter</key>
+	<dict>
+		<key>type</key>
+		<string>Organic Light Fighter</string>
+		<key>aiType</key>
+		<string>Fighter</string>
+		<key>guns</key>
+		<array>
+			<string>Spine Hurler</string>
+			<string>Spine Hurler</string>
+		</array>
+		<key>equipment</key>
+		<array>
+			<string>Handicap 20</string>
+		</array>
+		<key>loot</key>
+		<dict>
+		<key>Organic Tier 1</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.03</real>
+		</dict>
+		<key>Organic Tier 2</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.03</real>
+		</dict>
+		<key>Organic Equipment Tier 1</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.03</real>
+		</dict>
+		<key>Organic Equipment Tier 2</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.03</real>
+		</dict>
+		<key>credits</key>
+		<dict>
+			<key>min</key>
+			<integer>1</integer>
+			<key>max</key>
+			<integer>5</integer>
+		</dict>
+		</dict>
+	</dict><key>Organic Heavy Fighter</key>
+	<dict>
+		<key>type</key>
+		<string>Organic Heavy Fighter</string>
+		<key>aiType</key>
+		<string>Fighter</string>
+		<key>guns</key>
+		<array>
+			<string>Phase Fungi</string>
+			<string>Phase Fungi</string>
+		</array>
+		<key>equipment</key>
+		<array>
+			<string>Handicap 10</string>
+		</array>
+		<key>loot</key>
+		<dict>
+		<key>Organic Tier 2</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.05</real>
+		</dict>
+		<key>Organic Tier 3</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.01</real>
+		</dict>
+		<key>Organic Equipment Tier 2</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.04</real>
+		</dict>
+		<key>Organic Equipment Tier 3</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.01</real>
+		</dict>
+		<key>credits</key>
+		<dict>
+			<key>min</key>
+			<integer>2</integer>
+			<key>max</key>
+			<integer>6</integer>
+		</dict>
+		</dict>
+	</dict><key>Organic Gunboat</key>
+	<dict>
+		<key>type</key>
+		<string>Organic Gunboat</string>
+		<key>aiType</key>
+		<string>Fighter</string>
+		<key>guns</key>
+		<array>
+			<string>Quill Flinger</string>
+			<string>Acid Gland</string>
+			<string>Quill Flinger</string>
+		</array>
+		<key>equipment</key>
+		<array>
+		</array>
+		<key>loot</key>
+		<dict>
+		<key>Organic Tier 2</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.03</real>
+		</dict>
+		<key>Organic Tier 3</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.03</real>
+		</dict>
+		<key>Organic Equipment Tier 2</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.03</real>
+		</dict>
+		<key>Organic Equipment Tier 3</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.03</real>
+		</dict>
+		<key>credits</key>
+		<dict>
+			<key>min</key>
+			<integer>3</integer>
+			<key>max</key>
+			<integer>7</integer>
+		</dict>
+		</dict>
+	</dict><key>Organic Frigate</key>
+	<dict>
+		<key>type</key>
+		<string>Organic Frigate</string>
+		<key>aiType</key>
+		<string>Warship</string>
+		<key>guns</key>
+		<array>
+			<string>Quill Flinger</string>
+			<string>Plasma Spore</string>
+			<string>Quill Flinger</string>
+		</array>
+		<key>equipment</key>
+		<array>
+			<string>Handicap 10</string>
+		</array>
+		<key>loot</key>
+		<dict>
+		<key>Organic Tier 3</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.05</real>
+		</dict>
+		<key>Organic Tier 4</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.01</real>
+		</dict>
+		<key>Organic Equipment Tier 3</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.04</real>
+		</dict>
+		<key>Organic Equipment Tier 4</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.01</real>
+		</dict>
+		<key>credits</key>
+		<dict>
+			<key>min</key>
+			<integer>7</integer>
+			<key>max</key>
+			<integer>13</integer>
+		</dict>
+		</dict>
+	</dict><key>Organic Destroyer</key>
+	<dict>
+		<key>type</key>
+		<string>Organic Destroyer</string>
+		<key>aiType</key>
+		<string>Warship</string>
+		<key>guns</key>
+		<array>
+			<string>Spike Launcher</string>
+			<string>Energy Organ</string>
+			<string>Energy Organ</string>
+			<string>Spike Launcher</string>
+		</array>
+		<key>equipment</key>
+		<array>
+			<string>Handicap 10</string>
+		</array>
+		<key>loot</key>
+		<dict>
+		<key>Organic Tier 4</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.05</real>
+		</dict>
+		<key>Organic Tier 5</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.01</real>
+		</dict>
+		<key>Organic Equipment Tier 4</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.04</real>
+		</dict>
+		<key>Organic Equipment Tier 5</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.01</real>
+		</dict>
+		<key>credits</key>
+		<dict>
+			<key>min</key>
+			<integer>10</integer>
+			<key>max</key>
+			<integer>20</integer>
+		</dict>
+		</dict>
+	</dict><key>Organic Cruiser</key>
+	<dict>
+		<key>type</key>
+		<string>Organic Cruiser</string>
+		<key>aiType</key>
+		<string>Warship</string>
+		<key>guns</key>
+		<array>
+			<string>Boom Worm</string>
+			<string>Protozoa</string>
+			<string>Acid Gland</string>
+			<string>Protozoa</string>
+			<string>Boom Worm</string>
+		</array>
+		<key>equipment</key>
+		<array>
+			<string>Handicap 20</string>
+		</array>
+		<key>loot</key>
+		<dict>
+		<key>Organic Tier 4</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.1</real>
+		</dict>
+		<key>Organic Tier 5</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.02</real>
+		</dict>
+		<key>Organic Equipment Tier 4</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.08</real>
+		</dict>
+		<key>Organic Equipment Tier 5</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.02</real>
+		</dict>
+		<key>credits</key>
+		<dict>
+			<key>min</key>
+			<integer>12</integer>
+			<key>max</key>
+			<integer>22</integer>
+		</dict>
+		</dict>
+	</dict><key>Organic Dreadnought</key>
+	<dict>
+		<key>type</key>
+		<string>Organic Dreadnought</string>
+		<key>aiType</key>
+		<string>Warship</string>
+		<key>guns</key>
+		<array>
+			<string>Kinetic Pollup</string>
+			<string>Quill Flinger</string>
+			<string>Acid Larvae</string>
+			<string>Quill Flinger</string>
+			<string>Kinetic Pollup</string>
+		</array>
+		<key>equipment</key>
+		<array>
+			<string>Handicap 20</string>
+		</array>
+		<key>loot</key>
+		<dict>
+		<key>Organic Tier 4</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.25</real>
+		</dict>
+		<key>Organic Tier 5</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.15</real>
+		</dict>
+		<key>Organic Equipment Tier 4</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.25</real>
+		</dict>
+		<key>Organic Equipment Tier 5</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.15</real>
+		</dict>
+		<key>Organic Equipment Tier 6</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.5</real>
+		</dict>
+		<key>credits</key>
+		<dict>
+			<key>min</key>
+			<integer>20</integer>
+			<key>max</key>
+			<integer>40</integer>
+		</dict>
+		</dict>
+	</dict><key>Organic Disabled Freighter</key>
+	<dict>
+		<key>type</key>
+		<string>Organic Disabled Freighter</string>
+		<key>aiType</key>
+		<string>Stationary</string>
+		<key>guns</key>
+		<array>
+		</array>
+		<key>equipment</key>
+		<array>
+		</array>
+		<key>loot</key>
+		<dict>
+		<key>Organic Tier 1</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.75</real>
+		</dict>
+		<key>Organic Tier 2</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.25</real>
+		</dict>
+		<key>Organic Tier 3</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.05</real>
+		</dict>
+		<key>Organic Equipment Tier 1</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.75</real>
+		</dict>
+		<key>Organic Equipment Tier 2</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.25</real>
+		</dict>
+		<key>Organic Equipment Tier 3</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.05</real>
+		</dict>
+		<key>credits</key>
+		<dict>
+			<key>min</key>
+			<integer>18</integer>
+			<key>max</key>
+			<integer>36</integer>
+		</dict>
+		</dict>
+	</dict><key>Energy Crate - Sure Loot</key>
+	<dict>
+		<key>type</key>
+		<string>Energy Crate</string>
+		<key>aiType</key>
+		<string>Crate</string>
+		<key>guns</key>
+		<array>
+		</array>
+		<key>equipment</key>
+		<array>
+			<string>Handicap 20</string>
+		</array>
+		<key>loot</key>
+		<dict>
+		<key>Energy Tier 1</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>1</real>
+		</dict>
+		<key>Energy Equipment Tier 1</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.1</real>
+		</dict>
+		<key>credits</key>
+		<dict>
+			<key>min</key>
+			<integer>5</integer>
+			<key>max</key>
+			<integer>7</integer>
+		</dict>
+		</dict>
+	</dict><key>Energy Crate</key>
+	<dict>
+		<key>type</key>
+		<string>Energy Crate</string>
+		<key>aiType</key>
+		<string>Crate</string>
+		<key>guns</key>
+		<array>
+		</array>
+		<key>equipment</key>
+		<array>
+		</array>
+		<key>loot</key>
+		<dict>
+		<key>Energy Tier 1</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.1</real>
+		</dict>
+		<key>Energy Tier 2</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.02</real>
+		</dict>
+		<key>Energy Equipment Tier 1</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.08</real>
+		</dict>
+		<key>Energy Equipment Tier 2</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.02</real>
+		</dict>
+		<key>credits</key>
+		<dict>
+			<key>min</key>
+			<integer>5</integer>
+			<key>max</key>
+			<integer>7</integer>
+		</dict>
+		</dict>
+	</dict><key>Energy Crate 2</key>
+	<dict>
+		<key>type</key>
+		<string>Energy Crate 2</string>
+		<key>aiType</key>
+		<string>Crate</string>
+		<key>guns</key>
+		<array>
+		</array>
+		<key>equipment</key>
+		<array>
+		</array>
+		<key>loot</key>
+		<dict>
+		<key>Energy Tier 1</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.04</real>
+		</dict>
+		<key>Energy Tier 2</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.05</real>
+		</dict>
+		<key>Energy Tier 3</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.01</real>
+		</dict>
+		<key>Energy Equipment Tier 1</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.03</real>
+		</dict>
+		<key>Energy Equipment Tier 2</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.04</real>
+		</dict>
+		<key>Energy Equipment Tier 3</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.01</real>
+		</dict>
+		<key>credits</key>
+		<dict>
+			<key>min</key>
+			<integer>7</integer>
+			<key>max</key>
+			<integer>9</integer>
+		</dict>
+		</dict>
+	</dict><key>Energy Crate 3</key>
+	<dict>
+		<key>type</key>
+		<string>Energy Crate 3</string>
+		<key>aiType</key>
+		<string>Crate</string>
+		<key>guns</key>
+		<array>
+		</array>
+		<key>equipment</key>
+		<array>
+		</array>
+		<key>loot</key>
+		<dict>
+		<key>Energy Tier 2</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.04</real>
+		</dict>
+		<key>Energy Tier 3</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.05</real>
+		</dict>
+		<key>Energy Tier 4</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.01</real>
+		</dict>
+		<key>Energy Equipment Tier 2</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.03</real>
+		</dict>
+		<key>Energy Equipment Tier 3</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.04</real>
+		</dict>
+		<key>Energy Equipment Tier 4</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.01</real>
+		</dict>
+		<key>credits</key>
+		<dict>
+			<key>min</key>
+			<integer>8</integer>
+			<key>max</key>
+			<integer>11</integer>
+		</dict>
+		</dict>
+	</dict><key>Energy Crate 4</key>
+	<dict>
+		<key>type</key>
+		<string>Energy Crate 4</string>
+		<key>aiType</key>
+		<string>Crate</string>
+		<key>guns</key>
+		<array>
+		</array>
+		<key>equipment</key>
+		<array>
+		</array>
+		<key>loot</key>
+		<dict>
+		<key>Energy Tier 3</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.04</real>
+		</dict>
+		<key>Energy Tier 4</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.05</real>
+		</dict>
+		<key>Energy Tier 5</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.01</real>
+		</dict>
+		<key>Energy Equipment Tier 3</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.03</real>
+		</dict>
+		<key>Energy Equipment Tier 4</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.04</real>
+		</dict>
+		<key>Energy Equipment Tier 5</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.01</real>
+		</dict>
+		<key>credits</key>
+		<dict>
+			<key>min</key>
+			<integer>8</integer>
+			<key>max</key>
+			<integer>12</integer>
+		</dict>
+		</dict>
+	</dict><key>Energy Crate 5</key>
+	<dict>
+		<key>type</key>
+		<string>Energy Crate 5</string>
+		<key>aiType</key>
+		<string>Crate</string>
+		<key>guns</key>
+		<array>
+		</array>
+		<key>equipment</key>
+		<array>
+		</array>
+		<key>loot</key>
+		<dict>
+		<key>Energy Tier 4</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.04</real>
+		</dict>
+		<key>Energy Tier 5</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.05</real>
+		</dict>
+		<key>Energy Equipment Tier 4</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.03</real>
+		</dict>
+		<key>Energy Equipment Tier 5</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.04</real>
+		</dict>
+		<key>credits</key>
+		<dict>
+			<key>min</key>
+			<integer>10</integer>
+			<key>max</key>
+			<integer>20</integer>
+		</dict>
+		</dict>
+	</dict><key>Energy Liner</key>
+	<dict>
+		<key>type</key>
+		<string>Energy Liner</string>
+		<key>aiType</key>
+		<string>Warship</string>
+		<key>guns</key>
+		<array>
+			<string>Plasma Cutter</string>
+		</array>
+		<key>equipment</key>
+		<array>
+		</array>
+		<key>loot</key>
+		<dict>
+		<key>Energy Tier 2</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.1</real>
+		</dict>
+		<key>Energy Tier 3</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.03</real>
+		</dict>
+		<key>Energy Tier 4</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.01</real>
+		</dict>
+		<key>Energy Equipment Tier 2</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.08</real>
+		</dict>
+		<key>Energy Equipment Tier 3</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.03</real>
+		</dict>
+		<key>Energy Equipment Tier 4</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.01</real>
+		</dict>
+		<key>credits</key>
+		<dict>
+			<key>min</key>
+			<integer>12</integer>
+			<key>max</key>
+			<integer>23</integer>
+		</dict>
+		</dict>
+	</dict><key>Energy Freighter</key>
+	<dict>
+		<key>type</key>
+		<string>Energy Freighter</string>
+		<key>aiType</key>
+		<string>Warship</string>
+		<key>guns</key>
+		<array>
+			<string>Ion Stream</string>
+		</array>
+		<key>equipment</key>
+		<array>
+		</array>
+		<key>loot</key>
+		<dict>
+		<key>Energy Tier 3</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.15</real>
+		</dict>
+		<key>Energy Tier 4</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.03</real>
+		</dict>
+		<key>Energy Equipment Tier 3</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.12</real>
+		</dict>
+		<key>Energy Equipment Tier 4</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.03</real>
+		</dict>
+		<key>credits</key>
+		<dict>
+			<key>min</key>
+			<integer>17</integer>
+			<key>max</key>
+			<integer>28</integer>
+		</dict>
+		</dict>
+	</dict><key>Energy Gun</key>
+	<dict>
+		<key>type</key>
+		<string>Energy Gun</string>
+		<key>aiType</key>
+		<string>Stationary</string>
+		<key>guns</key>
+		<array>
+			<string>Mining Laser</string>
+		</array>
+		<key>equipment</key>
+		<array>
+			<string>Handicap 20</string>
+			<string>Pressure Sac</string>
+		</array>
+		<key>loot</key>
+		<dict>
+		<key>Energy Tier 1</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.05</real>
+		</dict>
+		<key>Energy Tier 2</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.01</real>
+		</dict>
+		<key>Energy Equipment Tier 1</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.04</real>
+		</dict>
+		<key>Energy Equipment Tier 2</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.01</real>
+		</dict>
+		<key>credits</key>
+		<dict>
+			<key>min</key>
+			<integer>2</integer>
+			<key>max</key>
+			<integer>5</integer>
+		</dict>
+		</dict>
+	</dict><key>Energy Gun 2</key>
+	<dict>
+		<key>type</key>
+		<string>Energy Gun 2</string>
+		<key>aiType</key>
+		<string>Stationary</string>
+		<key>guns</key>
+		<array>
+			<string>Plasma Cutter</string>
+		</array>
+		<key>equipment</key>
+		<array>
+			<string>Handicap 10</string>
+			<string>Pressure Sac</string>
+		</array>
+		<key>loot</key>
+		<dict>
+		<key>Energy Tier 2</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.05</real>
+		</dict>
+		<key>Energy Tier 3</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.01</real>
+		</dict>
+		<key>Energy Equipment Tier 2</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.04</real>
+		</dict>
+		<key>Energy Equipment Tier 3</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.01</real>
+		</dict>
+		<key>credits</key>
+		<dict>
+			<key>min</key>
+			<integer>3</integer>
+			<key>max</key>
+			<integer>7</integer>
+		</dict>
+		</dict>
+	</dict><key>Energy Gun 3</key>
+	<dict>
+		<key>type</key>
+		<string>Energy Gun 3</string>
+		<key>aiType</key>
+		<string>Stationary</string>
+		<key>guns</key>
+		<array>
+			<string>Ion Stream</string>
+		</array>
+		<key>equipment</key>
+		<array>
+			<string>Pressure Sac</string>
+		</array>
+		<key>loot</key>
+		<dict>
+		<key>Energy Tier 3</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.05</real>
+		</dict>
+		<key>Energy Tier 4</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.01</real>
+		</dict>
+		<key>Energy Equipment Tier 3</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.04</real>
+		</dict>
+		<key>Energy Equipment Tier 4</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.01</real>
+		</dict>
+		<key>credits</key>
+		<dict>
+			<key>min</key>
+			<integer>4</integer>
+			<key>max</key>
+			<integer>9</integer>
+		</dict>
+		</dict>
+	</dict><key>Energy Gun 4</key>
+	<dict>
+		<key>type</key>
+		<string>Energy Gun 4</string>
+		<key>aiType</key>
+		<string>Stationary</string>
+		<key>guns</key>
+		<array>
+			<string>Fusion Field</string>
+		</array>
+		<key>equipment</key>
+		<array>
+			<string>Handicap 10</string>
+			<string>Pressure Sac</string>
+		</array>
+		<key>loot</key>
+		<dict>
+		<key>Energy Tier 4</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.05</real>
+		</dict>
+		<key>Energy Tier 5</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.01</real>
+		</dict>
+		<key>Energy Equipment Tier 4</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.04</real>
+		</dict>
+		<key>Energy Equipment Tier 5</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.01</real>
+		</dict>
+		<key>credits</key>
+		<dict>
+			<key>min</key>
+			<integer>5</integer>
+			<key>max</key>
+			<integer>10</integer>
+		</dict>
+		</dict>
+	</dict><key>Energy Gun 5</key>
+	<dict>
+		<key>type</key>
+		<string>Energy Gun 5</string>
+		<key>aiType</key>
+		<string>Stationary</string>
+		<key>guns</key>
+		<array>
+			<string>Dimensional Ripper</string>
+		</array>
+		<key>equipment</key>
+		<array>
+			<string>Handicap 20</string>
+			<string>Pressure Sac</string>
+		</array>
+		<key>loot</key>
+		<dict>
+		<key>Energy Tier 5</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.06</real>
+		</dict>
+		<key>Energy Equipment Tier 5</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.05</real>
+		</dict>
+		<key>credits</key>
+		<dict>
+			<key>min</key>
+			<integer>6</integer>
+			<key>max</key>
+			<integer>12</integer>
+		</dict>
+		</dict>
+	</dict><key>Energy Mine</key>
+	<dict>
+		<key>mine</key>
+		<dict>
+			<key>shieldDamage</key>
+			<integer>45</integer>
+			<key>armorDamage</key>
+			<integer>10</integer>
+			<key>size</key>
+			<real>5</real>
+		</dict>
+		<key>type</key>
+		<string>Energy Mine</string>
+		<key>aiType</key>
+		<string>Crate</string>
+		<key>guns</key>
+		<array>
+		</array>
+		<key>equipment</key>
+		<array>
+		</array>
+		<key>loot</key>
+		<dict>
+		<key>credits</key>
+		<dict>
+			<key>min</key>
+			<integer>0</integer>
+			<key>max</key>
+			<integer>0</integer>
+		</dict>
+		</dict>
+	</dict><key>Energy Mine 2</key>
+	<dict>
+		<key>mine</key>
+		<dict>
+			<key>shieldDamage</key>
+			<integer>300</integer>
+			<key>armorDamage</key>
+			<integer>40</integer>
+			<key>size</key>
+			<real>5.5</real>
+		</dict>
+		<key>type</key>
+		<string>Energy Mine 2</string>
+		<key>aiType</key>
+		<string>Crate</string>
+		<key>guns</key>
+		<array>
+		</array>
+		<key>equipment</key>
+		<array>
+		</array>
+		<key>loot</key>
+		<dict>
+		<key>credits</key>
+		<dict>
+			<key>min</key>
+			<integer>0</integer>
+			<key>max</key>
+			<integer>0</integer>
+		</dict>
+		</dict>
+	</dict><key>Energy Mine 3</key>
+	<dict>
+		<key>mine</key>
+		<dict>
+			<key>shieldDamage</key>
+			<integer>750</integer>
+			<key>armorDamage</key>
+			<integer>125</integer>
+			<key>size</key>
+			<real>6</real>
+		</dict>
+		<key>type</key>
+		<string>Energy Mine 3</string>
+		<key>aiType</key>
+		<string>Crate</string>
+		<key>guns</key>
+		<array>
+		</array>
+		<key>equipment</key>
+		<array>
+		</array>
+		<key>loot</key>
+		<dict>
+		<key>credits</key>
+		<dict>
+			<key>min</key>
+			<integer>0</integer>
+			<key>max</key>
+			<integer>0</integer>
+		</dict>
+		</dict>
+	</dict><key>Energy Mine 4</key>
+	<dict>
+		<key>mine</key>
+		<dict>
+			<key>shieldDamage</key>
+			<integer>2250</integer>
+			<key>armorDamage</key>
+			<integer>400</integer>
+			<key>size</key>
+			<real>6.5</real>
+		</dict>
+		<key>type</key>
+		<string>Energy Mine 4</string>
+		<key>aiType</key>
+		<string>Crate</string>
+		<key>guns</key>
+		<array>
+		</array>
+		<key>equipment</key>
+		<array>
+		</array>
+		<key>loot</key>
+		<dict>
+		<key>credits</key>
+		<dict>
+			<key>min</key>
+			<integer>0</integer>
+			<key>max</key>
+			<integer>0</integer>
+		</dict>
+		</dict>
+	</dict><key>Energy Mine 5</key>
+	<dict>
+		<key>mine</key>
+		<dict>
+			<key>shieldDamage</key>
+			<integer>4500</integer>
+			<key>armorDamage</key>
+			<integer>600</integer>
+			<key>size</key>
+			<real>7</real>
+		</dict>
+		<key>type</key>
+		<string>Energy Mine 5</string>
+		<key>aiType</key>
+		<string>Crate</string>
+		<key>guns</key>
+		<array>
+		</array>
+		<key>equipment</key>
+		<array>
+		</array>
+		<key>loot</key>
+		<dict>
+		<key>credits</key>
+		<dict>
+			<key>min</key>
+			<integer>0</integer>
+			<key>max</key>
+			<integer>0</integer>
+		</dict>
+		</dict>
+	</dict><key>Energy Shuttle</key>
+	<dict>
+		<key>type</key>
+		<string>Energy Shuttle</string>
+		<key>aiType</key>
+		<string>Fighter</string>
+		<key>guns</key>
+		<array>
+			<string>Mining Laser</string>
+		</array>
+		<key>equipment</key>
+		<array>
+			<string>Handicap 30</string>
+		</array>
+		<key>loot</key>
+		<dict>
+		<key>Energy Tier 1</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.05</real>
+		</dict>
+		<key>Energy Tier 2</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.01</real>
+		</dict>
+		<key>Energy Equipment Tier 1</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.04</real>
+		</dict>
+		<key>Energy Equipment Tier 2</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.01</real>
+		</dict>
+		<key>credits</key>
+		<dict>
+			<key>min</key>
+			<integer>1</integer>
+			<key>max</key>
+			<integer>4</integer>
+		</dict>
+		</dict>
+	</dict><key>Energy Light Fighter</key>
+	<dict>
+		<key>type</key>
+		<string>Energy Light Fighter</string>
+		<key>aiType</key>
+		<string>Fighter</string>
+		<key>guns</key>
+		<array>
+			<string>Plasma Cutter</string>
+		</array>
+		<key>equipment</key>
+		<array>
+			<string>Handicap 20</string>
+		</array>
+		<key>loot</key>
+		<dict>
+		<key>Energy Tier 1</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.03</real>
+		</dict>
+		<key>Energy Tier 2</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.03</real>
+		</dict>
+		<key>Energy Equipment Tier 1</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.03</real>
+		</dict>
+		<key>Energy Equipment Tier 2</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.03</real>
+		</dict>
+		<key>credits</key>
+		<dict>
+			<key>min</key>
+			<integer>1</integer>
+			<key>max</key>
+			<integer>5</integer>
+		</dict>
+		</dict>
+	</dict><key>Energy Heavy Fighter</key>
+	<dict>
+		<key>type</key>
+		<string>Energy Heavy Fighter</string>
+		<key>aiType</key>
+		<string>Fighter</string>
+		<key>guns</key>
+		<array>
+			<string>Ion Stream</string>
+		</array>
+		<key>equipment</key>
+		<array>
+			<string>Handicap 10</string>
+		</array>
+		<key>loot</key>
+		<dict>
+		<key>Energy Tier 2</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.05</real>
+		</dict>
+		<key>Energy Tier 3</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.01</real>
+		</dict>
+		<key>Energy Equipment Tier 2</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.04</real>
+		</dict>
+		<key>Energy Equipment Tier 3</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.01</real>
+		</dict>
+		<key>credits</key>
+		<dict>
+			<key>min</key>
+			<integer>2</integer>
+			<key>max</key>
+			<integer>6</integer>
+		</dict>
+		</dict>
+	</dict><key>Energy Gunboat</key>
+	<dict>
+		<key>type</key>
+		<string>Energy Gunboat</string>
+		<key>aiType</key>
+		<string>Fighter</string>
+		<key>guns</key>
+		<array>
+			<string>Plasma Cutter</string>
+			<string>Plasma Cutter</string>
+		</array>
+		<key>equipment</key>
+		<array>
+		</array>
+		<key>loot</key>
+		<dict>
+		<key>Energy Tier 2</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.03</real>
+		</dict>
+		<key>Energy Tier 3</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.03</real>
+		</dict>
+		<key>Energy Equipment Tier 2</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.03</real>
+		</dict>
+		<key>Energy Equipment Tier 3</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.03</real>
+		</dict>
+		<key>credits</key>
+		<dict>
+			<key>min</key>
+			<integer>3</integer>
+			<key>max</key>
+			<integer>7</integer>
+		</dict>
+		</dict>
+	</dict><key>Energy Frigate</key>
+	<dict>
+		<key>type</key>
+		<string>Energy Frigate</string>
+		<key>aiType</key>
+		<string>Warship</string>
+		<key>guns</key>
+		<array>
+			<string>Ion Stream</string>
+			<string>Ion Stream</string>
+		</array>
+		<key>equipment</key>
+		<array>
+			<string>Handicap 10</string>
+		</array>
+		<key>loot</key>
+		<dict>
+		<key>Energy Tier 3</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.05</real>
+		</dict>
+		<key>Energy Tier 4</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.01</real>
+		</dict>
+		<key>Energy Equipment Tier 3</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.04</real>
+		</dict>
+		<key>Energy Equipment Tier 4</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.01</real>
+		</dict>
+		<key>credits</key>
+		<dict>
+			<key>min</key>
+			<integer>7</integer>
+			<key>max</key>
+			<integer>13</integer>
+		</dict>
+		</dict>
+	</dict><key>Energy Destroyer</key>
+	<dict>
+		<key>type</key>
+		<string>Energy Destroyer</string>
+		<key>aiType</key>
+		<string>Warship</string>
+		<key>guns</key>
+		<array>
+			<string>Fusion Field</string>
+			<string>Tractor Pod</string>
+			<string>Fusion Field</string>
+		</array>
+		<key>equipment</key>
+		<array>
+			<string>Handicap 10</string>
+		</array>
+		<key>loot</key>
+		<dict>
+		<key>Energy Tier 4</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.05</real>
+		</dict>
+		<key>Energy Tier 5</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.01</real>
+		</dict>
+		<key>Energy Equipment Tier 4</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.04</real>
+		</dict>
+		<key>Energy Equipment Tier 5</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.01</real>
+		</dict>
+		<key>credits</key>
+		<dict>
+			<key>min</key>
+			<integer>10</integer>
+			<key>max</key>
+			<integer>20</integer>
+		</dict>
+		</dict>
+	</dict><key>Energy Cruiser</key>
+	<dict>
+		<key>type</key>
+		<string>Energy Cruiser</string>
+		<key>aiType</key>
+		<string>Warship</string>
+		<key>guns</key>
+		<array>
+			<string>Fusion Field</string>
+			<string>Fusion Field</string>
+			<string>Fusion Field</string>
+		</array>
+		<key>equipment</key>
+		<array>
+			<string>Handicap 20</string>
+		</array>
+		<key>loot</key>
+		<dict>
+		<key>Energy Tier 4</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.1</real>
+		</dict>
+		<key>Energy Tier 5</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.02</real>
+		</dict>
+		<key>Energy Equipment Tier 4</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.08</real>
+		</dict>
+		<key>Energy Equipment Tier 5</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.02</real>
+		</dict>
+		<key>credits</key>
+		<dict>
+			<key>min</key>
+			<integer>12</integer>
+			<key>max</key>
+			<integer>22</integer>
+		</dict>
+		</dict>
+	</dict><key>Energy Dreadnought</key>
+	<dict>
+		<key>type</key>
+		<string>Energy Dreadnought</string>
+		<key>aiType</key>
+		<string>Warship</string>
+		<key>guns</key>
+		<array>
+			<string>Ion Stream</string>
+			<string>Dimensional Ripper</string>
+			<string>Dimensional Ripper</string>
+			<string>Ion Stream</string>
+		</array>
+		<key>equipment</key>
+		<array>
+			<string>Handicap 20</string>
+		</array>
+		<key>loot</key>
+		<dict>
+		<key>Energy Tier 4</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.25</real>
+		</dict>
+		<key>Energy Tier 5</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.15</real>
+		</dict>
+		<key>Energy Equipment Tier 4</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.25</real>
+		</dict>
+		<key>Energy Equipment Tier 5</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.15</real>
+		</dict>
+		<key>Energy Equipment Tier 6</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>chance</key>
+			<real>0.5</real>
+		</dict>
+		<key>credits</key>
+		<dict>
+			<key>min</key>
+			<integer>20</integer>
+			<key>max</key>
+			<integer>40</integer>
+		</dict>
+		</dict>
+	</dict><key>Asteroid 1</key>
+	<dict>
+		<key>type</key>
+		<string>Neutral Asteroid 1</string>
+		<key>aiType</key>
+		<string>Crate</string>
+		<key>guns</key>
+		<array>
+		</array>
+		<key>equipment</key>
+		<array>
+		</array>
+		<key>loot</key>
+		<dict>
+		<key>credits</key>
+		<dict>
+			<key>min</key>
+			<integer>2</integer>
+			<key>max</key>
+			<integer>4</integer>
+		</dict>
+		</dict>
+	</dict><key>Asteroid 2</key>
+	<dict>
+		<key>type</key>
+		<string>Neutral Asteroid 2</string>
+		<key>aiType</key>
+		<string>Crate</string>
+		<key>guns</key>
+		<array>
+		</array>
+		<key>equipment</key>
+		<array>
+		</array>
+		<key>loot</key>
+		<dict>
+		<key>credits</key>
+		<dict>
+			<key>min</key>
+			<integer>4</integer>
+			<key>max</key>
+			<integer>8</integer>
+		</dict>
+		</dict>
+	</dict><key>Asteroid 3</key>
+	<dict>
+		<key>type</key>
+		<string>Neutral Asteroid 3</string>
+		<key>aiType</key>
+		<string>Crate</string>
+		<key>guns</key>
+		<array>
+		</array>
+		<key>equipment</key>
+		<array>
+		</array>
+		<key>loot</key>
+		<dict>
+		<key>credits</key>
+		<dict>
+			<key>min</key>
+			<integer>6</integer>
+			<key>max</key>
+			<integer>12</integer>
+		</dict>
+		</dict>
+	</dict><key>Asteroid 4</key>
+	<dict>
+		<key>type</key>
+		<string>Neutral Asteroid 4</string>
+		<key>aiType</key>
+		<string>Crate</string>
+		<key>guns</key>
+		<array>
+		</array>
+		<key>equipment</key>
+		<array>
+		</array>
+		<key>loot</key>
+		<dict>
+		<key>credits</key>
+		<dict>
+			<key>min</key>
+			<integer>8</integer>
+			<key>max</key>
+			<integer>16</integer>
+		</dict>
+		</dict>
+	</dict><key>Asteroid 5</key>
+	<dict>
+		<key>type</key>
+		<string>Neutral Asteroid 5</string>
+		<key>aiType</key>
+		<string>Crate</string>
+		<key>guns</key>
+		<array>
+		</array>
+		<key>equipment</key>
+		<array>
+		</array>
+		<key>loot</key>
+		<dict>
+		<key>credits</key>
+		<dict>
+			<key>min</key>
+			<integer>10</integer>
+			<key>max</key>
+			<integer>20</integer>
+		</dict>
+		</dict>
+	</dict></dict></plist>

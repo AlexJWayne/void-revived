@@ -1,0 +1,193 @@
+<h1>VOID Stage Editing Guide</h1>
+
+<p>To get started, open up the <a href="http://spreadsheets.google.com/ccc?key=p48d3r0Nh70MjIBK0JI7bVg&hl=en">Stage Manifest</a> and mark the status column of a stage you want to work to this format "Assigned: My Name".</p>
+
+<h2>Stage components</h2>
+
+<p>A stage in VOID is a circle 160 units in diameter.  You populate this area with the following items.</p>
+
+<ol>
+  <li>Placed Enemies</li>
+  <li>Random Enemies</li>
+  <li>Hypergate (player spawn and stage exit)</li>
+  <li>Planets (purely decorative)</li>
+</ol>
+
+
+
+<h2>Global Attributes</h2>
+
+<p>There is also a set of global stage attributes that should already be all setup properly.  But here is what they all mean, just in case:</p>
+
+<dt>Galaxy Position</dt>
+<dd>Position of the stage on the galaxy map.</dd>
+
+<dt>Music</dt>
+<dd>The music track that plays for this stage</dd>
+
+<dt>Zone</dt>
+<dd>The race the stage belongs to.  This only affects the color of the stage on the galaxy map.</dd>
+
+<dt>Tier</dt>
+<dd>Difficulty of the tier, ranked 1 through 5.  As stages get nearer to the homeworld of a race they increase in tier.</dd>
+
+<dt>Connections</dt>
+<dd>A comma-space separated list of stages that this stage connects to via hyperspace path.  Note that the stage may be connected to more stages than are listed if other stages specify a link to this one.  Connections needs only be specified in one direction.</dd>
+
+<dt>Description</dt>
+<dd>If set, this text will appear in a popup immediately after the stage loads.  So far this is really only used the tutorial stages, so stay out of it for now.</dd>
+
+<dt>Hypergate Position</dt>
+<dd>Feel free to change this one.  Although just dragging around the hypergate on the map should be the easiest way to set this value.</dd>
+
+
+
+<h2>Planets</h2>
+
+<p>Click "Add planet" to create a new planet.  Every stage should have at least one or 2 planets to spice up the otherwise drab empty space.  More for crowded stages.  Like all the placeable objects, they can be dragged to any spot you like on the map.  Planets generate gravity and look pretty.  They can be used to organize levels, like a cluster of stationary guns protecting an inhabited world for instance, or a stash of crates hidden behind a moon.  It can make enemies look like they have a reason to be posted there.</p>
+
+<dt>Type</dt>
+<dd>Choose the name of the planet sprite to use form the drop down.  The planet art on the stage map should update immediately showing you what it looks like.  In stages that are controlled by a single race, there should be at least 1 racial world (for example "Cyber2" or "Organic3").  The idea being that racial worlds are inhabited, and the others are lifeless.</dd>
+
+<dt>Radius</dt>
+<dd>Size of the planet.  In general, keep this between 2 and 8 or so.  Use 1 or 2 for moons near larger planets.</dd>
+
+<dt>Location</dt>
+<dd>X and Y position value.  This is updated automatically when you drag the planet around the map.</dd>
+
+<dt>Planetary Rings</dt>
+<dd>You can add rings to any planet by by adding a planet of the type "RingWide", and setting the radius to exactly twice that of the planet you want to have ring around it.  Then just drag it directly on top of the target planet so the position values are identical.</dd>
+
+<dt>Gravity</dt>
+<dd>Planets create a gravity well.  Larger planets have more gravity.  Try not to place large planets to close the player start or to enemies with weak brakes.  Planets of the "RingWide" type do not generate gravity.</dd>
+
+
+<h2>Nebulas</h2>
+
+<p>Nebulas come in 2 flavors: green and red.  Green nebulas grant positive effects, and red one damage you.  They all slow you down due to the wind resistance of moving through the thick gasses.  The color and the effects are controlled independently, but in order not confuse or surprise the player do not mix positive and negative attributes, and make sur ethe proer color is assigned.</p>
+
+<dt>Texture</dt>
+<dd>Green or red.  Keep this consistent with whether the nebula has positive or negative effects.</dd>
+
+<dt>Radius</dt>
+<dd>Size of the nebula.</dd>
+
+<dt>Location</dt>
+<dd>X and Y position of the nebula.  Drag it around the grid to set this.</dd>
+
+<dt>Opacity</dt>
+<dd>How visible the nebula is.  0.0 is invisible (don't use zero), and 1.0 is so thick you can barely see the ships in the nebula.  This value is purely cosmetic.</dd>
+
+<dt>Drag</dt>
+<dd>Amount of force exerted on ships flying through.  Should be a value between 0 and 10 where 10 will slow you down a lot.</dd>
+
+<dt>Energy Regen</dt>
+<dd>When in the nebula, ships gain energy of this amount per frame, in addition to their natural energy regen rate.  Cannot be negative.</dd>
+
+<dt>Shield Regen</dt>
+<dd>When in the nebula, ships gain shields of this amount per frame, in addition to their natural shield regen rate.  May be negative to create a nebula that damages shields.</dd>
+
+<dt>Shield Regen</dt>
+<dd>When in the nebula, ships gain armor of this amount per frame.  May be negative to create a nebula that damages armor.</dd>
+<h2>Enemies</h2>
+
+<p>This is what it's all about.  Enemies are what need to be destroyed to finish level, and more importantly, they drop all that phat loot.</p>
+
+<a href="http://spreadsheets.google.com/ccc?key=pRwT5uga-pex5VYKQOpABUA&hl=en">Ship Spreadsheet</a>
+
+<h3>Ship Types and tiers</h3>
+
+<p>Checkout the "Manifest" tab of that spreadsheet, and look at the "tier" column for each ship type.  A stage will have ships of its defined race, up to and including the stage's tier value.  So a stage for the "Energy" race that is tier 2 might have an assortment of "Energy Gun", "Energy Gun 2", "Energy Shuttle", "Energy Liner", "Energy Light Fighter" and "Energy Heavy Fighter".  Occasionally, a stage might have a sprinkling of tier+1 enemies, but only rarely and if the stage is very near to other stages of higher tier.</p>
+
+<h3>Enemy Type Legend</h3>
+
+<p>Each of the four races has the same set of ship classes.  Ships from the same class in different races are not identical, but they are designed to be somewhat equal in power.  Different races have ships with different pros and cons.  The standard ship classes are:</p>
+
+<dt>Non-Combat</dt>
+<dd>T1- Crate (holds some credits and a small chance of item drop)</dd>
+<dd>T2- Crate</dd>
+<dd>T3- Crate</dd>
+<dd>T4- Crate</dd>
+<dd>T5- Crate</dd>
+<dd>T2- Liner (passenger liner drops lots of credits)</dd>
+<dd>T3- Freighter (large and slow and has a good chance of item drops)</dd>
+
+<dt>Stationary guns (one for each tier that get bigger and have bigger guns)</dt>
+<dd>T1- Gun</dd>
+<dd>T2- Gun 2</dd>
+<dd>T3- Gun 3</dd>
+<dd>T4- Gun 4</dd>
+<dd>T5- Gun 5</dd>
+
+<dt>Mines (explodes if the player gets close)</dt>
+<dd>T1- Mine</dd>
+<dd>T2- Mine 2</dd>
+<dd>T3- Mine 3</dd>
+<dd>T4- Mine 4</dd>
+<dd>T5- Mine 5</dd>
+
+<dt>Combat Ships (in order of power -- all these are player pilotable as well)</dt>
+<dd>T1- Shuttle</dd>
+<dd>T1- Light Figher</dd>
+<dd>T2- Heavy Fighter</dd>
+<dd>T3- Gunboat</dd>
+<dd>T3- Frigate</dd>
+<dd>T4- Destroyer</dd>
+<dd>T4- Cruiser</dd>
+<dd>T5- Dreadnought</dd>
+
+<dt>Asteroids (floating rocks that drop a few credits)</dt>
+<dd>T1- Asteroid 1</dd>
+<dd>T2- Asteroid 2</dd>
+<dd>T3- Asteroid 3</dd>
+<dd>T4- Asteroid 4</dd>
+<dd>T5- Asteroid 5</dd>
+
+<p>In the editor, the enemy name is always the race name + the ship class name.  For example "Organic Cruiser", or "Crystal Gun 4".  Except for asteroids since they have no race, just use "Asteroid 1" and the like.</p>
+
+
+<h3>Enemy Attributes</h3>
+
+<dt>Type</dt>
+<dd>As instructed above, the full name of the enemy type</dd>
+
+<dt>Optional</dt>
+<dd>If checked the player can complete the level without destroying this enemy.  Primarily used for asteroids.</dd>
+
+<dt>Mode</dt>
+<dd>Enemies can either be places in a specific location (Pos), or specify a random quantity of enemies to randomly placed around the map (Qty).</dd>
+
+<dt>Location (only appears in Pos mode)</dt>
+<dd>X and Y location of the enemy.  Just drag the corresponding dot to easily set this value.</dd>
+
+<dt>Chance (only appears in Pos mode)</dt>
+<dd>A value from 0 to 1 that is the chance that enemy will spawn in the stage.  1 means the the enemy is always there, and 0 means its never there.  0.5 means it will be there half the time.</dd>
+
+<dt>Min/Max (only appears in Qty mode)</dt>
+<dd>The minumum and maximum number of enemies of this type to spawn.  Random enemies are spawned anywhere in the level that is not near the border of the map, and not near the hypergate.  The location of the dot is ignored by the game for enemies in Qty mode, but as a best practice please drag the enemy dot to the lower left of the map outside the boundary of the stage to keep it separate form the placed enemies.</dd>
+
+<dt>Color Swatch</dt>
+<dd>This is the current color of the dots that represent this enemy type.  Click the swatch to set a new random color.  Note that it will change the color for all other enemies that are of the same type in the stage.  Click it as many times you like so that you get the colors different enough that it becomes clear which enemies are which type on the map.</dd>
+
+<dt>Tooltips</dt>
+<dd>Hover over an enemy blip for a few seconds to get a small tooltip.  It will tell you where it is, what it is, and what mode its in.</dd>
+
+
+<h2>Saving the stage</h2>
+
+<p>This stage editor does not connect directly to the game files for saving.  When you have stage ready, hit the export button and copy the contents of the textbox that appears.  Now click on the <strong>&raquo;Stage on Github</strong> button.  Click "edit" for the file that comes up and paste.  In the box below proved a relevant commit message such as "Added content for Atria stage" or "Added planets to Atria stage" or "Lowered difficulty of Arneb stage by removing a few Destroyers."</p>
+
+<ul>
+  <li><a href="http://spreadsheets.google.com/ccc?key=p48d3r0Nh70MjIBK0JI7bVg&hl=en">Stage Manifest</a></li>
+</ul>
+
+<p>Open the above stage manifest and update it with a value like "Review: My Name".  This lets the team know which stages need approval and who is responsible for the content.  Periodically I will update the build and upload it for more testing and tweaking.</p>
+
+
+<h2>Final Details</h2>
+
+<p>A lot can be done through loot table and enemy equipment loadouts.  For example a heavy fighter enemy might usually have machine guns, but maybe this stage has a few heavy fighters with missiles or lasers instead.  Or maybe this stage has a special crate which has a very high chance of dropping a nice gun and only appears on the first playthrough.  These things can be accomplished by tweaking enemy loadouts and loot tables which there is no editor for.  Post a ticket on the lighthouse describing what you need and I will make it happen for you.</p>
+
+<h2>Thanks for helping!</h2>
+
+<blockquote>—The VOID team</blockquote>

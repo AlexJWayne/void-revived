@@ -1,0 +1,53 @@
+h1. Tutorial
+
+When a new player begins, they are presented with a set tutorial information stages and screens.  This document storyboards the experience of a new player.
+
+* New game is pressed on the Title screen.
+* Hyperspace UI loads, Shipyard is selected.
+* Alert message: "Welcome! To get started, you just need to buy your first ship.  Select a ship from the list on the left, and tap the "Buy Ship" button on the right when you found one you like."
+* Player selects a shuttle and buys it.  The only items available are 4 shuttles; one form each race.  The player has just enough to credits to by one ship.
+* Alert message: "Now that you have a ship, it's time to venture out into space.  Tap the "Galaxy Map" tab."
+* User switches to the galaxy map.
+* Alert Message: "This map shows the star systems in the galaxy.  Tap the circle with the yellow outline, then press the "Play" button."
+* User begins the first stage.
+
+* Stage loads with a single crate that drops only credits.
+* Overlay: "The first step towards a successful career in space piracy is learning to control your ship.  To turn your ship, tilt your device to the left or to the right.  The more you turn the device, the faster you will turn.   TAP TO CONTINUE"
+* Overlay with arrow pointing to left controls: "The top button fires your ships engines.  This propels you forward.  The lower button is your braking thrusters and will slow you down.  Note that space flight is intertial.  This means that your ship will continue moving in a direction until you thrust or brake to change your velocity.   TAP TO CONTINUE"
+* Overlay with arrow pointing to fire button: "This buttons fires your ships guns.  TAP TO CONTINUE"
+* Overlay with arrow pointing to radar: "This is your radar.  Enemy ships are the red dots.  The Larger magenta dot is the hypergate.  The hypergate is where you enter and exit each stage.  TAP TO CONTINUE"
+* Overlay: "Now go find the enemy ship and destroy it! TAP TO CONTINUE"
+* User flies around to get the feel of things, and shoots the crate until it explodes.
+* Overlay: "You've scored your first kill!  This enemy has dropped some credits.  Credits are used to buy new ships while in hyperspace.  Fly into the green items to pick them up. TAP TO CONTINUE"
+* Overlay: "When you have finished collecting your earned booty, return to the hypergate to exit the stage."
+* User picks up credits, and enters the hypergate.
+
+* Hyperspace loads with Galaxy map in focus.
+* Alert message: "You have completed the first stage.  It now shows up green on the map.  You can travel to any stage that is connected to a completed stage.  Tap the red stage connected to the one you just finished to continue."
+* User enters second stage
+
+* Stage loads with 3 crates that drop cresits equipment and weapons.
+* Overlay: "Go forth and plunder all enemies in this system! TAP TO CONTINUE"
+* User destroys one of the crates, which spawns 1 weapon and one equipment.
+* Overlay: "Enemies can drop weapons and equipment.  The red item with a gun on it is a weapon, and the yellow item with the wrench is equipment.  These can be equipped in hyperspace to make you ship more powerful.  Pick them up, then destroy the remaining creates, and return to the hypergate to continue"
+* User picks up weapons and finishes the stage.
+
+* Hyperspace loads with Galaxy map in focus.
+* Alert message: "You now have some weapons and some equipment. Tap the Weapons and equipment tabs to see what you got."
+* User taps weapons tab.
+* Overlay that explains all the parts of the weapon interface.
+* User plays with weapon interface.
+* User taps equipment tab
+* Overlay that explains all the parts of the equipment interface, which is pretty similar to weapons.
+* User returns to galaxy map after playing around with their found items, and starts the 3rd stage.
+
+* Stage loads with a crate protected by a few enemy shuttles with almost harmless guns.
+* Overlay: "Sensors are picking up a few ships guarding the cargo.  You're going to have to take them out.  But first, there is one more thing you need to know. TAP TO CONTINUE"
+* Overlay with arrow pointing to top right gauges: "The red bar is your weapon energy.  Every time you fire, weapon energy is drained.  If you run out of energy, you will not be able to fire.  Energy recharges steadily, but you do want to make your shots count. TAP TO CONTINUE"
+* Overlay with arrow pointing to top right gauges: "The blue bar is your shields.  Shields will be depleted as you take damage.  Shields begin to recharge after a short period of not getting hit. TAP TO CONTINUE"
+* Overlay with arrow pointing to top right gauges: "The yellow bar is your armor.  When your shields are down, your armor starts taking damage.  Your armor does not replenish during a stage, and if your armor runs out, you are one dead pirate. TAP TO CONTINUE"
+* Overlay: "Now go kill those pesky guards before they kill you! TAP TO CONTINUE"
+* Player destroys the ships and exits the stage.
+
+* Hyperspace loads with galaxy map
+* Alert message: "Congratulations! You are now a real space pirate!  By now you should have earned enough for a better ship.  You will need it.  May you collect much booty."

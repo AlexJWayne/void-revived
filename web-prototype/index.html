@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="theme-color" content="#000000" />
+  <meta name="description" content="The VOID — a motion-controlled mobile combat prototype." />
+  <title>The VOID · Combat prototype</title>
+</head>
+<body>
+  <button id="restart" type="button">Restart</button>
+  <main id="viewport">
+    <div id="flight"><canvas id="game" aria-label="Space combat"></canvas><div id="touch-controls"></div></div>
+    <section id="gate" aria-live="polite">
+      <div class="gate-content"><span class="eyebrow">COMBAT PROTOTYPE</span><h1>THE VOID</h1>
+      <p id="message">Rotate to landscape, then enable motion to fly.</p>
+      <button id="start" disabled>Loading flight systems…</button>
+      <p class="hint">Tilt to turn. Hold the flight buttons to move.<br>A: Vulcan · B: Mass Driver · C: both</p></div>
+    </section>
+    <div id="notice" role="status" hidden></div>
+  </main>
+  <script type="module" src="/src/main.ts"></script>
+</body>
+</html>

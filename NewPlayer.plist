@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>ownedShips</key>
+	<array/>
+	<key>newShipCount</key>
+	<integer>4</integer>
+	<key>newWeaponCount</key>
+	<integer>0</integer>
+	<key>buybackWeapons</key>
+	<array/>
+	<key>buybackWeaponsValue</key>
+	<integer>0</integer>
+	<key>newEquipmentCount</key>
+	<integer>0</integer>
+	<key>buybackEquipment</key>
+	<array/>
+	<key>buybackEquipmentValue</key>
+	<integer>0</integer>
+	<key>credits</key>
+	<integer>100</integer>
+	<key>currentStage</key>
+	<string>Discipulus Minor</string>
+	<key>completedStages</key>
+	<array/>
+	<key>ship</key>
+	<dict>
+		<key>type</key>
+		<string>&lt;Empty&gt;</string>
+		<key>weaponGroups</key>
+		<array>
+			<array/>
+			<array/>
+			<array/>
+		</array>
+		<key>equipment</key>
+		<array/>
+		<key>guns</key>
+		<array/>
+	</dict>
+	<key>inventory</key>
+	<dict>
+		<key>weapons</key>
+		<array/>
+		<key>equipment</key>
+		<array/>
+	</dict>
+</dict>
+</plist>

@@ -1,0 +1,69 @@
+h1. UI Sound Effects
+
+h2. Main Menu
+
+* Select Menu Item
+
+
+h2. Galaxy map
+
+* Invoke (user taps the tab bar icon for this view)
+* Tap a star system to invoke stage detail window
+* Press "cancel" in stage detail window
+* Press "play" in stage detail window
+
+
+h2. Weapons
+
+* Invoke
+** Short rapid gunfire that fades out
+* Item selected (in order to display the items stats, item may be in inventory or mounted)
+* Item mounted
+* Item dismounted
+* Sell mode entered
+* Sell checked items (return to equip mode)
+
+
+h2. Equipment
+
+* Invoke
+** Powered whirring sound, like a bold being drilled in with an power drill.
+
+_The rest will probably be the same as the list for weapons._
+
+
+h2. Shipyard
+
+* Invoke
+* Ship selected from list (stats are displayed)
+* "Buy Ship" pressed
+
+
+h1. Content Sound Effects
+
+These lists do not detail specific effects, but outline a plan for all types of content that plays sounds, and what categories those sounds fall into.
+
+h2. Ships
+
+* Thruster sound (loop)
+* Explosion sound (probably one for each race)
+
+
+h2. Weapons
+
+Weapons define a set of multiple sounds.  One sound from the correct set is randomly chosen for each event.
+
+* Fire sounds
+* Hit sounds
+
+
+h2. Pickups
+
+* Money collected
+* Weapon collected
+* Equipment collected
+
+
+h2. Other
+
+* Stage ended, Hypergate entered

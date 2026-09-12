@@ -1,0 +1,22 @@
+:root { color-scheme: dark; font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif; background: #000; color: #ebf6ff; }
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+html, body { margin: 0; width: 100%; height: 100%; overflow: hidden; overscroll-behavior: none; }
+body { position: fixed; inset: 0; touch-action: none; user-select: none; -webkit-user-select: none; -webkit-touch-callout: none; }
+#viewport { position: absolute; top: 0; left: 0; width: 100%; height: 100%; padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left); display: flex; align-items: center; justify-content: center; }
+#flight { position: relative; flex: none; overflow: hidden; }
+#game { display: block; width: 100%; height: 100%; }
+#touch-controls { position: absolute; inset: 0; touch-action: none; }
+.flight-button { position: absolute; padding: 0; border: 0; background: transparent; color: transparent; touch-action: none; }
+.flight-button:focus-visible { outline: 1px solid #7bcbff; outline-offset: -2px; }
+#gate { position: absolute; inset: 0; display: grid; place-items: center; background: #000b; backdrop-filter: blur(3px); padding: 20px; text-align: center; }
+#gate[hidden], #notice[hidden] { display: none; }
+.gate-content { max-width: 440px; }
+.eyebrow { font-size: 11px; letter-spacing: .22em; color: #77aac9; }
+h1 { font-size: clamp(28px,6vh,46px); margin: 8px 0 12px; font-weight: 300; letter-spacing: .17em; text-indent: .17em; }
+p { line-height: 1.5; font-size: 16px; margin: 10px 0 16px; }
+#start { background: #9bd9ff; color: #071721; border: 1px solid #c5eaff; border-radius: 4px; font: inherit; font-size: 16px; font-weight: 600; min-height: 46px; padding: 10px 24px; }
+#start:disabled { opacity: .45; }
+#restart { position: fixed; z-index: 3; top: max(3px, env(safe-area-inset-top)); left: 50%; transform: translateX(-50%); border: 1px solid #667681; border-radius: 3px; background: #05090dcc; color: #c8d7e0; font: inherit; font-size: 12px; line-height: 1; padding: 6px 12px; touch-action: manipulation; }
+#restart:active { background: #27333a; }
+.hint { color: #9aabb7; font-size: 12px; margin: 16px 0 0; }
+#notice { position: absolute; top: max(12px, env(safe-area-inset-top)); left: 50%; transform: translateX(-50%); padding: 9px 16px; border: 1px solid #476b84; border-radius: 3px; background: #06101ee8; text-align: center; font-size: 14px; pointer-events: none; }

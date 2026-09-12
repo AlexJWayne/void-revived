@@ -1,0 +1,330 @@
+{
+  "ships": {
+    "Cyber Frigate": {
+      "explosionSprite": "Explosion.Cyber.png",
+      "explosionSound": "Large.Cyber",
+      "thrusterModelName": "CyberFrigate.Thruster",
+      "thrusterTexture": "CyberThrust.png",
+      "size": 1.3,
+      "pilotable": true,
+      "price": 25000,
+      "shields": 630,
+      "armor": 630,
+      "energy": 300,
+      "energyRecharge": 2.0,
+      "maxSpeed": 0.28,
+      "mass": 90,
+      "thrusterForce": 0.75,
+      "brakeForce": 0.6,
+      "turnSpeed": 2.2,
+      "shieldRecharge": 1.0,
+      "shieldRechargeDelay": 50,
+      "equipmentSlots": 2,
+      "thrusterSound": "Cyber",
+      "name": "Chromate",
+      "model": [
+        {
+          "modelName": "CyberFrigate",
+          "style": "opaque",
+          "texture": "CyberFrigate.png"
+        }
+      ],
+      "unlockStages": [
+        "Asterope",
+        "Pleione"
+      ],
+      "gunHardpoints": [
+        {
+          "x": -0.3,
+          "y": 0.0,
+          "z": 0.0
+        },
+        {
+          "x": 0.3,
+          "y": 0.0,
+          "z": 0.0
+        }
+      ]
+    },
+    "Cyber Light Fighter": {
+      "explosionSprite": "Explosion.Cyber.png",
+      "explosionSound": "Medium.Cyber",
+      "thrusterModelName": "CyberLightFighter.Thruster",
+      "thrusterTexture": "CyberThrust.png",
+      "size": 0.7,
+      "pilotable": true,
+      "price": 500,
+      "shields": 80,
+      "armor": 80,
+      "energy": 90,
+      "energyRecharge": 0.5,
+      "maxSpeed": 0.25,
+      "mass": 15,
+      "thrusterForce": 0.15,
+      "brakeForce": 0.15,
+      "turnSpeed": 3.0,
+      "shieldRecharge": 0.25,
+      "shieldRechargeDelay": 30,
+      "equipmentSlots": 1,
+      "thrusterSound": "Cyber",
+      "name": "Tinus",
+      "model": [
+        {
+          "modelName": "CyberLightFighter",
+          "style": "opaque",
+          "texture": "CyberLightFighter.png"
+        }
+      ],
+      "unlockStages": [
+        "Discipulus Major"
+      ],
+      "gunHardpoints": [
+        {
+          "x": 0.0,
+          "y": 0.4,
+          "z": 0.0
+        }
+      ]
+    },
+    "Cyber Gun": {
+      "explosionSprite": "Explosion.Cyber.png",
+      "explosionSound": "Small.Cyber",
+      "thrusterModelName": "",
+      "thrusterTexture": "CyberThrust.png",
+      "size": 0.65,
+      "pilotable": false,
+      "price": 100,
+      "shields": 35,
+      "armor": 35,
+      "energy": 100,
+      "energyRecharge": 0.3,
+      "maxSpeed": 0.25,
+      "mass": 10,
+      "thrusterForce": 0.06,
+      "brakeForce": 0.03,
+      "turnSpeed": 2.0,
+      "shieldRecharge": 0.1,
+      "shieldRechargeDelay": 60,
+      "equipmentSlots": 1,
+      "thrusterSound": "Cyber",
+      "name": "",
+      "model": [
+        {
+          "modelName": "CyberGun",
+          "style": "opaque",
+          "texture": "CyberGun.png"
+        }
+      ],
+      "unlockStages": [],
+      "gunHardpoints": [
+        {
+          "x": 0.0,
+          "y": -0.4,
+          "z": 0.35
+        }
+      ]
+    }
+  },
+  "weapons": {
+    "Vulcan Cannon": {
+      "mass": 8.0,
+      "value": 900.0,
+      "soundsHit": [],
+      "soundsFire": [
+        "VulcanCannon"
+      ],
+      "beam": false,
+      "beamRange": 0.0,
+      "icon": "VulcanCannon",
+      "description": "A rapid fire gun that shoots huge slugs.",
+      "armorDmg": 18.0,
+      "shieldDmg": 12.0,
+      "coolDown": 6.0,
+      "energy": 14.0,
+      "explosionSize": 0.0,
+      "forceFire": 0.07,
+      "forceHit": 0.05,
+      "lifetime": 36.0,
+      "modelName": "",
+      "modelTexture": "",
+      "modelSize": 0.0,
+      "projectileCollisionSize": 1.25,
+      "projectileImage": "0,0",
+      "projectileIsDirectional": true,
+      "projectileSize": 2.5,
+      "seekLockAngle": 0.0,
+      "seekTurnSpeed": 0.0,
+      "speed": 0.35,
+      "spread": 30.0,
+      "targetingArc": 20.0,
+      "accel": 0.0,
+      "fireSoundLoops": true,
+      "hitSprite": ""
+    },
+    "Mass Driver": {
+      "mass": 13.0,
+      "value": 720.0,
+      "soundsHit": [],
+      "soundsFire": [
+        "MassDriver"
+      ],
+      "beam": false,
+      "beamRange": 0.0,
+      "icon": "MassDriver",
+      "description": "Spews high speed slugs designed for armor penetration.",
+      "armorDmg": 130.0,
+      "shieldDmg": 90.0,
+      "coolDown": 55.0,
+      "energy": 100.0,
+      "explosionSize": 0.0,
+      "forceFire": 0.06,
+      "forceHit": 0.3,
+      "lifetime": 18.0,
+      "modelName": "",
+      "modelTexture": "",
+      "modelSize": 0.0,
+      "projectileCollisionSize": 0.8,
+      "projectileImage": "3,0",
+      "projectileIsDirectional": true,
+      "projectileSize": 1.4,
+      "seekLockAngle": 0.0,
+      "seekTurnSpeed": 0.0,
+      "speed": 0.9,
+      "spread": 5.0,
+      "targetingArc": 0.0,
+      "accel": 0.0,
+      "fireSoundLoops": false,
+      "hitSprite": ""
+    },
+    "Machine Gun": {
+      "mass": 2.0,
+      "value": 10.0,
+      "soundsHit": [],
+      "soundsFire": [
+        "VulcanCannon"
+      ],
+      "beam": false,
+      "beamRange": 0.0,
+      "icon": "MachineGun",
+      "description": "A rapid fire gun that shoots small bullets.",
+      "armorDmg": 8.0,
+      "shieldDmg": 6.0,
+      "coolDown": 9.0,
+      "energy": 8.0,
+      "explosionSize": 0.0,
+      "forceFire": 0.06,
+      "forceHit": 0.07,
+      "lifetime": 36.0,
+      "modelName": "",
+      "modelTexture": "",
+      "modelSize": 0.0,
+      "projectileCollisionSize": 0.5,
+      "projectileImage": "0,0",
+      "projectileIsDirectional": true,
+      "projectileSize": 1.0,
+      "seekLockAngle": 0.0,
+      "seekTurnSpeed": 0.0,
+      "speed": 0.35,
+      "spread": 30.0,
+      "targetingArc": 20.0,
+      "accel": 0.0,
+      "fireSoundLoops": false,
+      "hitSprite": ""
+    },
+    "Genjuro Blaster": {
+      "mass": 1.0,
+      "value": 10.0,
+      "soundsHit": [],
+      "soundsFire": [
+        "VulcanCannon"
+      ],
+      "beam": false,
+      "beamRange": 0.0,
+      "icon": "GenjuroBlaster",
+      "description": "A small gun that shoots small bullets, and might even kill small things.",
+      "armorDmg": 8.0,
+      "shieldDmg": 6.0,
+      "coolDown": 12.0,
+      "energy": 8.0,
+      "explosionSize": 0.0,
+      "forceFire": 0.06,
+      "forceHit": 0.06,
+      "lifetime": 24.0,
+      "modelName": "",
+      "modelTexture": "",
+      "modelSize": 0.0,
+      "projectileCollisionSize": 0.5,
+      "projectileImage": "0,0",
+      "projectileIsDirectional": true,
+      "projectileSize": 1.0,
+      "seekLockAngle": 0.0,
+      "seekTurnSpeed": 0.0,
+      "speed": 0.25,
+      "spread": 10.0,
+      "targetingArc": 20.0,
+      "accel": 0.0,
+      "fireSoundLoops": false,
+      "hitSprite": ""
+    }
+  },
+  "enemies": {
+    "Cyber Light Fighter": {
+      "type": "Cyber Light Fighter",
+      "aiType": "Fighter",
+      "guns": [
+        "Machine Gun"
+      ],
+      "equipment": [
+        "Handicap 20"
+      ]
+    },
+    "Cyber Gun": {
+      "type": "Cyber Gun",
+      "aiType": "Stationary",
+      "guns": [
+        "Genjuro Blaster"
+      ],
+      "equipment": [
+        "Handicap 20"
+      ]
+    }
+  },
+  "handicap": [
+    {
+      "stat": "thrusterForce",
+      "amount": -0.1
+    },
+    {
+      "stat": "maxSpeed",
+      "amount": -0.1
+    },
+    {
+      "stat": "turnSpeed",
+      "amount": -0.2
+    },
+    {
+      "stat": "shields",
+      "amount": -0.2
+    },
+    {
+      "stat": "shieldRecharge",
+      "amount": -0.1
+    },
+    {
+      "stat": "armor",
+      "amount": -0.2
+    },
+    {
+      "stat": "energy",
+      "amount": -0.1
+    },
+    {
+      "stat": "shieldDmg",
+      "amount": -0.2
+    },
+    {
+      "stat": "armorDmg",
+      "amount": -0.2
+    }
+  ]
+}

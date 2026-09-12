@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Start</key>
+	<dict>
+		<key>backgroundColor</key>
+		<dict>
+			<key>r</key>
+			<integer>0</integer>
+			<key>g</key>
+			<integer>0</integer>
+			<key>b</key>
+			<integer>0</integer>
+		</dict>
+		<key>planets</key>
+		<array>
+			<dict>
+				<key>imageName</key>
+				<string>Earth.png</string>
+				<key>size</key>
+				<integer>5</integer>
+				<key>position</key>
+				<dict>
+					<key>x</key>
+					<integer>10</integer>
+					<key>y</key>
+					<integer>12</integer>
+				</dict>
+			</dict>
+		</array>
+		<key>enemies</key>
+		<array>
+			<dict>
+				<key>typeName</key>
+				<string>Crate</string>
+				<key>position</key>
+				<dict>
+					<key>x</key>
+					<integer>10</integer>
+					<key>y</key>
+					<integer>12</integer>
+				</dict>
+			</dict>
+		</array>
+	</dict>
+</dict>
+</plist>

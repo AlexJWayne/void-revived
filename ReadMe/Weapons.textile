@@ -1,0 +1,134 @@
+h1. Weapon System Variables
+
+Weapons are defined in Weapons.plist.  The plist is a dictionary, where the key is the name of a weapon, and the value for the that key is a dictionary with a fixed vocabulary of weapon properties.  Every weapon has the following variables.
+
+* mass: When mounted, this items mass is added to the mass of the ship.  So equipping heavy items will decrease your mobility.
+* armorDmg: amount of damage that fired projectile will do to armor.
+* shieldDmg: amount of damage that fired projectile will do to shields.
+* coolDown: The number of frames before a gun can fire again.  A value of 60 is approximately 1 second.
+* energy: Amount of weapon energy required to fire a single shot.
+* explosionSize: If this value is zero, then the fire projectile can only hit 1 target.  Otherwise when the projectile strikes a target, it will explode damage all enemies within this radius.  All ships in range will also be knocked back relative to the where the projectile detonated.  Example: nuke or mines that can do damage over a large area.
+* forceFire: Amount of force the gun exerts on your ship, in the opposite direction of fire.  How much you get knock backward depends on your ships mass.
+* forceHit: Amount of force that is exerted on when it is hit by this projectile.  Knockback amount depends on the targets mass.
+* lifetime: The number of frames the projectile live for, after which it is removed from play.
+* projectileCollisionSize: This is how close the center of the projectile must be to a target to be considered a hit.  A larger value will be able to hit targets by grazing them at a greater distance.
+* seekLockAngle: Defines a cone, in degrees. When a projectile is fired, it looks for a target in this cone to lock onto.  If it finds one it will begin to seek that target.  A low value means you have to aim toward your target.  A high value means it will lock on target farther away from your orientation.  For example, a value of 360 will allow it to lock onto targets behind you.  This will appear to do nothing unless seekTurnSpeed is greater than zero because it will not be able to turn towards the chosen target.
+* seekTurnSpeed: Degrees per frame that a projectile can turn.  A high value will make the projectile very hard to dodge.  A low value will cause the projectile to turn slowly and be easier to dodge. This will appear to do nothing unless seekLockAngle is greater than zero because it must be able to lock onto a target in order to track it.
+* speed: Units per frame the projectile travels.
+* spread: Defines a cone, in degrees, in front of the ship.  Projectiles are fired at a random angle within this cone.  A value of zero means the projectile is always fired in the exact same direction the player is facing.  A value of 360 means projectiles are randomly fired in any direction.
+* targetingArc: Defines a cone, in degrees, in front of the ship.  The weapon may pivot on its base in order to fire toward a target within this cone.  A value of zero fires forward no matter what.  A value of 360 will allow the weapon to function like a turret firing in any direction.
+* value: Credits gained when the player sells this weapon.
+
+h3. Cosmetic Properties
+
+These variables have no effect on gameplay.  They affect how the weapon looks and sounds.
+
+* description: A short sentence describing what the weapon is and what it does.  Shown in the weapon hyperspace view.
+* icon: Name of a small image that represents this weapon in the weapon hyperspace view.
+* projectileIsDirectional: Boolean value.  If YES, then projectiles are angled along their direction of travel.  If NO, then projectiles are angled in a random direction as they are fired.
+* projectileSize: Size of the rendered projectile sprite.
+* projectileImage: Name of the sprite to use as the projectile graphic.
+* modelName: Name of the 3D model to load and mount to the ships weapon hardpoint.
+* modelTexture: Name of an image to load as the texture for the weapon model.
+* modelSize: Size of the weapon model as shown on the ship.
+* soundsFire: An array of sound names.  One of these will be randomly chosen every time the gun fires.
+* soundsHit: An array of sound names.  One of these will be randomly chosen every time a projectile strikes a target.
+
+
+h1. Weapon Types
+
+Each list is organized in order of weapon power form low to high.  Some weapons may come in turreted versions.
+
+*Cyber*
+
+* Bullets
+** Genjuro Blaster
+** Machine Gun
+** Repeater
+** Vulcan Cannon
+** Gatling Gun
+** Multi-Gat
+
+* Railguns
+** Magnetic Accelerator
+** Mass Driver
+** Mass Cannon
+** Gauss Cannon
+** Railgun
+
+* Missles
+** Dart
+** Arrow
+** Javelin
+** Shuriken
+** Nuke
+
+
+*Crystal*
+
+* Shard Slingers
+** Edge
+** Shard
+** Blade
+** Razor
+** Gladiate
+
+* Pulse lasers
+** Charged Pulse
+** Energy Pulse
+** Ion Pulse
+** Plasma Pulse
+** Antimatter Pulse
+
+* Shard Mines
+** Frag Mine
+** Shard Mine
+** Blade Mine
+
+
+*Organic*
+
+* Spines
+** Spine Hurler
+** Quill Flinger
+** Spike Launcher
+
+* Spores
+** Protozoa
+** Phase Fungi
+** Plasma Spore
+** Boom Worm
+** Kinetic Pollup
+** Acid Larvae
+
+* Streams
+** Acid Gland
+** Energy Organ
+** Sulfuric Sac
+** Plamsa Pore
+** Hydrocloric Sphincter
+
+
+* Energy
+
+* Beams
+** Mining Laser
+** Plasma Cutter
+** Ion Stream
+** Fusion Field
+** Dimensional Ripper
+
+* Graviton Bombs
+** Tractor Pod
+** Force Field
+** Repulsion Mine
+** Kinetic Shockwave
+** Singularity
+
+
+
+
+
+
+
+

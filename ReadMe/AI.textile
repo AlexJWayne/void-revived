@@ -1,0 +1,21 @@
+h1. AI
+
+Different AI types behave differently.
+
+* Stationary
+** A stationary gun platform.  Fire towards the player, always brake, never thrust.
+
+* Fighter
+** Aggressive.  Charge the player, stay moving.
+
+* Warship
+** Not as mobile as the fighters.  Opts to hang back and bombard.
+
+* Civilian
+** Runs away when attacked.
+
+* Agressive Civilian
+** Will stay and fight until it starts losing, then runs away.
+
+* Escort
+** stay near a friendly target and defend it.  Do not persue the player past a certain distance from the ship its escorting.

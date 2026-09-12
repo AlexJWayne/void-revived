@@ -1,0 +1,15 @@
+{
+  "name": "void-combat-prototype",
+  "private": true,
+  "version": "0.0.1",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 0.0.0.0",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview --host 0.0.0.0",
+    "test": "node --experimental-strip-types --test tests/*.test.ts",
+    "assets": "python3 scripts/import-assets.py",
+    "cert": "node scripts/create-cert.mjs"
+  },
+  "devDependencies": { "@types/node": "^24.0.0", "typescript": "~5.9.3", "vite": "^7.1.0" }
+}

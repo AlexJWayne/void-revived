@@ -1,0 +1,58 @@
+[
+  {
+    "file": "CyberFrigate.Thruster.vmdl",
+    "source": "Assets/Models/Ships/vmdl/CyberFrigate.Thruster.vmdl"
+  },
+  {
+    "file": "CyberFrigate.png",
+    "source": "Assets/Models/Ships/CyberFrigate/CyberFrigate.png"
+  },
+  {
+    "file": "CyberFrigate.vmdl",
+    "source": "Assets/Models/Ships/vmdl/CyberFrigate.vmdl"
+  },
+  {
+    "file": "CyberGun.png",
+    "source": "Assets/Models/Ships/CyberGun/CyberGun.png"
+  },
+  {
+    "file": "CyberGun.vmdl",
+    "source": "Assets/Models/Ships/vmdl/CyberGun.vmdl"
+  },
+  {
+    "file": "CyberLightFighter.Thruster.vmdl",
+    "source": "Assets/Models/Ships/vmdl/CyberLightFighter.Thruster.vmdl"
+  },
+  {
+    "file": "CyberLightFighter.png",
+    "source": "Assets/Models/Ships/CyberLightFighter/CyberLightFighter.png"
+  },
+  {
+    "file": "CyberLightFighter.vmdl",
+    "source": "Assets/Models/Ships/vmdl/CyberLightFighter.vmdl"
+  },
+  {
+    "file": "CyberThrust.png",
+    "source": "Assets/Images/Content/CyberThrust.png"
+  },
+  {
+    "file": "Explosion.Cyber.png",
+    "source": "Assets/Images/Content/Explosions/Explosion.Cyber.png"
+  },
+  {
+    "file": "Hit.png",
+    "source": "Assets/Images/Content/Hit.png"
+  },
+  {
+    "file": "Projectiles.png",
+    "source": "Assets/Images/Content/Weapons/Projectiles/Projectiles.png"
+  },
+  {
+    "file": "ShieldBubble.png",
+    "source": "Assets/Images/Content/ShieldBubble.png"
+  },
+  {
+    "file": "UIAtlas@2x.png",
+    "source": "Assets/Images/FlightUI/UIAtlas@2x.png"
+  }
+]

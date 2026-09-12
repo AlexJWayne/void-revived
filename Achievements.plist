@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Taste of Blood</key>
+	<dict>
+		<key>id</key>
+		<string>141</string>
+		<key>requirementCategory</key>
+		<string>StageClears</string>
+		<key>requirementValue</key>
+		<integer>3</integer>
+	</dict>
+	<key>Amateur Pirate</key>
+	<dict>
+		<key>id</key>
+		<string>142</string>
+		<key>requirementCategory</key>
+		<string>StageClears</string>
+		<key>requirementValue</key>
+		<integer>20</integer>
+	</dict>
+	<key>Infamous Privateer</key>
+	<dict>
+		<key>id</key>
+		<string>143</string>
+		<key>requirementCategory</key>
+		<string>StageClears</string>
+		<key>requirementValue</key>
+		<integer>40</integer>
+	</dict>
+	<key>Galactic Conqueror</key>
+	<dict>
+		<key>id</key>
+		<string>144</string>
+		<key>requirementCategory</key>
+		<string>StageClears</string>
+		<key>requirementValue</key>
+		<integer>-1</integer>
+	</dict>
+	<key>Cykan Assimilation</key>
+	<dict>
+		<key>id</key>
+		<string>162</string>
+		<key>requirementCategory</key>
+		<string>SingleStageClear</string>
+		<key>requirementValue</key>
+		<string>Alioth</string>
+	</dict>
+	<key>Wrethk Invasion</key>
+	<dict>
+		<key>id</key>
+		<string>163</string>
+		<key>requirementCategory</key>
+		<string>SingleStageClear</string>
+		<key>requirementValue</key>
+		<string>Eridani</string>
+	</dict>
+	<key>Shattered Orthos</key>
+	<dict>
+		<key>id</key>
+		<string>164</string>
+		<key>requirementCategory</key>
+		<string>SingleStageClear</string>
+		<key>requirementValue</key>
+		<string>Corona</string>
+	</dict>
+	<key>Lanaar Enslavement</key>
+	<dict>
+		<key>id</key>
+		<string>165</string>
+		<key>requirementCategory</key>
+		<string>SingleStageClear</string>
+		<key>requirementValue</key>
+		<string>Regor</string>
+	</dict>
+	<key>My First Pirate Ship</key>
+	<dict>
+		<key>id</key>
+		<string>166</string>
+		<key>requirementCategory</key>
+		<string>PilotShipTier</string>
+		<key>requirementValue</key>
+		<string>Light Fighter</string>
+	</dict>
+	<key>Moving Up</key>
+	<dict>
+		<key>id</key>
+		<string>167</string>
+		<key>requirementCategory</key>
+		<string>PilotShipTier</string>
+		<key>requirementValue</key>
+		<string>Frigate</string>
+	</dict>
+	<key>Mighty Dreadnought</key>
+	<dict>
+		<key>id</key>
+		<string>168</string>
+		<key>requirementCategory</key>
+		<string>PilotShipTier</string>
+		<key>requirementValue</key>
+		<string>Dreadnought</string>
+	</dict>
+	<key>Ultimate Collector</key>
+	<dict>
+		<key>id</key>
+		<string>169</string>
+		<key>requirementCategory</key>
+		<string>OwnAllShips</string>
+		<key>requirementValue</key>
+		<false/>
+	</dict>
+	<key>Bullet Hose</key>
+	<dict>
+		<key>id</key>
+		<string>170</string>
+		<key>requirementCategory</key>
+		<string>WeaponQty</string>
+		<key>requirementValue</key>
+		<dict>
+			<key>qty</key>
+			<integer>4</integer>
+			<key>name</key>
+			<string>Multi-Gat</string>
+		</dict>
+	</dict>
+	<key>Nuclear Fission</key>
+	<dict>
+		<key>id</key>
+		<string>171</string>
+		<key>requirementCategory</key>
+		<string>WeaponQty</string>
+		<key>requirementValue</key>
+		<dict>
+			<key>qty</key>
+			<integer>2</integer>
+			<key>name</key>
+			<string>Nuke</string>
+		</dict>
+	</dict>
+	<key>Too Much Spicy Food</key>
+	<dict>
+		<key>id</key>
+		<string>172</string>
+		<key>requirementCategory</key>
+		<string>WeaponQty</string>
+		<key>requirementValue</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>name</key>
+			<string>Hydrochloric Sphincter</string>
+		</dict>
+	</dict>
+	<key>Antimatter Chain Reaction</key>
+	<dict>
+		<key>id</key>
+		<string>173</string>
+		<key>requirementCategory</key>
+		<string>WeaponQty</string>
+		<key>requirementValue</key>
+		<dict>
+			<key>qty</key>
+			<integer>4</integer>
+			<key>name</key>
+			<string>Antimatter Pulse</string>
+		</dict>
+	</dict>
+	<key>Master of Gravity</key>
+	<dict>
+		<key>id</key>
+		<string>174</string>
+		<key>requirementCategory</key>
+		<string>WeaponQty</string>
+		<key>requirementValue</key>
+		<dict>
+			<key>qty</key>
+			<integer>1</integer>
+			<key>name</key>
+			<string>Singularity</string>
+		</dict>
+	</dict>
+	<key>Ancient Technology</key>
+	<dict>
+		<key>id</key>
+		<string>175</string>
+		<key>requirementCategory</key>
+		<string>EquipmentGroup</string>
+		<key>requirementValue</key>
+		<string>Trophy</string>
+	</dict>
+	<key>Power of the Ancients</key>
+	<dict>
+		<key>id</key>
+		<string>176</string>
+		<key>requirementCategory</key>
+		<string>PosessAllEquipment</string>
+		<key>requirementValue</key>
+		<array>
+			<string>Cykan Incinerator</string>
+			<string>Shard of Orthos</string>
+			<string>Lanaar Essence</string>
+			<string>Heart of Wrethk</string>
+		</array>
+	</dict>
+	<key>Respectable Booty</key>
+	<dict>
+		<key>id</key>
+		<string>266</string>
+		<key>requirementCategory</key>
+		<string>Cash</string>
+		<key>requirementValue</key>
+		<integer>10000</integer>
+	</dict>
+	<key>Wealthy Pirate</key>
+	<dict>
+		<key>id</key>
+		<string>267</string>
+		<key>requirementCategory</key>
+		<string>Cash</string>
+		<key>requirementValue</key>
+		<integer>100000</integer>
+	</dict>
+	<key>Pure Greed</key>
+	<dict>
+		<key>id</key>
+		<string>268</string>
+		<key>requirementCategory</key>
+		<string>Cash</string>
+		<key>requirementValue</key>
+		<integer>1000000</integer>
+	</dict>
+	<key>I am Rich</key>
+	<dict>
+		<key>id</key>
+		<string>269</string>
+		<key>requirementCategory</key>
+		<string>Cash</string>
+		<key>requirementValue</key>
+		<integer>10000000</integer>
+	</dict>
+</dict>
+</plist>

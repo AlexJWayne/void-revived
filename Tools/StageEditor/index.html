@@ -1,0 +1,181 @@
+<html>
+  <head>
+    <title>VOID Stage Editor</title>
+    <script type="text/javascript" charset="utf-8" src="javascripts/prototype.js"></script>
+    <script type="text/javascript" charset="utf-8" src="javascripts/scriptaculous.js"></script>
+    <script type="text/javascript" charset="utf-8" src="javascripts/stage.js"></script>
+    <script type="text/javascript" charset="utf-8" src="javascripts/enemy.js"></script>
+    <script type="text/javascript" charset="utf-8" src="javascripts/hypergate.js"></script>
+    <script type="text/javascript" charset="utf-8" src="javascripts/planet.js"></script>
+    <script type="text/javascript" charset="utf-8" src="javascripts/nebula.js"></script>
+    <link rel="stylesheet" href="application.css" type="text/css" media="screen" title="no title" charset="utf-8"/>
+  </head>
+  <body onload="Stage.onLoad()">
+    <div id="wrapper">
+      <textarea id="stage_data" style="display: none"></textarea>
+      <div id="map"></div>
+      <div id="controls">
+        <input type="button" value="Import" onclick="Stage.import()"/>
+        <input type="button" value="Export" onclick="Stage.save()"/>
+        <a href="readme.html" target="voideditorreadme">Read Me</a>
+        <br/>
+        <select onchange="Stage.load(this.value)">
+          <option></option>
+          <option>Alcor</option>
+          <option>Alcyone</option>
+          <option>Aldebran</option>
+          <option>Algorab</option>
+          <option>Alioth</option>
+          <option>Alnitak</option>
+          <option>Altair</option>
+          <option>Alula</option>
+          <option>Alya</option>
+          <option>Antares</option>
+          <option>Antila</option>
+          <option>Arkab</option>
+          <option>Arneb</option>
+          <option>Arrakis</option>
+          <option>Ascella</option>
+          <option>Asterope</option>
+          <option>Atlas</option>
+          <option>Atria</option>
+          <option>Australis</option>
+          <option>Bali</option>
+          <option>Caelum</option>
+          <option>Capella</option>
+          <option>Carina</option>
+          <option>Cassiopeia</option>
+          <option>Castor</option>
+          <option>Celaeno</option>
+          <option>Centarus</option>
+          <option>Cepheus</option>
+          <option>Chow</option>
+          <option>Corona</option>
+          <option>Corvus</option>
+          <option>Crux</option>
+          <option>Cursa</option>
+          <option>Cygnus</option>
+          <option>Deneb</option>
+          <option>Discipulus Major</option>
+          <option>Discipulus Medius</option>
+          <option>Discipulus Minor</option>
+          <option>Electra</option>
+          <option>Eridani</option>
+          <option>Fomalhaut</option>
+          <option>Gacrux</option>
+          <option>Graffias</option>
+          <option>Grumium</option>
+          <option>Jabbah</option>
+          <option>Kaus</option>
+          <option>Lesath</option>
+          <option>Maia</option>
+          <option>Marfik</option>
+          <option>Megrez</option>
+          <option>Merope</option>
+          <option>Minkar</option>
+          <option>Mintaka</option>
+          <option>Mizar</option>
+          <option>Mulu</option>
+          <option>Naos</option>
+          <option>Nath</option>
+          <option>Nihal</option>
+          <option>Nunki</option>
+          <option>Pleione</option>
+          <option>Polaris</option>
+          <option>Pollux</option>
+          <option>Propus</option>
+          <option>Pyxis</option>
+          <option>Regor</option>
+          <option>Regulus</option>
+          <option>Rigel</option>
+          <option>Rukbat</option>
+          <option>Sadal</option>
+          <option>Sargas</option>
+          <option>Sarin</option>
+          <option>Scutum</option>
+          <option>Shaula</option>
+          <option>Sheliar</option>
+          <option>Situla</option>
+          <option>Talitha</option>
+          <option>Thuban</option>
+          <option>Vega</option>
+          <option>Yildun</option>
+          <option>Zaurak</option>
+          <option>Zozma</option>
+        </select>
+        
+        <a href="#" id="stage_link" target="VoidGithub">&raquo; Stage on Github</a>
+        
+        <br/>
+        <a href="#" onclick="$('globalValues').toggle(); return false" style="display: block">Toggle Globals</a>
+        <ul id="globalValues" style="display:none">
+          <li>
+            <label>Galaxy Position:</label>
+            <input type="textfield" id="galaxy_loc_x" name="galaxyLoc[x]" size="5" value="0" onblur="Stage.galaxyLocation[0] = parseInt(this.value)"/>
+            <input type="textfield" id="galaxy_loc_y" name="galaxyLoc[y]" size="5" value="0" onblur="Stage.galaxyLocation[1] = parseInt(this.value)"/>
+          </li>
+          <li>
+            <label>Music:</label>
+            <select id="music" onchange="Stage.music = this.value">
+              <option value="MusicHyperspace">Hyperspace</option>
+              <option value="MusicUninhabited">Uninhabited</option>
+              <option value="MusicCyber">Cyber</option>
+              <option value="MusicCrystal">Crystal</option>
+              <option value="MusicOrganic">Organic</option>
+              <option value="MusicEnergy">Energy</option>
+            </select>
+            <br/>
+            <label>Zone:</label>
+            <select id="zone" onchange="Stage.zone = parseInt(this.value)">
+              <option value="0">Uninhabited</option>
+              <option value="1">Cyber</option>
+              <option value="2">Crystal</option>
+              <option value="3">Organic</option>
+              <option value="4">Energy</option>
+            </select>
+            <br/>
+            <label>Tier:</label>
+            <select id="tier" onchange="Stage.tier = parseInt(this.value)">
+              <option>1</option>
+              <option>2</option>
+              <option>3</option>
+              <option>4</option>
+              <option>5</option>
+            </select>
+          </li>
+          <li>
+            <label>Connections:</label>
+            <input type="textfield" id="connections" name="connections" style="width: 100%" value="" onblur="Stage.connections = this.value.split(', ')"/>
+            <small><em>Comma space, separated: "Stage 1, Stage 2, Stage 3"</em></small>
+          </li>
+          <li>
+            <label>Description:</label>
+            <textarea id="description" style="width: 100%; height: 50px" onblur="Stage.description = this.value.length > 0 ? this.value : null"></textarea>
+          </li>
+          <li>
+            <label>Hypergate Position:</label>
+            <input type="textfield" id="hypergate_loc_x" name="hypergateLoc[x]" size="5" value="0" onblur="Stage.hypergate.setLocation('x', this.value)"/>
+            <input type="textfield" id="hypergate_loc_y" name="hypergateLoc[y]" size="5" value="0" onblur="Stage.hypergate.setLocation('y', this.value)"/>
+          </li>
+        </ul>
+        
+        <br/>
+        <input type="button" value="Add Planet" onclick="Stage.addPlanet()"/>
+        <a href="#" onclick="$('planetList').toggle(); return false">Toggle Planets</a>
+        <ul id="planetList"></ul>
+        
+        <br/>
+        <input type="button" value="Add Nebula" onclick="Stage.addNebula()"/>
+        <a href="#" onclick="$('nebulaList').toggle(); return false">Toggle Nebulas</a>
+        <ul id="nebulaList"></ul>
+        
+        <br/>
+        <input type="button" value="Add Enemy" onclick="Stage.addEnemy()"/>
+        <a href="#" onclick="$('enemyList').toggle(); return false">Toggle Enemies</a>
+        <ul id="enemyList"></ul>
+        
+        <p><a href="#" onclick="Stage.deselect(); return false">Deselect</a></p>
+      </div>
+    </div>
+  </body>
+</html>
