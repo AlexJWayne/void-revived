@@ -6,6 +6,10 @@ import {
   type CapabilityGate,
 } from './capabilities.ts';
 import { createGraphicsDevice, type GraphicsDevice } from '../graphics/device.ts';
+import { contentUrl, loadContentData, loadContentManifest } from '../content/manifest.ts';
+import { createBrowserPlayerStore } from '../player/browser.ts';
+import type { PlayerState } from '../player/model.ts';
+import { TitleScreen } from './TitleScreen.tsx';
 
 const initialGate: CapabilityGate = {
   kind: 'checking',
@@ -16,7 +20,14 @@ const initialGate: CapabilityGate = {
 export function App() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const graphicsRef = useRef<GraphicsDevice>();
+  const playerStoreRef = useRef(createBrowserPlayerStore());
   const [gate, setGate] = useState<CapabilityGate>(initialGate);
+  const [defaultPlayer, setDefaultPlayer] = useState<unknown>();
+  const [contentError, setContentError] = useState<string>();
+  const [route, setRoute] = useState<'title' | 'hyperspace'>('title');
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [player, setPlayer] = useState<PlayerState | null>(null);
+  const [confirmNewGame, setConfirmNewGame] = useState(false);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -49,30 +60,105 @@ export function App() {
     };
   }, []);
 
-  return (
-    <main class="safe-viewport relative h-dvh w-dvw overflow-hidden bg-slate-950 text-slate-100">
-      <canvas
-        ref={canvasRef}
-        class="block h-full w-full touch-none"
-        aria-label="The VOID game view"
-      />
+  useEffect(() => {
+    loadContentManifest()
+      .then((manifest) => loadContentData(manifest, 'newPlayer'))
+      .then(setDefaultPlayer)
+      .catch((error: unknown) => {
+        setContentError(error instanceof Error ? error.message : 'Unable to load game content');
+      });
+  }, []);
 
-      {gate.kind !== 'ready' && (
+  const enterHyperspace = (nextPlayer: PlayerState) => {
+    setPlayer(nextPlayer);
+    setMenuOpen(false);
+    setRoute('hyperspace');
+  };
+
+  const continueGame = () => {
+    const savedPlayer = playerStoreRef.current.continueGame();
+    if (savedPlayer) enterHyperspace(savedPlayer);
+  };
+
+  const startNewGame = () => {
+    if (!defaultPlayer) return;
+    if (playerStoreRef.current.hasContinue() && !confirmNewGame) {
+      setConfirmNewGame(true);
+      return;
+    }
+    playerStoreRef.current.deletePlayer();
+    enterHyperspace(playerStoreRef.current.startNewGame(defaultPlayer));
+    setConfirmNewGame(false);
+  };
+
+  const titleMode = route === 'hyperspace' ? 'menu' : 'title';
+  const showTitle = route === 'title' || menuOpen;
+  const frameStyle = {
+    '--button-normal': `url("${contentUrl('textures/GeneralButtonNormal.png')}")`,
+    '--button-highlighted': `url("${contentUrl('textures/GeneralButtonHighlighted.png')}")`,
+    '--button-disabled': `url("${contentUrl('textures/GeneralButtonDisabled.png')}")`,
+    '--instructions-background': `url("${contentUrl('textures/Instructions.Background.png')}")`,
+    '--level-track': `url("${contentUrl('textures/LevelTrack.png')}")`,
+    '--level-thumb': `url("${contentUrl('textures/LevelThumb.png')}")`,
+  } as preact.JSX.CSSProperties;
+
+  return (
+    <main class="safe-viewport app-shell">
+      <div class="game-frame" style={frameStyle}>
+        <canvas ref={canvasRef} class="game-canvas" aria-label="The VOID game view" />
+
+        {route === 'hyperspace' && !menuOpen && (
+          <section class="hyperspace-handoff" aria-label="Hyperspace">
+            <p class="handoff-eyebrow">Hyperspace</p>
+            <h1>{player?.currentStage}</h1>
+            <p>The galaxy map attaches here in the next porting slice.</p>
+            <button class="handoff-menu" type="button" onClick={() => setMenuOpen(true)}>Menu</button>
+          </section>
+        )}
+
+        {showTitle && (
+          <TitleScreen
+            mode={titleMode}
+            canContinue={playerStoreRef.current.hasContinue()}
+            onContinue={continueGame}
+            onNewGame={startNewGame}
+          />
+        )}
+
+        {route === 'hyperspace' && menuOpen && (
+          <button class="return-to-hyperspace" type="button" onClick={() => setMenuOpen(false)}>
+            Return to Hyperspace
+          </button>
+        )}
+
+        {confirmNewGame && (
+          <section class="confirmation-backdrop" role="alertdialog" aria-modal="true" aria-labelledby="new-game-title">
+            <div class="confirmation-panel">
+              <h2 id="new-game-title">Existing Game Data!</h2>
+              <p>Starting a new game will erase your current game, and you will start over. Are you sure you want to do this?</p>
+              <div class="confirmation-actions">
+                <button type="button" onClick={() => setConfirmNewGame(false)}>Cancel</button>
+                <button type="button" onClick={startNewGame}>New Game</button>
+              </div>
+            </div>
+          </section>
+        )}
+      </div>
+
+      {(gate.kind !== 'ready' || !defaultPlayer || contentError) && (
         <section class="absolute inset-0 grid place-items-center bg-slate-950/95 p-8 text-center">
           <div class="max-w-md">
             <p class="mb-3 text-xs font-semibold uppercase tracking-[0.35em] text-cyan-300">
               The VOID
             </p>
-            <h1 class="text-2xl font-semibold tracking-tight">{gate.title}</h1>
-            <p class="mt-3 text-sm leading-6 text-slate-300">{gate.message}</p>
+            <h1 class="text-2xl font-semibold tracking-tight">
+              {contentError ? 'Game content unavailable' : gate.kind === 'ready' ? 'Loading The VOID' : gate.title}
+            </h1>
+            <p class="mt-3 text-sm leading-6 text-slate-300">
+              {contentError ?? (gate.kind === 'ready' ? 'Preparing the Original Game…' : gate.message)}
+            </p>
           </div>
         </section>
-      )}
-
-      {gate.kind === 'ready' && (
-        <p class="pointer-events-none absolute bottom-safe left-safe text-[0.625rem] uppercase tracking-[0.24em] text-slate-500">
-          Web Port foundation
-        </p>
       )}
     </main>
   );
