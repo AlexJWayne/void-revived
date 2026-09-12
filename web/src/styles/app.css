@@ -94,22 +94,10 @@ input {
 .game-button {
   position: absolute;
   height: 12.5%;
-  border: 0;
-  border-radius: 0;
-  background: var(--button-normal) center / 100% 100% no-repeat;
   color: white;
-  font-size: clamp(0.72rem, 3.125cqh, 0.98rem);
-  font-weight: 700;
-  text-shadow: 0 -1px #000b40;
-}
-
-.game-button:active {
-  background-image: var(--button-highlighted);
-}
-
-.game-button:disabled {
-  background-image: var(--button-disabled);
-  color: #888;
+  font-size: clamp(0.82rem, 3.6cqh, 1.08rem);
+  font-weight: 800;
+  text-shadow: 0 1px 2px #000, 0 0 4px #000;
 }
 
 .title-continue,

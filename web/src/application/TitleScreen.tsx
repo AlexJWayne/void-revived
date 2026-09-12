@@ -59,7 +59,12 @@ interface GameButtonProps {
 
 export function GameButton({ children, class: className = '', disabled, onClick }: GameButtonProps) {
   return (
-    <button class={`game-button ${className}`} type="button" disabled={disabled} onClick={onClick}>
+    <button
+      class={`game-button rounded-full border-2 border-cyan-100/90 bg-[linear-gradient(to_bottom,#8ec8f0_0%,#3b63c5_45%,#162c79_50%,#06133f_100%)] shadow-[inset_0_2px_1px_rgb(255_255_255_/_0.7),inset_0_-3px_6px_rgb(0_0_30_/_0.9),0_0_10px_rgb(56_189_248_/_0.75),0_3px_7px_rgb(0_0_0_/_0.8)] active:bg-[linear-gradient(to_bottom,#dbeafe_0%,#8296e1_45%,#4d5d9b_50%,#29345f_100%)] disabled:border-zinc-400/60 disabled:bg-[linear-gradient(to_bottom,#777_0%,#444_48%,#222_52%,#171717_100%)] disabled:text-zinc-300 disabled:shadow-[inset_0_1px_1px_rgb(255_255_255_/_0.2),0_2px_5px_rgb(0_0_0_/_0.7)] ${className}`}
+      type="button"
+      disabled={disabled}
+      onClick={onClick}
+    >
       {children}
     </button>
   );

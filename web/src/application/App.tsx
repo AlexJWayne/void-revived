@@ -94,9 +94,6 @@ export function App() {
   const titleMode = route === 'hyperspace' ? 'menu' : 'title';
   const showTitle = route === 'title' || menuOpen;
   const frameStyle = {
-    '--button-normal': `url("${contentUrl('textures/GeneralButtonNormal.png')}")`,
-    '--button-highlighted': `url("${contentUrl('textures/GeneralButtonHighlighted.png')}")`,
-    '--button-disabled': `url("${contentUrl('textures/GeneralButtonDisabled.png')}")`,
     '--instructions-background': `url("${contentUrl('textures/Instructions.Background.png')}")`,
     '--level-track': `url("${contentUrl('textures/LevelTrack.png')}")`,
     '--level-thumb': `url("${contentUrl('textures/LevelThumb.png')}")`,
