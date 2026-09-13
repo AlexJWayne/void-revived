@@ -3,7 +3,7 @@ name: Publish web prototype
 on:
   push:
     branches:
-      - web-revival-poc
+      - main
     paths:
       - web/**
       - .github/workflows/pages.yml
