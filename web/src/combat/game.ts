@@ -12,6 +12,8 @@ import { Hypergate } from './hypergate.ts';
 import { Pickup } from './pickup.ts';
 import { Explosion } from './explosion.ts';
 import { FlightUI } from './flight-ui.ts';
+import { SoundEffect } from '../audio/sound-effect.ts';
+import { BackgroundMusic } from '../audio/background-music.ts';
 
 export interface TouchPosition { readonly x: number; readonly y: number }
 export interface StageStats {
@@ -45,6 +47,9 @@ export class Game {
   readonly previousAngles = [0, 0, 0, 0];
   readonly stats: StageStats;
   readonly flightUI: FlightUI;
+  readonly music: BackgroundMusic | undefined;
+  private readonly exitStageSound = SoundEffect.effectNamed('Hypergate');
+  private readonly hypergateOpenSound = SoundEffect.effectNamed('HypergateOpen');
   nextIdentifier = 0;
   tick = 0;
   angle = 0;
@@ -69,6 +74,7 @@ export class Game {
     this.stage = requireDefinition(content.stages, this.stageName);
     this.random = random;
     this.settings = settings;
+    this.music = this.stage.music ? new BackgroundMusic(this.stage.music, settings.musicVolume) : undefined;
     this.planets = this.stage.planets.map((template) => new Planet(template));
     this.nebulas = this.stage.nebulas.map((template) => new Nebula(template, random));
     this.ship = new Ship(Ship.snapshotForLoadout(content, this.nextIdentifier++, player.ship), this);
@@ -126,6 +132,7 @@ export class Game {
     this.updateProjectiles();
     this.updateBeams();
     this.ship.update();
+    SoundEffect.setListenerPos(this.ship.position);
     this.cameraPosition.x = this.ship.position.x;
     this.cameraPosition.y = this.ship.position.y;
     this.updateEnemies();
@@ -218,6 +225,7 @@ export class Game {
         projectile.expired = true;
         if (projectile.definition.explosionSize > 0) projectile.explode();
         else {
+          projectile.playHitSound();
           target.damage(projectile.definition.shieldDamage, projectile.definition.armorDamage);
           const knockback = projectile.velocity.clone().normalize().scale(projectile.definition.hitForce / target.mass);
           target.velocity.add(knockback);
@@ -233,15 +241,22 @@ export class Game {
   }
 
   private checkForCompletion(): void {
+    if (this.canBeCompleted && this.completionFlash === 0) this.hypergateOpenSound.play();
     if (this.stageIsEnding) {
+      if (this.stageEndFrame === 0) this.exitStageSound.play();
       this.stageEndFrame += 1;
+      // Preserve the native stage-exit fade while respecting the player's music level.
+      this.music?.setVolume(this.settings.musicVolume * this.alpha);
       if (this.ship.currentArmor > 0) {
         this.ship.velocity.scale(0.95 * this.alpha);
         const gateDistance = this.hypergate.position.clone().subtract(this.ship.position).scale(this.alpha * 0.15);
         this.ship.velocity.add(gateDistance);
         this.cameraPosition.z = 24 + 16 * (1 - Math.cos(Math.PI * this.alpha / 2));
       }
-      if (this.stageEndFrame > 60) this.finished = true;
+      if (this.stageEndFrame > 60) {
+        this.finished = true;
+        this.music?.stop();
+      }
     } else if (this.ship.currentArmor <= 0 || (this.canBeCompleted && this.ship.position.distance2D(this.hypergate.position) - this.ship.definition.size < 3)) {
       this.stageIsEnding = true;
     }
@@ -249,12 +264,15 @@ export class Game {
 
   shipDestroyed(ship: Ship): void {
     const template = requireDefinition(this.content.shipTypes, ship.type);
-    this.addExplosion(ship.position, ship.velocity, ship.definition.size * 3, template.explosionSprite, 16, 60);
+    const explosion = this.addExplosion(ship.position, ship.velocity, ship.definition.size * 3, template.explosionSprite, 16, 60);
+    explosion.playSound(`Explosion.${template.explosionSound}`);
     if (ship !== this.ship) this.stats.kills += 1;
   }
 
-  addExplosion(position: Vector3Value, velocity: Vector3Value | null, size: number, image: string, frames: number, duration: number): void {
-    this.explosions.push(new Explosion(position, velocity, size, image, frames, duration, this.random));
+  addExplosion(position: Vector3Value, velocity: Vector3Value | null, size: number, image: string, frames: number, duration: number): Explosion {
+    const explosion = new Explosion(position, velocity, size, image, frames, duration, this.random);
+    this.explosions.push(explosion);
+    return explosion;
   }
 
   addCredits(credits: number): void {
@@ -303,6 +321,10 @@ export class Game {
     this.previousPinchDistance = 0;
     this.turnAmount = this.lastTilt = 0;
     this.ship.controls.thrusting = this.ship.controls.reversing = this.ship.controls.braking = this.ship.controls.firing = false;
+  }
+
+  stopSounds(): void {
+    for (const ship of this.targets) ship.stopSounds();
   }
 }
 

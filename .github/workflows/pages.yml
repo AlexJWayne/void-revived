@@ -1,4 +1,4 @@
-name: Publish web prototype
+name: Publish Web Port
 
 on:
   push:
@@ -6,6 +6,8 @@ on:
       - main
     paths:
       - web/**
+      - Assets/**
+      - '*.plist'
       - .github/workflows/pages.yml
   workflow_dispatch:
 
@@ -35,12 +37,32 @@ jobs:
           cache-dependency-path: web/package-lock.json
       - name: Install dependencies
         run: npm ci
+      - name: Install audio converter
+        run: |
+          sudo apt-get update
+          sudo apt-get install --yes --no-install-recommends ffmpeg
       - name: Run tests
         run: npm test
-      - name: Build prototype
+      - name: Build Web Port
         run: npm run build
         env:
           VITE_BASE_PATH: /${{ github.event.repository.name }}/
+      - name: Verify generated audio is in the Pages artifact
+        run: |
+          node --input-type=module <<'JS'
+          import assert from 'node:assert/strict';
+          import { readFileSync } from 'node:fs';
+          import { createHash } from 'node:crypto';
+          const manifest = JSON.parse(readFileSync('dist/content/manifest.json', 'utf8'));
+          const audio = Object.values(manifest.audio);
+          assert.ok(audio.length > 0, 'The Pages build must include audio');
+          for (const asset of audio) {
+            const bytes = readFileSync(`dist/content/${asset.url}`);
+            assert.equal(bytes.length, asset.bytes, asset.url);
+            assert.equal(createHash('sha256').update(bytes).digest('hex'), asset.sha256, asset.url);
+          }
+          console.log(`Verified ${audio.length} generated audio files in the Pages artifact.`);
+          JS
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v6
       - name: Upload Pages artifact

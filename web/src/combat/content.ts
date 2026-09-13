@@ -4,6 +4,8 @@ import type { PlayerShip } from '../player/model.ts';
 import type { Vector3Value } from './math.ts';
 
 export interface ShipTemplate extends ShipDefinition {
+  readonly thrusterSound?: string;
+  readonly explosionSound: string;
   readonly gunHardpoints: readonly Vector3Value[];
   readonly thrusterModelName: string;
   readonly thrusterTexture: string;
@@ -11,6 +13,9 @@ export interface ShipTemplate extends ShipDefinition {
 }
 
 export interface WeaponTemplate extends WeaponDefinition {
+  readonly soundsFire: readonly string[];
+  readonly soundsHit: readonly string[];
+  readonly fireSoundLoops: boolean;
   readonly explosionSize: number;
   readonly forceFire: number;
   readonly forceHit: number;
@@ -59,6 +64,7 @@ export interface NebulaTemplate {
 }
 
 export interface StageTemplate extends StageDefinition {
+  readonly music?: string;
   readonly hypergatePosition: { readonly x: number; readonly y: number };
   readonly enemies: readonly StageEnemy[];
   readonly planets: readonly PlanetTemplate[];

@@ -6,6 +6,7 @@ import { markHelpSeen, type HelpScreen, type PlayerState } from '../player/model
 import { clearNewItemCount, type EquipmentCatalog, type ShipCatalog, type WeaponCatalog } from '../loadout/model.ts';
 import { EquipmentScreen, ShipyardScreen, WeaponsScreen } from '../loadout/LoadoutScreens.tsx';
 import { TitleScreen } from '../application/TitleScreen.tsx';
+import { SoundEffect } from '../audio/sound-effect.ts';
 import {
   HYPERSPACE_TABS,
   raceName,
@@ -78,6 +79,7 @@ export function HyperspaceScreen({ player, stages, weapons, equipment, ships, ma
   }, [tab]);
 
   const changeTab = (next: HyperspaceTab) => {
+    if (next !== tab) SoundEffect.effectNamed('SwitchTab').play();
     setHelp(null);
     setTab(next);
     if (next === 'Weapons') onPlayerChange(clearNewItemCount(player, 'weapons'));
@@ -137,9 +139,11 @@ function GalaxyMap({ player, stages, onLaunchStage }: Pick<HyperspaceScreenProps
     if (!selected) return;
     const nextFailure = validatePreflight(player);
     if (nextFailure) {
+      SoundEffect.effectNamed('Error').play();
       setFailure(nextFailure);
       return;
     }
+    SoundEffect.effectNamed('PlayStage').play();
     onLaunchStage(selected);
   };
 
@@ -168,7 +172,7 @@ function GalaxyMap({ player, stages, onLaunchStage }: Pick<HyperspaceScreenProps
             type="button"
             aria-label={`${name}, ${state}`}
             disabled={state === 'locked'}
-            onClick={() => setSelected(name)}
+            onClick={() => { SoundEffect.effectNamed('ChimeIn').play(); setSelected(name); }}
           />
         );
       })}
@@ -189,7 +193,7 @@ function GalaxyMap({ player, stages, onLaunchStage }: Pick<HyperspaceScreenProps
           <p class="stage-tier">{tierName(selectedStage)}</p>
           <p class="stage-description">{selectedStage.description}</p>
           <div class="stage-actions">
-            <GenericButton onClick={() => setSelected(null)}>Cancel</GenericButton>
+            <GenericButton onClick={() => { SoundEffect.effectNamed('ChimeOut').play(); setSelected(null); }}>Cancel</GenericButton>
             <GenericButton onClick={play}>Play</GenericButton>
           </div>
         </section>

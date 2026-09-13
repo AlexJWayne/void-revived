@@ -2,6 +2,8 @@ import { useEffect, useMemo, useRef, useState } from 'preact/hooks';
 
 import { Accelerometer } from './accelerometer.ts';
 import { GenericButton } from '../ui/GenericButton.tsx';
+import { SoundEffect } from '../audio/sound-effect.ts';
+import { BackgroundMusic } from '../audio/background-music.ts';
 
 import { contentUrl } from '../content/manifest.ts';
 import {
@@ -23,6 +25,10 @@ interface TitleScreenProps {
 
 export function TitleScreen({ mode, canContinue, onContinue, onNewGame }: TitleScreenProps) {
   const [utility, setUtility] = useState<UtilityScreen | null>(null);
+  const select = (action: () => void) => {
+    SoundEffect.effectNamed('MainSelect').play();
+    action();
+  };
   const background = useMemo(
     () => TITLE_BACKGROUNDS[Math.floor(Math.random() * TITLE_BACKGROUNDS.length)],
     [],
@@ -35,20 +41,20 @@ export function TitleScreen({ mode, canContinue, onContinue, onNewGame }: TitleS
       aria-label={mode === 'title' ? 'The VOID title menu' : 'The VOID game menu'}
     >
       {mode === 'title' && (
-        <GenericButton class="title-continue" disabled={!canContinue} onClick={onContinue}>
+        <GenericButton class="title-continue" disabled={!canContinue} onClick={() => select(onContinue)}>
           Continue
         </GenericButton>
       )}
-      <GenericButton class="title-new-game" onClick={onNewGame}>New Game</GenericButton>
-      <GenericButton class="title-instructions" onClick={() => setUtility('instructions')}>
+      <GenericButton class="title-new-game" onClick={() => select(onNewGame)}>New Game</GenericButton>
+      <GenericButton class="title-instructions" onClick={() => select(() => setUtility('instructions'))}>
         Instructions
       </GenericButton>
-      <GenericButton class="title-credits" onClick={() => setUtility('credits')}>Credits</GenericButton>
-      <GenericButton class="title-settings" onClick={() => setUtility('settings')}>Settings</GenericButton>
+      <GenericButton class="title-credits" onClick={() => select(() => setUtility('credits'))}>Credits</GenericButton>
+      <GenericButton class="title-settings" onClick={() => select(() => setUtility('settings'))}>Settings</GenericButton>
 
       {utility === 'instructions' && <InstructionsScreen onClose={() => setUtility(null)} />}
-      {utility === 'settings' && <SettingsScreen onClose={() => setUtility(null)} />}
-      {utility === 'credits' && <CreditsScreen onClose={() => setUtility(null)} />}
+      {utility === 'settings' && <SettingsScreen onClose={() => select(() => setUtility(null))} />}
+      {utility === 'credits' && <CreditsScreen onClose={() => select(() => setUtility(null))} />}
     </section>
   );
 }
@@ -90,6 +96,8 @@ function InstructionsScreen({ onClose }: { readonly onClose: () => void }) {
 }
 
 function SettingsScreen({ onClose }: { readonly onClose: () => void }) {
+  const effect = useMemo(() => new SoundEffect('Select', true), []);
+  useEffect(() => () => effect.stop(), [effect]);
   const store = useMemo(() => createBrowserSettingsStore(), []);
   const [settings, setSettings] = useState<GameSettings>(() => store.load());
   const [tilt, setTilt] = useState(0);
@@ -111,7 +119,10 @@ function SettingsScreen({ onClose }: { readonly onClose: () => void }) {
     return () => { sensor.dispose(); accelerometer.current = undefined; };
   }, []);
 
-  const update = (next: GameSettings) => setSettings(store.save(next));
+  const update = (next: GameSettings) => {
+    setSettings(store.save(next));
+    BackgroundMusic.globalMusic?.setVolume(next.musicVolume);
+  };
 
   return (
     <UtilityOverlay label="Settings" dim>
@@ -124,6 +135,10 @@ function SettingsScreen({ onClose }: { readonly onClose: () => void }) {
         max="1"
         step="0.01"
         value={settings.musicVolume}
+        onPointerDown={() => effect.play()}
+        onPointerUp={() => effect.stopAndDecay()}
+        onPointerCancel={() => effect.stop()}
+        onBlur={() => effect.stop()}
         onInput={(event) => update({ ...settings, musicVolume: Number(event.currentTarget.value) })}
       />
 

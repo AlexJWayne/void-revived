@@ -21,9 +21,19 @@ To use motion controls on a phone, put the phone on the same network, install `.
 
 `npm run build` creates the production bundle in `dist/`. `npm run preview` serves that bundle locally, and `npm run check` runs the tests followed by a strict TypeScript production build.
 
-`npm run assets` deterministically converts the Original Game's authoritative plists and editable stage JSON, validates their linked content graph and VMdl meshes, and stages browser-ready data, textures, and models under `public/content/`. The generated manifest preserves each asset's source path, size, and SHA-256 digest. Generated files are build output and are not committed.
+`npm run assets` converts the Original Game's authoritative plists and editable stage JSON, validates their linked content graph and VMdl meshes, and stages browser-ready data, textures, models, and audio under `public/content/`. The generated manifest preserves each asset's source path, size, and SHA-256 digest. Generated files are build output and are not committed.
+
+Audio conversion uses the built-in `afconvert` on macOS, or `ffmpeg` with AAC encoding support on other build hosts. The first build converts the recordings; later builds reuse `web/.cache/audio/` entries keyed by source bytes and conversion settings. Music and ordinary effects use AAC-LC `.m4a` (128 kbps stereo, 64 kbps mono); looping effects use 16-bit PCM WAV. Original sample rates and channel counts are retained. Audio filenames contain content hashes for browser caching, and music metadata precedes its sample data for progressive playback.
+
+The title loads only its interface effects; hyperspace and combat prepare their own effects. Music uses one streaming player connected to a Web Audio gain node. The first tap activates audio, the existing music slider changes the live track, and browser interruptions stop effects and pause music. Combat resumes through the existing pause overlay. There is no audio download-progress UI or service worker.
+
+The source's unusual distance-volume curve and immediate `stopAndDecay` behavior are retained. The nonexistent `Thruster.Neutral` recordings remain silent, as in the native game. Stage-exit music fades are scaled by the saved music volume so a muted track cannot become audible during the exit. Browsers cannot reproduce the native check for music playing in another app.
+
+With the development server running, open `/tests/audio-browser.html` for the browser decoder/playback checks. It exercises all effects and music, volume, and an explicit interruption/resume cycle without changing campaign saves. `npm test` also covers player ownership, overlapping sounds, loop stop/resume, scene-specific loading, audio formats, and progressive music layout.
 
 Set `VITE_BASE_PATH` when building for a non-root hosting path.
+
+The GitHub Pages workflow installs FFmpeg on its Ubuntu runner before running tests and building. Both commands generate the audio automatically; Vite copies it into `dist/content/audio/`, and the workflow verifies every audio file against the manifest before uploading `web/dist`. The original CAF sources remain in Git; converted audio does not need to be committed. Changes to `Assets/` and root plists also trigger the workflow.
 
 See [`src/README.md`](src/README.md) for the source organization.
 
@@ -39,4 +49,6 @@ After reloading the HTTPS page with the trusted local certificate:
 4. During a stage, pause/resume, switch apps, rotate to portrait and back, and reload. Each interruption should resume paused, with the same damage and collected rewards. Abandoning should return to hyperspace without committing that stage's rewards.
 5. Check the HUD, ship textures, effects, and shared title-style buttons on the phone, and report any rendering defect, frame-rate problem, or input mismatch.
 
-Audio is intentionally absent. Record the phone/browser and the outcome of these checks before resolving **Attach combat to the production game skeleton**.
+6. Check title, hyperspace and stage music; adjust and mute music in Settings. Listen for interface selections, equipment mounting, ship purchase, thrust/reverse, weapons, hits, explosions, pickups, and gate transitions. Hold and release looping sounds, pause during firing, switch apps, lock/unlock the phone, and confirm no stale effects return. Listen through music loop boundaries and check recovery after a call or headphone change.
+
+Record the phone/browser and the outcome of these checks before resolving **Attach combat to the production game skeleton**. Browser automation does not establish physical-phone audio quality, loop seams, silent-switch behavior, or operating-system interruption recovery.

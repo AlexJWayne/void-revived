@@ -1,6 +1,7 @@
 import type { PickupType } from './content.ts';
 import type { Game } from './game.ts';
 import { SpaceObject, type SpaceObjectSnapshot } from './space-object.ts';
+import { SoundEffect } from '../audio/sound-effect.ts';
 
 export interface PickupSnapshot extends SpaceObjectSnapshot {
   readonly type: PickupType;
@@ -44,6 +45,7 @@ export class Pickup extends SpaceObject {
     this.angle += 2;
     if (!this.pickedUp && this.position.distance2D(game.ship.position) < game.ship.definition.size + this.size) {
       this.pickedUp = true;
+      SoundEffect.effectNamed(`Pickup.${this.type}`).play();
       if (this.type === 'Money') game.addCredits(this.creditValue);
       else if (this.itemName) game.pickupItem(this.itemName, this.type);
     } else if (this.pickedUp) {

@@ -2,6 +2,7 @@ import type { WeaponTemplate } from './content.ts';
 import type { Game } from './game.ts';
 import { Vector3, type Vector3Value } from './math.ts';
 import { SpaceObject, type SpaceObjectSnapshot } from './space-object.ts';
+import { SoundEffect } from '../audio/sound-effect.ts';
 
 export interface BeamSnapshot extends SpaceObjectSnapshot {
   readonly template: WeaponTemplate;
@@ -49,6 +50,12 @@ export class Beam extends SpaceObject {
       }
     }
     if (!nearestTarget) return;
+    const name = this.template.soundsHit[Math.floor(Math.random() * this.template.soundsHit.length)];
+    if (name) {
+      const sound = SoundEffect.effectNamed(`Weapon.${name}`);
+      sound.setPosition(nearestTarget.position);
+      sound.play();
+    }
     nearestTarget.damage(this.template.shieldDmg, this.template.armorDmg);
     this.length = this.position.distance2D(nearestTarget.position) - nearestTarget.definition.size / 2;
     // Beam.m applies forceHit both to the direction and to the mass scaling.

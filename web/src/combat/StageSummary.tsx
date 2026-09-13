@@ -1,5 +1,6 @@
 import { GenericButton } from '../ui/GenericButton.tsx';
 import { useState } from 'preact/hooks';
+import { SoundEffect } from '../audio/sound-effect.ts';
 import { contentUrl } from '../content/manifest.ts';
 import type { CombatContent } from './content.ts';
 import type { StageStats } from './game.ts';
@@ -38,7 +39,9 @@ export function StageSummary({ stats, player, content, onDismiss }: StageSummary
           </div>)}
         </div>)}
       </div>
-      <GenericButton class="stage-summary-continue" onClick={() => setLeaving(true)}>Continue</GenericButton>
+      <GenericButton class="stage-summary-continue" onClick={() => {
+        SoundEffect.effectNamed('SwitchTab').play(); setLeaving(true);
+      }}>Continue</GenericButton>
     </section>
   );
 }

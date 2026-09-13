@@ -4,6 +4,7 @@ import { EMPTY_SLOT, type PlayerShip } from '../player/model.ts';
 import { requireDefinition, type CombatContent } from './content.ts';
 import type { Game } from './game.ts';
 import { Weapon } from './weapon.ts';
+import { SoundEffect } from '../audio/sound-effect.ts';
 
 const BANK_MAX = 30;
 const BANK_FILTER = 0.05;
@@ -77,6 +78,9 @@ export class Ship extends SpaceObject {
   readonly gunOrder: number[] = [];
   thrusterAlpha = 0;
   pulsePhase = 0;
+  private readonly thrusterSound: SoundEffect | undefined;
+  private readonly reverseSound: SoundEffect | undefined;
+  private reverseSoundDecay = 0;
   protected readonly game: Game | undefined;
 
   constructor(snapshot: ShipSnapshot, game?: Game) {
@@ -100,6 +104,10 @@ export class Ship extends SpaceObject {
     this.pulsePhase = snapshot.pulsePhase ?? game?.random() ?? 0;
     if (game && this.loadout) {
       const template = requireDefinition(game.content.shipTypes, this.type);
+      if (template.thrusterSound) {
+        this.thrusterSound = new SoundEffect(`Thruster.${template.thrusterSound}`, true);
+        if (this.id === 0) this.reverseSound = new SoundEffect(`Thruster.${template.thrusterSound}.Reverse`, true);
+      }
       const bonuses = equipmentBonuses(this.loadout, game.content);
       this.loadout.guns.forEach((name, index) => {
         const hardpoint = template.gunHardpoints[index];
@@ -178,6 +186,8 @@ export class Ship extends SpaceObject {
   override update(): void {
     this.previousBankAngle = this.bankAngle;
     super.update();
+    if (this.controls.thrusting || this.thrusterAlpha > 0) this.thrusterSound?.setPosition(this.position);
+    if (this.reverseSound?.playing) this.reverseSound.setPosition(this.position);
     this.updateEnergy();
     this.updateShields();
     this.updateGuns();
@@ -205,6 +215,7 @@ export class Ship extends SpaceObject {
     const destroyed = this.currentArmor <= 0;
     if (destroyed) {
       this.currentArmor = 0;
+      this.stopSounds();
       this.game?.shipDestroyed(this);
     }
     return {
@@ -261,6 +272,24 @@ export class Ship extends SpaceObject {
       : this.controls.reversing ? -this.definition.brakeForce : 0;
     this.acceleration.scale(force / this.mass);
     this.thrusterAlpha = this.controls.thrusting ? 1 : Math.max(0, this.thrusterAlpha - 0.1);
+    if (this.controls.thrusting && this.currentArmor > 0) {
+      this.thrusterSound?.setVolume(this.thrusterAlpha);
+      this.thrusterSound?.play();
+    } else if (this.thrusterSound?.playing) {
+      this.thrusterSound.setVolume(this.thrusterAlpha);
+      if (this.thrusterAlpha < 0.05) this.thrusterSound.stop();
+    }
+    if (this.controls.reversing && !this.controls.thrusting && this.currentArmor > 0) {
+      this.reverseSoundDecay = 1;
+      this.reverseSound?.setVolume(this.reverseSoundDecay);
+      this.reverseSound?.play();
+    } else {
+      this.reverseSoundDecay = Math.max(0, this.reverseSoundDecay - 0.1);
+      if (this.reverseSound?.playing) {
+        this.reverseSound.setVolume(this.reverseSoundDecay);
+        if (this.reverseSoundDecay < 0.05) this.reverseSound.stop();
+      }
+    }
   }
 
   protected override updateVelocity(): void {
@@ -334,14 +363,22 @@ export class Ship extends SpaceObject {
       if (!gun) continue;
       gun.updateWithShip();
       const inGroup = this !== this.game.ship || this.loadout?.weaponGroups[this.game.weaponGroupId]?.includes(index);
+      if (this.controls.firing && inGroup && this.currentEnergy < gun.template.energy) gun.stopFiringSoundAndDecay();
       if (this.controls.firing && inGroup && this.currentEnergy >= gun.template.energy && gun.fire()) {
         recoil.add(recoilVector(gun.template.forceFire, this.mass, this.angle));
         this.currentEnergy -= gun.template.energy;
         shuffle = this.gunOrder.length > 1;
       }
+      if (!this.controls.firing || !inGroup) gun.stopFiringSound();
     }
     if (shuffle) this.gunOrder.push(this.gunOrder.shift()!);
     this.velocity.add(recoil);
+  }
+
+  stopSounds(): void {
+    this.thrusterSound?.stop();
+    this.reverseSound?.stop();
+    for (const gun of this.guns) gun?.stopSounds();
   }
 }
 

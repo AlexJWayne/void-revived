@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from 'preact/hooks';
 
+import { SoundEffect } from '../audio/sound-effect.ts';
 import { GenericButton } from '../ui/GenericButton.tsx';
 import { contentUrl, type ContentManifest } from '../content/manifest.ts';
 import { EMPTY_SLOT, type PlayerState } from '../player/model.ts';
@@ -96,6 +97,7 @@ export function WeaponsScreen({ player, weapons, ships, onPlayerChange }: Statio
   const equip = (inventoryIndex: number) => {
     const slot = targetSlot(selection, player.ship.guns);
     if (slot < 0) {
+      SoundEffect.effectNamed('Error').play();
       setNotice({ title: 'No more item mounts', message: 'To mount more items you first must clear a spot by double tapping an equipped item to remove it from its socket.' });
       return;
     }
@@ -103,11 +105,13 @@ export function WeaponsScreen({ player, weapons, ships, onPlayerChange }: Statio
     if (!name) return;
     const result = mountWeapon(player, name, slot, weapons, ships);
     if (!result.ok) {
+      SoundEffect.effectNamed('Error').play();
       setNotice(result.reason === 'not-enough-energy'
         ? { title: 'Not enough energy', message: `Your ship needs at least ${weapons[name]?.energy ?? 0} energy to fire the ${name}, but it only has ${ships[player.ship.type]?.energy ?? 0}.` }
         : FAILURE_COPY[result.reason]);
       return;
     }
+    SoundEffect.effectNamed('Mount').play();
     onPlayerChange(result.player);
     setSelection({ source: 'slot', index: slot });
   };
@@ -115,7 +119,12 @@ export function WeaponsScreen({ player, weapons, ships, onPlayerChange }: Statio
   const sell = () => {
     if (selection?.source !== 'inventory') return;
     const result = sellItems(player, 'weapons', [selection.index], weapons);
-    if (!result.ok) return setNotice(FAILURE_COPY[result.reason]);
+    if (!result.ok) {
+      SoundEffect.effectNamed('Error').play();
+      setNotice(FAILURE_COPY[result.reason]);
+      return;
+    }
+    SoundEffect.effectNamed('Sell').play();
     onPlayerChange(result.player);
     setSelection(inventory.length > 1 ? { source: 'inventory', index: Math.min(selection.index, inventory.length - 2) } : initialItemSelection(player.ship.guns));
   };
@@ -129,9 +138,9 @@ export function WeaponsScreen({ player, weapons, ships, onPlayerChange }: Statio
       selection={selection}
       onSelection={setSelection}
       onEquip={equip}
-      onDismount={(slot) => applyResult(dismountWeapon(player, slot), onPlayerChange, setNotice)}
+      onDismount={(slot) => applyResult(dismountWeapon(player, slot), onPlayerChange, setNotice, 'Dismount')}
       onSell={sell}
-      onBuyback={() => applyResult(buyBackItems(player, 'weapons'), onPlayerChange, setNotice)}
+      onBuyback={() => applyResult(buyBackItems(player, 'weapons'), onPlayerChange, setNotice, 'Sell')}
       canBuyback={player.buybackWeapons.length > 0}
     >
       <WeaponDetails name={selectedName} weapon={selectedWeapon} />
@@ -144,7 +153,7 @@ export function WeaponsScreen({ player, weapons, ships, onPlayerChange }: Statio
               class={player.ship.weaponGroups[group].includes(selection.index) ? 'loadout-socket group-button loadout-socket-selected' : 'loadout-socket group-button'}
               type="button"
               aria-pressed={player.ship.weaponGroups[group].includes(selection.index)}
-              onClick={() => applyResult(toggleWeaponGroup(player, selection.index, group), onPlayerChange, setNotice)}
+              onClick={() => applyResult(toggleWeaponGroup(player, selection.index, group), onPlayerChange, setNotice, 'WeaponSwap')}
             >{label}</button>
           ))}
         </div>
@@ -166,6 +175,7 @@ export function EquipmentScreen({ player, equipment, onPlayerChange }: StationPr
   const equip = (inventoryIndex: number) => {
     const slot = targetSlot(selection, player.ship.equipment);
     if (slot < 0) {
+      SoundEffect.effectNamed('Error').play();
       setNotice({ title: 'No more item mounts', message: 'To mount more items you first must clear a spot by double tapping an equipped item to remove it from its socket.' });
       return;
     }
@@ -173,12 +183,14 @@ export function EquipmentScreen({ player, equipment, onPlayerChange }: StationPr
     if (!name) return;
     const result = mountEquipment(player, name, slot, equipment);
     if (!result.ok) {
+      SoundEffect.effectNamed('Error').play();
       const duplicate = player.ship.equipment.find((equipped) => equipped !== EMPTY_SLOT && equipment[equipped]?.groupName === equipment[name]?.groupName);
       setNotice(result.reason === 'duplicate-equipment-group'
         ? { title: 'Duplicate Equipment Type', message: `You may only have one item from an equipment group at a time. Dequip your “${duplicate}” to install this item.` }
         : FAILURE_COPY[result.reason]);
       return;
     }
+    SoundEffect.effectNamed('Mount').play();
     onPlayerChange(result.player);
     setSelection({ source: 'slot', index: slot });
   };
@@ -186,7 +198,12 @@ export function EquipmentScreen({ player, equipment, onPlayerChange }: StationPr
   const sell = () => {
     if (selection?.source !== 'inventory') return;
     const result = sellItems(player, 'equipment', [selection.index], equipment);
-    if (!result.ok) return setNotice(FAILURE_COPY[result.reason]);
+    if (!result.ok) {
+      SoundEffect.effectNamed('Error').play();
+      setNotice(FAILURE_COPY[result.reason]);
+      return;
+    }
+    SoundEffect.effectNamed('Sell').play();
     onPlayerChange(result.player);
     setSelection(inventory.length > 1 ? { source: 'inventory', index: Math.min(selection.index, inventory.length - 2) } : initialItemSelection(player.ship.equipment));
   };
@@ -200,9 +217,9 @@ export function EquipmentScreen({ player, equipment, onPlayerChange }: StationPr
       selection={selection}
       onSelection={setSelection}
       onEquip={equip}
-      onDismount={(slot) => applyResult(dismountEquipment(player, slot, equipment), onPlayerChange, setNotice)}
+      onDismount={(slot) => applyResult(dismountEquipment(player, slot, equipment), onPlayerChange, setNotice, 'Dismount')}
       onSell={sell}
-      onBuyback={() => applyResult(buyBackItems(player, 'equipment', equipment), onPlayerChange, setNotice)}
+      onBuyback={() => applyResult(buyBackItems(player, 'equipment', equipment), onPlayerChange, setNotice, 'Sell')}
       canBuyback={player.buybackEquipment.length > 0}
     >
       <EquipmentDetails name={selectedName} item={selectedEquipment} />
@@ -212,6 +229,7 @@ export function EquipmentScreen({ player, equipment, onPlayerChange }: StationPr
 }
 
 export function ShipyardScreen({ player, ships, manifest, onPlayerChange }: StationProps) {
+  const playSelectSound = useSelectSound();
   const shipNames = useMemo(() => availableShips(player, ships), [player, ships]);
   const [selectedName, setSelectedName] = useState(() => shipNames.includes(player.ship.type) ? player.ship.type : shipNames[0] ?? '');
   const [notice, setNotice] = useState<Notice>(() => player.ship.type === EMPTY_SLOT
@@ -233,7 +251,7 @@ export function ShipyardScreen({ player, ships, manifest, onPlayerChange }: Stat
       if (canAfford) setTradeIn(true);
       return;
     }
-    applyResult(purchaseOrPilotShip(player, selectedName, ships), onPlayerChange, setNotice);
+    applyResult(purchaseOrPilotShip(player, selectedName, ships), onPlayerChange, setNotice, 'BuyShip');
   };
 
   const race = RACE_NAMES[selectedName.split(' ')[0] ?? ''] ?? selectedName.split(' ')[0] ?? '';
@@ -253,10 +271,10 @@ export function ShipyardScreen({ player, ships, manifest, onPlayerChange }: Stat
               type="button"
               role="option"
               aria-selected={name === selectedName}
-              onClick={() => setSelectedName(name)}
+              onClick={() => { playSelectSound(); setSelectedName(name); }}
               onDblClick={() => {
                 setSelectedName(name);
-                if (isOwned && !isPiloted) applyResult(purchaseOrPilotShip(player, name, ships), onPlayerChange, setNotice);
+                if (isOwned && !isPiloted) applyResult(purchaseOrPilotShip(player, name, ships), onPlayerChange, setNotice, 'BuyShip');
               }}
             >
               <img src={contentUrl(`textures/${isPiloted ? 'CheckmarkAccessory.png' : isOwned ? 'ShipOwnedAccessory.png' : 'ShipUnownedAccessory.png'}`)} alt="" />
@@ -290,7 +308,7 @@ export function ShipyardScreen({ player, ships, manifest, onPlayerChange }: Stat
           </div>
 
           <div class="shipyard-actions">
-            {owned && !piloting && <GenericButton class="loadout-action ship-sell" onClick={() => applyResult(sellShip(player, selectedName, ships), onPlayerChange, setNotice)}>Sell Ship</GenericButton>}
+            {owned && !piloting && <GenericButton class="loadout-action ship-sell" onClick={() => applyResult(sellShip(player, selectedName, ships), onPlayerChange, setNotice, 'Sell')}>Sell Ship</GenericButton>}
             <div class={owned ? 'ship-price ship-price-owned' : 'ship-price'}>
               <strong>{owned ? 'Sell Value:' : 'Price:'}</strong>
               <span><img src={contentUrl('textures/MoneyIcon.png')} alt="" />{formatNumber(owned ? Math.trunc(ship.price * 0.75) : ship.price)}</span>
@@ -308,7 +326,7 @@ export function ShipyardScreen({ player, ships, manifest, onPlayerChange }: Stat
           confirmLabel="Buy Ship"
           onConfirm={() => {
             setTradeIn(false);
-            applyResult(purchaseOrPilotShip(player, selectedName, ships, true), onPlayerChange, setNotice);
+            applyResult(purchaseOrPilotShip(player, selectedName, ships, true), onPlayerChange, setNotice, 'BuyShip');
           }}
         />
       )}
@@ -333,6 +351,7 @@ interface ItemScreenProps {
 }
 
 function ItemScreen({ kind, inventory, catalog, equipped, selection, onSelection, onEquip, onDismount, onSell, onBuyback, canBuyback, children }: ItemScreenProps) {
+  const playSelectSound = useSelectSound();
   const visualSlots = slotsByVisualPosition(equipped.length);
   const lastTap = useRef<{ readonly item: NonNullable<ItemSelection>; readonly time: number } | null>(null);
 
@@ -347,6 +366,7 @@ function ItemScreen({ kind, inventory, catalog, equipped, selection, onSelection
     const isDoubleTap = wasSelected && previous?.item.source === item.source
       && previous.item.index === item.index && time - previous.time < 500;
     lastTap.current = isDoubleTap ? null : { item, time };
+    if (!isDoubleTap) playSelectSound();
     onSelection(item);
     if (isDoubleTap) {
       if (item.source === 'slot') onDismount(item.index);
@@ -534,7 +554,9 @@ function applyResult(
   result: PlayerActionResult,
   onPlayerChange: (player: PlayerState) => void,
   setNotice: (notice: Notice) => void,
+  soundName: string,
 ) {
+  SoundEffect.effectNamed(result.ok ? soundName : 'Error').play();
   if (result.ok) onPlayerChange(result.player);
   else setNotice(FAILURE_COPY[result.reason]);
 }
@@ -553,4 +575,15 @@ function loadoutAssetStyle(): preact.JSX.CSSProperties {
     '--socket-selected': `url("${contentUrl('textures/EmptyHardpointSelected.png')}")`,
     '--socket-disabled': `url("${contentUrl('textures/DisabledHardpoint.png')}")`,
   } as preact.JSX.CSSProperties;
+}
+
+/** ItemController and ShipyardController rotate three selection players for quick taps. */
+function useSelectSound(): () => void {
+  const sounds = useMemo(() => Array.from({ length: 3 }, () => new SoundEffect('Select')), []);
+  const index = useRef(0);
+  useEffect(() => () => { for (const sound of sounds) sound.stop(); }, [sounds]);
+  return () => {
+    sounds[index.current]?.play();
+    index.current = (index.current + 1) % sounds.length;
+  };
 }

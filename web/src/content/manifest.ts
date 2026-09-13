@@ -17,11 +17,19 @@ export interface TextureAsset {
   readonly twoX?: SourceAsset;
 }
 
+export interface AudioAsset extends SourceAsset {
+  readonly kind: 'music' | 'effect';
+  readonly format: 'm4a' | 'wav';
+  readonly channels: number;
+  readonly sampleRate: number;
+}
+
 export interface ContentManifest {
   readonly version: 1;
   readonly data: Readonly<Record<string, ContentFile>>;
   readonly models: Readonly<Record<string, ModelAsset>>;
   readonly textures: Readonly<Record<string, TextureAsset>>;
+  readonly audio: Readonly<Record<string, AudioAsset>>;
   readonly validation: Readonly<Record<string, number | string | readonly string[]>>;
 }
 

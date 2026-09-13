@@ -4,6 +4,7 @@ import type { Ship } from './ship.ts';
 import type { Game } from './game.ts';
 import { Projectile } from './projectile.ts';
 import { Beam } from './beam.ts';
+import { SoundEffect } from '../audio/sound-effect.ts';
 
 export class Weapon {
   readonly name: string;
@@ -13,6 +14,7 @@ export class Weapon {
   readonly game: Game;
   readonly position = new Vector3();
   coolDownCounter = 0;
+  readonly soundsFire: readonly SoundEffect[];
 
   constructor(name: string, hardpointPosition: Vector3, ship: Ship, bonuses: Readonly<Record<string, number>>, game: Game) {
     this.name = name;
@@ -32,6 +34,8 @@ export class Weapon {
       beamRange: adjusted(source.beamRange, 'range'),
       lifetime: source.beam ? source.lifetime : adjusted(source.lifetime, 'range'),
     };
+    const names = source.fireSoundLoops ? source.soundsFire.slice(0, 1) : source.soundsFire;
+    this.soundsFire = names.map((name) => new SoundEffect(`Weapon.${name}`, source.fireSoundLoops));
   }
 
   updateWithShip(): void {
@@ -43,6 +47,10 @@ export class Weapon {
     if (this.coolDownCounter > 0) return false;
     this.coolDownCounter = this.template.coolDown;
     this.position.add(this.hardpointPosition.clone().rotateZ(this.ship.angle));
+    const sound = this.template.fireSoundLoops ? this.soundsFire[0]
+      : this.soundsFire[Math.floor(Math.random() * this.soundsFire.length)];
+    // Audio selection does not consume the simulation's random sequence.
+    if (sound) { sound.setPosition(this.position); sound.play(); }
     let adjustedAngle = this.ship.angle;
     if (this.template.targetingArc > 0) {
       let closest = 1000;
@@ -73,4 +81,14 @@ export class Weapon {
     const { beam, beamRange, lifetime, speed, accel } = this.template;
     return beam ? beamRange : lifetime * speed + accel * lifetime * lifetime / 2;
   }
+
+  stopFiringSound(): void {
+    if (this.template.fireSoundLoops) this.soundsFire[0]?.stop();
+  }
+
+  stopFiringSoundAndDecay(): void {
+    if (this.template.fireSoundLoops) this.soundsFire[0]?.stopAndDecay();
+  }
+
+  stopSounds(): void { for (const sound of this.soundsFire) sound.stop(); }
 }

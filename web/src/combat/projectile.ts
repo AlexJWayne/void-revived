@@ -2,6 +2,7 @@ import { angleDifference, Vector3, type Vector3Value } from './math.ts';
 import { SpaceObject, type SpaceObjectSnapshot } from './space-object.ts';
 import type { WeaponTemplate } from './content.ts';
 import type { Game } from './game.ts';
+import { SoundEffect } from '../audio/sound-effect.ts';
 
 export interface ProjectileDefinition {
   readonly lifetime: number;
@@ -154,6 +155,7 @@ export class Projectile extends SpaceObject {
 
   explode(): void {
     if (!this.game) return;
+    this.playHitSound();
     const { explosionSize, shieldDamage, armorDamage, hitForce } = this.definition;
     for (const ship of this.game.targets) {
       if (ship.id === this.ownerId || ship.position.distance2D(this.position) >= explosionSize + ship.definition.size) continue;
@@ -165,5 +167,14 @@ export class Projectile extends SpaceObject {
     }
     const image = this.hitSprite ?? this.template?.hitSprite ?? 'Explosion.png';
     this.game.addExplosion(this.position, null, explosionSize * 1.5, image, 16, 60);
+  }
+
+  playHitSound(): void {
+    const names = this.template?.soundsHit ?? [];
+    const name = names[Math.floor(Math.random() * names.length)];
+    if (!name) return;
+    const sound = SoundEffect.effectNamed(`Weapon.${name}`);
+    sound.setPosition(this.position);
+    sound.play();
   }
 }

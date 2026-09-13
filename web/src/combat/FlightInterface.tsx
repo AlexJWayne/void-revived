@@ -7,10 +7,14 @@ import { captureGame } from './game-state.ts';
 import { CombatRenderer } from './combat-renderer.ts';
 import { BrowserSimulationLoop } from './browser-loop.ts';
 import { FlightInput } from './flight-input.ts';
+import type { BrowserAudio } from '../audio/browser-audio.ts';
+import { SoundEffect } from '../audio/sound-effect.ts';
+import { effectsForGame } from '../audio/content.ts';
 
 interface FlightInterfaceProps {
   readonly game: Game;
   readonly manifest: ContentManifest;
+  readonly audio: BrowserAudio;
   readonly playerStore: PlayerStore;
   readonly restored: boolean;
   readonly onFinish: (game: Game) => void;
@@ -19,7 +23,7 @@ interface FlightInterfaceProps {
 
 type FlightState = 'loading' | 'intro' | 'paused' | 'flying' | 'error';
 
-export function FlightInterface({ game, manifest, playerStore, restored, onFinish, onLeave }: FlightInterfaceProps) {
+export function FlightInterface({ game, manifest, audio, playerStore, restored, onFinish, onLeave }: FlightInterfaceProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const surfaceRef = useRef<HTMLDivElement>(null);
   const creditsRef = useRef<HTMLSpanElement>(null);
@@ -39,16 +43,20 @@ export function FlightInterface({ game, manifest, playerStore, restored, onFinis
     let interrupted = restored;
     let fadeInFrame = restored ? 30 : 0;
     let renderer: CombatRenderer;
+    SoundEffect.drainCache();
+    SoundEffect.setListenerPos(game.ship.position);
     try { renderer = new CombatRenderer(canvas, manifest, game); }
     catch (error) {
       setMessage(error instanceof Error ? error.message : 'Graphics could not start.');
       setState('error');
       return;
     }
+    game.music?.play();
     const input = new FlightInput(canvas, game);
     const reportError = (error: unknown) => {
       if (disposed) return;
       failed = true;
+      SoundEffect.stopAll();
       setMessage(error instanceof Error ? error.message : 'Combat could not continue.');
       setState('error');
     };
@@ -83,12 +91,14 @@ export function FlightInterface({ game, manifest, playerStore, restored, onFinis
       interrupted = true;
       active = false;
       input.stop();
+      SoundEffect.stopAll();
       loop.stop();
       if (loaded && !failed) setState('paused');
       save();
     };
     const resume = async () => {
       if (!loaded || disposed || failed || window.innerWidth <= window.innerHeight) return;
+      audio.unlock();
       await input.requestMotion();
       if (disposed || failed || document.hidden || window.innerWidth <= window.innerHeight) return;
       active = true;
@@ -99,6 +109,7 @@ export function FlightInterface({ game, manifest, playerStore, restored, onFinis
     };
     const abort = () => {
       if (disposed || failed) return;
+      audio.unlock();
       input.stop();
       game.abortStage();
       setState('flying');
@@ -106,6 +117,7 @@ export function FlightInterface({ game, manifest, playerStore, restored, onFinis
       loop.start();
     };
     controller.current = { resume, pause, abort };
+    audio.onInterruption = pause;
     game.onPause = pause;
     const visibility = () => { if (document.hidden) pause(); };
     const resize = () => {
@@ -124,7 +136,7 @@ export function FlightInterface({ game, manifest, playerStore, restored, onFinis
     window.addEventListener('blur', pause);
     window.addEventListener('orientationchange', pause);
     canvas.addEventListener('webglcontextlost', contextLost);
-    void renderer.load().then(() => {
+    void Promise.all([renderer.load(), audio.preloadEffects(effectsForGame(game))]).then(() => {
       if (disposed || failed) return;
       loaded = true;
       setState(interrupted ? 'paused' : 'intro');
@@ -133,6 +145,10 @@ export function FlightInterface({ game, manifest, playerStore, restored, onFinis
     }).catch(reportError);
     return () => {
       disposed = true;
+      game.stopSounds();
+      audio.onInterruption = undefined;
+      game.music?.stop();
+      SoundEffect.stopAll();
       loop.stop();
       input.dispose();
       observer.disconnect();
@@ -145,7 +161,7 @@ export function FlightInterface({ game, manifest, playerStore, restored, onFinis
       window.removeEventListener('orientationchange', pause);
       canvas.removeEventListener('webglcontextlost', contextLost);
     };
-  }, [game, manifest, playerStore]);
+  }, [game, manifest, audio, playerStore]);
 
   const resume = async () => {
     if (requestingMotion) return;

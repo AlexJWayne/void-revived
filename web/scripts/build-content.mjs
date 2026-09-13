@@ -3,6 +3,7 @@ import { cp, mkdir, readdir, readFile, rm, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { readPlist } from './lib/plist.mjs';
+import { buildAudio } from './lib/audio.mjs';
 
 const scriptDirectory = path.dirname(fileURLToPath(import.meta.url));
 const webRoot = path.resolve(scriptDirectory, '..');
@@ -212,7 +213,8 @@ async function main() {
   await rm(outputRoot, { force: true, recursive: true });
   await Promise.all(['data', 'models', 'textures'].map((name) => mkdir(path.join(outputRoot, name), { recursive: true })));
 
-  const manifest = { version: 1, data: {}, models: {}, textures: {}, validation: {} };
+  const manifest = { version: 1, data: {}, models: {}, textures: {}, audio: {}, validation: {} };
+  manifest.audio = await buildAudio(repositoryRoot, outputRoot, data);
   for (const [key, value] of Object.entries(data)) {
     const filename = `${key}.json`;
     const contents = Buffer.from(stableJson(value));
@@ -244,6 +246,8 @@ async function main() {
     equipment: Object.keys(data.equipment).length,
     models: Object.keys(manifest.models).length,
     textureFamilies: Object.keys(manifest.textures).length,
+    audioFiles: Object.keys(manifest.audio).length,
+    missingAudioReferences: ['Thruster.Neutral', 'Thruster.Neutral.Reverse'],
     missingModelReferences,
   };
   await writeFile(path.join(outputRoot, 'manifest.json'), stableJson(manifest));

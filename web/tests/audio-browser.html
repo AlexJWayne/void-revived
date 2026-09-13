@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The VOID audio checks</title>
+<style>body{font:16px system-ui;max-width:50rem;margin:2rem auto;padding:1rem}button{padding:1rem;margin:.4rem}li{margin:.5rem 0}</style>
+<h1>Audio browser checks</h1>
+<p>Development-only checks. Runs the actual audio classes and browser decoders without touching game saves.</p>
+<button id="run" disabled>Run audio checks</button>
+<button id="interrupt" disabled>Interrupt audio</button>
+<button id="resume" disabled>Resume audio</button>
+<ol id="results"></ol>
+<script type="module">
+import { BrowserAudio } from '../src/audio/browser-audio.ts';
+import { SoundEffect } from '../src/audio/sound-effect.ts';
+import { BackgroundMusic } from '../src/audio/background-music.ts';
+import { loadContentManifest } from '../src/content/manifest.ts';
+
+const results = document.querySelector('#results');
+const run = document.querySelector('#run');
+const interrupt = document.querySelector('#interrupt');
+const resume = document.querySelector('#resume');
+const report = (message) => { const row = document.createElement('li'); row.textContent = message; results.append(row); };
+const assert = (condition, message) => { if (!condition) throw new Error(message); report(`PASS: ${message}`); };
+const wait = (milliseconds) => new Promise((resolve) => setTimeout(resolve, milliseconds));
+const manifest = await loadContentManifest();
+const audio = new BrowserAudio(manifest);
+let music = new BackgroundMusic('MusicTheme', 0.1);
+music.play();
+const loop = new SoundEffect('Thruster.Cyber', true);
+run.disabled = false;
+run.onclick = async () => {
+  run.disabled = true;
+  audio.unlock();
+  try {
+    const effects = Object.entries(manifest.audio).filter(([, asset]) => asset.kind === 'effect').map(([name]) => name);
+    await audio.preloadEffects(effects);
+    assert(audio.buffers.size === 114, 'all 114 effect files decode in this browser');
+    assert([...audio.buffers.entries()].every(([name, buffer]) => buffer.duration > 0 && buffer.numberOfChannels === manifest.audio[name].channels), 'effects retain their original mono or stereo channels');
+    assert([...audio.buffers.values()].every((buffer) => buffer.getChannelData(0).some((value) => Math.abs(value) > 0.001)), 'every effect contains an audible signal');
+    const shared = SoundEffect.effectNamed('MainSelect');
+    shared.play(); shared.play();
+    loop.play();
+    assert(shared.playing && loop.playing, 'a one-shot and a loop play concurrently');
+    await wait(250);
+    loop.stop();
+    assert(!loop.playing, 'the looping effect stops immediately');
+    for (const [name, asset] of Object.entries(manifest.audio)) {
+      if (asset.kind !== 'music') continue;
+      music.stop();
+      music = new BackgroundMusic(name, 0.1);
+      music.play();
+      await new Promise((resolve, reject) => {
+        const deadline = setTimeout(() => { cleanup(); reject(new Error(`Playback timed out: ${name}`)); }, 10000);
+        const check = () => { if (audio.music.currentTime > 0 && !audio.music.paused) { cleanup(); resolve(); } };
+        const failed = () => { cleanup(); reject(new Error(`Music decode failed: ${name}`)); };
+        const cleanup = () => { clearTimeout(deadline); audio.music.removeEventListener('timeupdate', check); audio.music.removeEventListener('error', failed); };
+        audio.music.addEventListener('timeupdate', check);
+        audio.music.addEventListener('error', failed);
+        check();
+      });
+      assert(!audio.music.paused && audio.music.currentTime > 0, `${name} streams and advances`);
+    }
+    music.setVolume(0);
+    assert(audio.musicGain.gain.value === 0, 'music mute reaches the Web Audio gain');
+    music.setVolume(0.1);
+    assert(Math.abs(audio.musicGain.gain.value - 0.1) < 0.00001, 'music volume is adjustable');
+    report('Ready for interruption check.');
+    interrupt.disabled = false;
+  } catch (error) { report(`FAIL: ${error.message}`); }
+};
+interrupt.onclick = async () => {
+  loop.play();
+  audio.suspend();
+  await wait(100);
+  assert(audio.context.state === 'suspended' && audio.music.paused && !loop.playing, 'interruption silences music and effects');
+  interrupt.disabled = true;
+  resume.disabled = false;
+};
+resume.onclick = async () => {
+  audio.unlock();
+  await wait(400);
+  assert(audio.context.state === 'running' && !audio.music.paused && !loop.playing, 'gesture resumes music without reviving a stale loop');
+  music.stop();
+  audio.dispose();
+  resume.disabled = true;
+  report('Audio browser checks complete. Phone listening and system interruptions still need physical-device validation.');
+};
+</script>
+</html>

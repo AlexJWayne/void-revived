@@ -1,6 +1,7 @@
 import { Particle } from './particle.ts';
 import { SpaceObject, type SpaceObjectSnapshot } from './space-object.ts';
 import type { Vector3Value } from './math.ts';
+import { SoundEffect } from '../audio/sound-effect.ts';
 
 export interface ExplosionSnapshot extends SpaceObjectSnapshot {
   readonly size: number;
@@ -47,6 +48,12 @@ export class Explosion extends SpaceObject {
   }
 
   get expired(): boolean { return this.age >= this.lifetime; }
+
+  playSound(name: string): void {
+    const sound = SoundEffect.effectNamed(name);
+    sound.setPosition(this.position);
+    sound.play();
+  }
 
   override toSnapshot(): ExplosionSnapshot {
     return { ...super.toSnapshot(), size: this.size, imageName: this.imageName,

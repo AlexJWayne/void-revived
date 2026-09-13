@@ -20,6 +20,10 @@ import { restoreGame } from '../combat/game-state.ts';
 import { FlightInterface } from '../combat/FlightInterface.tsx';
 import { StageSummary } from '../combat/StageSummary.tsx';
 import { createBrowserSettingsStore } from './settings.ts';
+import { BrowserAudio } from '../audio/browser-audio.ts';
+import { BackgroundMusic } from '../audio/background-music.ts';
+import { SoundEffect } from '../audio/sound-effect.ts';
+import { TITLE_EFFECTS, HYPERSPACE_EFFECTS } from '../audio/content.ts';
 
 const initialGate: CapabilityGate = {
   kind: 'checking',
@@ -38,6 +42,7 @@ export function App() {
   const [equipment, setEquipment] = useState<EquipmentCatalog>();
   const [ships, setShips] = useState<ShipCatalog>();
   const [manifest, setManifest] = useState<ContentManifest>();
+  const [audio, setAudio] = useState<BrowserAudio>();
   const [contentError, setContentError] = useState<string>();
   const [route, setRoute] = useState<AppRoute>({ name: 'title' });
   const [player, setPlayer] = useState<PlayerState | null>(null);
@@ -47,6 +52,25 @@ export function App() {
   const [restoredCombat, setRestoredCombat] = useState(false);
   const [stageSummary, setStageSummary] = useState<StageStats>();
   const [combatError, setCombatError] = useState<string>();
+
+  useEffect(() => {
+    if (!manifest) return;
+    const audio = new BrowserAudio(manifest);
+    setAudio(audio);
+    return () => audio.dispose();
+  }, [manifest]);
+
+  useEffect(() => {
+    if (!audio || route.name === 'combat') return;
+    SoundEffect.drainCache();
+    const effects = route.name === 'title' ? TITLE_EFFECTS : HYPERSPACE_EFFECTS;
+    void audio.preloadEffects(effects).catch((error: unknown) => console.warn('Unable to prepare menu sounds:', error));
+    const trackName = musicForRoute(route);
+    if (!trackName) return;
+    const music = new BackgroundMusic(trackName, createBrowserSettingsStore().load().musicVolume);
+    music.play();
+    return () => music.stop();
+  }, [audio, route]);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -180,7 +204,7 @@ export function App() {
 
   return (
     <main class="safe-viewport app-shell">
-      <div class="game-frame" style={frameStyle} data-music-track={musicForRoute(route) ?? undefined}>
+      <div class="game-frame" style={frameStyle} data-music-track={musicForRoute(route) ?? game?.stage.music}>
         <canvas ref={canvasRef} class="game-canvas" aria-label="The VOID game view" />
 
         {route.name === 'hyperspace' && player && stages && weapons && equipment && ships && manifest && (
@@ -206,8 +230,8 @@ export function App() {
           />
         )}
 
-        {route.name === 'combat' && game && manifest && (
-          <FlightInterface game={game} manifest={manifest} playerStore={playerStoreRef.current}
+        {route.name === 'combat' && game && manifest && audio && (
+          <FlightInterface game={game} manifest={manifest} audio={audio} playerStore={playerStoreRef.current}
             restored={restoredCombat} onFinish={finishCombat} onLeave={leaveCombat} />
         )}
 
