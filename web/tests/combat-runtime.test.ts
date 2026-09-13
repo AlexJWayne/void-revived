@@ -3,7 +3,7 @@ import { describe, it } from 'node:test';
 
 import { FixedStepClock } from '../src/combat/clock.ts';
 import { BrowserSimulationLoop } from '../src/combat/browser-loop.ts';
-import { angleDifference, segmentDistance2D, Vector3 } from '../src/combat/math.ts';
+import { angleDifference, interpolate, interpolateAngle, segmentDistance2D, Vector3 } from '../src/combat/math.ts';
 import { Projectile, type ProjectileSnapshot } from '../src/combat/projectile.ts';
 import { Ship, type ShipDefinition } from '../src/combat/ship.ts';
 import { SpaceObject } from '../src/combat/space-object.ts';
@@ -39,6 +39,21 @@ it('keeps the browser loop stopped when combat pauses during an update', () => {
   callback!(100);
   assert.equal(requests, 2);
   assert.equal(updates, 1);
+});
+
+it('renders the current state until the first fixed update can be interpolated', () => {
+  let callback: FrameRequestCallback;
+  const renders: number[] = [];
+  const loop = new BrowserSimulationLoop(() => {}, (progress) => { renders.push(progress); }, {
+    request(next) { callback = next; return 1; },
+    cancel() {},
+  });
+  loop.start();
+  callback!(0);
+  callback!(10);
+  callback!(25);
+  callback!(30);
+  assert.deepEqual(renders, [1, 1, 0, 0.2]);
 });
 
 function close(actual: number, expected: number): void {
@@ -81,6 +96,9 @@ describe('combat math and timing', () => {
     assert.equal(angleDifference(359, 1), 2);
     assert.equal(angleDifference(0, 180), 180);
     assert.equal(angleDifference(180, 0), -180);
+    close(interpolate(10, 20, 0.25), 12.5);
+    close(interpolateAngle(350, 10, 0.5), 360);
+    close(interpolateAngle(10, 350, 0.5), 0);
     close(segmentDistance2D({ x: 0, y: 0, z: 0 }, { x: 10, y: 0, z: 0 }, { x: 5, y: 2, z: 0 }), 2);
   });
 
@@ -122,6 +140,8 @@ describe('space objects and ships', () => {
     ship.update();
     close(ship.velocity.length(), 0.75 / 111);
     close(ship.angle, 2.2);
+    close(interpolateAngle(ship.previousAngle, ship.angle, 0.5), 1.1);
+    close(interpolate(ship.previousBankAngle, ship.bankAngle, 0.5), -0.75);
     const opposite = Ship.create(2, 'Cyber Frigate', shipDefinition);
     opposite.desiredAngle = 180;
     opposite.update();

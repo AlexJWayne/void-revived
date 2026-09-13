@@ -27,6 +27,8 @@ export class Beam extends SpaceObject {
     this.position.set(position);
     this.velocity.set(velocity);
     this.angle = angle;
+    this.previousPosition.set(position);
+    this.previousAngle = angle;
     if (game) this.checkCollision(game);
   }
 

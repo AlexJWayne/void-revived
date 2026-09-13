@@ -48,6 +48,8 @@ export class Game {
   nextIdentifier = 0;
   tick = 0;
   angle = 0;
+  previousCameraAngle = 0;
+  previousCameraHeight = 40;
   turnAmount = 0;
   lastTilt = 0;
   hasAccelerometer = false;
@@ -71,6 +73,7 @@ export class Game {
     this.nebulas = this.stage.nebulas.map((template) => new Nebula(template, random));
     this.ship = new Ship(Ship.snapshotForLoadout(content, this.nextIdentifier++, player.ship), this);
     this.ship.position.set({ ...this.stage.hypergatePosition, z: 0 });
+    this.ship.previousPosition.set(this.ship.position);
     this.hypergate = new Hypergate(this.ship.position, random);
     this.createEnemies();
     this.stats = { stageName: this.stageName, kills: 0, credits: 0, weapons: [], equipment: [] };
@@ -99,6 +102,8 @@ export class Game {
           enemy.position.set({ ...template.position, z: 0 });
         }
         enemy.angle = this.random() * 360;
+        enemy.previousPosition.set(enemy.position);
+        enemy.previousAngle = enemy.angle;
         enemy.desiredAngle = enemy.angle;
         enemy.optional = template.optional;
         this.enemies.push(enemy);
@@ -113,6 +118,8 @@ export class Game {
 
   update(): void {
     if (this.finished) return;
+    this.previousCameraAngle = this.angle;
+    this.previousCameraHeight = this.cameraPosition.z;
     this.tick += 1;
     this.updateTouches();
     this.updateAngle();

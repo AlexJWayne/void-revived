@@ -28,6 +28,8 @@ export class Explosion extends SpaceObject {
     this.animationFrames = animationFrames;
     this.lifetime = duration;
     this.angle = Math.floor(random() * 360);
+    this.previousPosition.set(position);
+    this.previousAngle = this.angle;
 
     if (size >= 1) {
       for (let i = 0; i < Math.round(size * 15); i += 1) {

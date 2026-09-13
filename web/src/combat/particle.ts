@@ -16,6 +16,7 @@ export class Particle extends SpaceObject {
 
   reset(position: Vector3Value, lifetime: number, maxSpeed: number, random: () => number): void {
     this.position.set(position);
+    this.previousPosition.set(position);
     this.lifetime = Math.floor(lifetime - random() * lifetime * 0.6);
     this.lifetimeElapsed = 0;
     this.size = Math.floor(random() * 4) + 1.5;

@@ -76,6 +76,8 @@ export function restoreGame(content: CombatContent, value: unknown, random = Mat
     pickup.velocity.set(saved.velocity);
     pickup.acceleration.set(saved.acceleration);
     pickup.angle = saved.angle;
+    pickup.previousPosition.set(saved.position);
+    pickup.previousAngle = saved.angle;
     pickup.size = saved.size;
     pickup.creditValue = saved.creditValue;
     pickup.pickedUp = saved.pickedUp;
@@ -86,6 +88,7 @@ export function restoreGame(content: CombatContent, value: unknown, random = Mat
     const explosion = new Explosion(saved.position, saved.velocity, saved.size, saved.imageName, saved.animationFrames, saved.lifetime, random);
     explosion.age = saved.age;
     explosion.angle = saved.angle;
+    explosion.previousAngle = saved.angle;
     explosion.acceleration.set(saved.acceleration);
     game.explosions.push(explosion);
   }
@@ -94,13 +97,20 @@ export function restoreGame(content: CombatContent, value: unknown, random = Mat
   game.nextIdentifier = snapshot.nextIdentifier;
   game.angle = snapshot.angle;
   game.cameraPosition.set(snapshot.cameraPosition);
+  game.previousCameraAngle = snapshot.angle;
+  game.previousCameraHeight = snapshot.cameraPosition.z;
   game.previousAngles.splice(0, 4, ...snapshot.previousAngles);
   game.weaponGroupId = snapshot.weaponGroupId;
   game.stageIsEnding = snapshot.stageIsEnding;
   game.stageEndFrame = snapshot.stageEndFrame;
   game.completionFlash = snapshot.completionFlash;
   Object.assign(game.hypergate, snapshot.hypergate);
-  game.nebulas.forEach((nebula, index) => { nebula.angle = snapshot.nebulaAngles[index]!; });
+  game.hypergate.previousAngle = snapshot.hypergate.angle;
+  game.hypergate.previousAngle2 = snapshot.hypergate.angle2;
+  game.nebulas.forEach((nebula, index) => {
+    nebula.angle = snapshot.nebulaAngles[index]!;
+    nebula.previousAngle = nebula.angle;
+  });
   // Physical touches cannot survive a page reload. The flight interface resumes paused.
   game.clearTouches();
   game.flightUI.update();

@@ -4,6 +4,7 @@ import type { Vector3Value } from './math.ts';
 
 export class Hypergate extends SpaceObject {
   angle2 = 0;
+  previousAngle2 = 0;
   birthProgress = 0;
   readonly particles: Particle[];
   readonly random: () => number;
@@ -16,6 +17,8 @@ export class Hypergate extends SpaceObject {
   }
 
   updateWithCompletion(canBeCompleted: boolean): void {
+    this.previousAngle = this.angle;
+    this.previousAngle2 = this.angle2;
     this.angle -= 0.75;
     this.angle2 += 2;
     if (this.birthProgress <= 3) this.birthProgress += 1;

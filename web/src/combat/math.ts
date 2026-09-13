@@ -123,6 +123,14 @@ export function angleDifference(from: number, to: number): number {
   return difference;
 }
 
+export function interpolate(from: number, to: number, progress: number): number {
+  return from + (to - from) * progress;
+}
+
+export function interpolateAngle(from: number, to: number, progress: number): number {
+  return from + angleDifference(from, to) * progress;
+}
+
 export function segmentDistance2D(start: Vector3Value, end: Vector3Value, point: Vector3Value): number {
   const dx = end.x - start.x;
   const dy = end.y - start.y;

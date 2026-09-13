@@ -66,6 +66,7 @@ export class Ship extends SpaceObject {
   readonly controls: { thrusting: boolean; reversing: boolean; braking: boolean; firing: boolean };
   desiredAngle: number;
   bankAngle: number;
+  previousBankAngle: number;
   currentShields: number;
   currentArmor: number;
   currentEnergy: number;
@@ -86,6 +87,7 @@ export class Ship extends SpaceObject {
     this.mass = snapshot.definition.mass + snapshot.weaponMass;
     this.desiredAngle = snapshot.desiredAngle;
     this.bankAngle = snapshot.bankAngle;
+    this.previousBankAngle = snapshot.bankAngle;
     this.currentShields = snapshot.currentShields;
     this.currentArmor = snapshot.currentArmor;
     this.currentEnergy = snapshot.currentEnergy;
@@ -174,6 +176,7 @@ export class Ship extends SpaceObject {
   }
 
   override update(): void {
+    this.previousBankAngle = this.bankAngle;
     super.update();
     this.updateEnergy();
     this.updateShields();

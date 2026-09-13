@@ -39,6 +39,11 @@ export class Enemy extends Ship {
   }
 
   override update(): void {
+    const previousX = this.position.x;
+    const previousY = this.position.y;
+    const previousZ = this.position.z;
+    const previousAngle = this.angle;
+    const previousBankAngle = this.bankAngle;
     this.ai.update();
     if (this.ai.noticedPlayer || this.velocity.length() > 0 || this.acceleration.length() > 0) {
       super.update();
@@ -48,6 +53,11 @@ export class Enemy extends Ship {
       this.updateShields();
       this.updateGuns();
     }
+    this.previousPosition.x = previousX;
+    this.previousPosition.y = previousY;
+    this.previousPosition.z = previousZ;
+    this.previousAngle = previousAngle;
+    this.previousBankAngle = previousBankAngle;
     const mine = this.enemyLoadout.mine;
     if (this.game && mine && mine.size > 0 && this.game.ship.position.distance2D(this.position) < mine.size) {
       this.damage(1_000_000, 1_000_000);

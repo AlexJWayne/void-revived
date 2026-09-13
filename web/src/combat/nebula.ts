@@ -13,5 +13,8 @@ export class Nebula extends SpaceObject {
     this.angle = Math.floor(random() * 360);
   }
 
-  override update(): void { this.angle += 0.25; }
+  override update(): void {
+    this.previousAngle = this.angle;
+    this.angle += 0.25;
+  }
 }

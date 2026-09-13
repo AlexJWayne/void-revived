@@ -57,10 +57,10 @@ export function FlightInterface({ game, manifest, playerStore, restored, onFinis
       try { playerStore.saveCombatSnapshot(captureGame(game)); }
       catch (error) { reportError(error); }
     };
-    const draw = () => {
+    const draw = (interpolation = 1) => {
       if (disposed || !loaded) return;
       try {
-        renderer.render();
+        renderer.render(interpolation);
         if (surfaceRef.current) surfaceRef.current.style.opacity = String(game.stageIsEnding ? game.alpha : fadeInFrame / 30);
         if (creditsRef.current) creditsRef.current.textContent = String(game.player.credits);
       } catch (error) { loop.stop(); input.stop(); active = false; reportError(error); }

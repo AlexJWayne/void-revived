@@ -113,3 +113,14 @@ it('uses the native accelerometer dead zone, two-sample smoothing, and four-fram
   game.update();
   assert.equal(game.ship.desiredAngle, 1.5);
 });
+
+it('tracks consecutive render transforms for stationary crate and mine AI', () => {
+  const game = new Game(content, player(), () => 0.4);
+  const crate = game.enemies.find((enemy) => enemy.loadoutName === 'Cyber Crate')!;
+  game.update();
+  const first = { angle: crate.angle, bankAngle: crate.bankAngle, z: crate.position.z };
+  game.update();
+  assert.equal(crate.previousAngle, first.angle);
+  assert.equal(crate.previousBankAngle, first.bankAngle);
+  assert.equal(crate.previousPosition.z, first.z);
+});

@@ -39,6 +39,8 @@ export class Pickup extends SpaceObject {
   }
 
   updateWithGame(game: Game): void {
+    this.previousPosition.set(this.position);
+    this.previousAngle = this.angle;
     this.angle += 2;
     if (!this.pickedUp && this.position.distance2D(game.ship.position) < game.ship.definition.size + this.size) {
       this.pickedUp = true;
@@ -49,7 +51,10 @@ export class Pickup extends SpaceObject {
       this.position.subtract(distanceToShip);
       this.animationCounter += 1;
     } else {
-      super.update();
+      this.updateAngle();
+      this.updateAcceleration();
+      this.updateVelocity();
+      this.updatePosition();
     }
   }
 
