@@ -1,9 +1,10 @@
-import { useEffect, useMemo, useState } from 'preact/hooks';
+import { useEffect, useMemo, useRef, useState } from 'preact/hooks';
 
 import { GenericButton } from '../ui/GenericButton.tsx';
 import { contentUrl, type ContentManifest } from '../content/manifest.ts';
 import { EMPTY_SLOT, type PlayerState } from '../player/model.ts';
 import { ShipPreview } from './ShipPreview.tsx';
+import { HardpointButton } from './HardpointButton.tsx';
 import {
   availableShips,
   buyBackItems,
@@ -333,6 +334,32 @@ interface ItemScreenProps {
 
 function ItemScreen({ kind, inventory, catalog, equipped, selection, onSelection, onEquip, onDismount, onSell, onBuyback, canBuyback, children }: ItemScreenProps) {
   const visualSlots = slotsByVisualPosition(equipped.length);
+  const lastTap = useRef<{ readonly item: NonNullable<ItemSelection>; readonly time: number } | null>(null);
+
+  // Inventory indices may refer to different items after mounting, selling, or buying back.
+  useEffect(() => { lastTap.current = null; }, [inventory, equipped]);
+
+  const tappedItem = (item: NonNullable<ItemSelection>) => {
+    const time = performance.now();
+    const previous = lastTap.current;
+    const wasSelected = selection?.source === item.source && selection.index === item.index;
+    // ItemController.m uses DOUBLE_TAP_TIME = 0.5, independent of native double-click events.
+    const isDoubleTap = wasSelected && previous?.item.source === item.source
+      && previous.item.index === item.index && time - previous.time < 500;
+    lastTap.current = isDoubleTap ? null : { item, time };
+    onSelection(item);
+    if (isDoubleTap) {
+      if (item.source === 'slot') onDismount(item.index);
+      else onEquip(item.index);
+    }
+  };
+
+  const dismountItem = (slot: number) => {
+    lastTap.current = null;
+    onSelection({ source: 'slot', index: slot });
+    onDismount(slot);
+  };
+
   return (
     <section class={`item-screen item-screen-${kind}`} aria-label={kind === 'weapon' ? 'Weapons' : 'Equipment'} style={loadoutAssetStyle()}>
       <div class="item-inventory" role="listbox" aria-label={`${kind} inventory`}>
@@ -348,12 +375,15 @@ function ItemScreen({ kind, inventory, catalog, equipped, selection, onSelection
               type="button"
               role="option"
               aria-selected={selection?.source === 'inventory' && selection.index === index}
-              onClick={() => onSelection({ source: 'inventory', index })}
-              onDblClick={() => onEquip(index)}
+              onClick={() => tappedItem({ source: 'inventory', index })}
             >
               <img class="item-icon" src={itemIcon(catalog[name])} alt="" />
               <span>{name}</span>
-              <span class="equip-accessory" role="button" aria-label={`Equip ${name}`} onClick={(event) => { event.stopPropagation(); onEquip(index); }}>
+              <span class="equip-accessory" role="button" aria-label={`Equip ${name}`} onClick={(event) => {
+                event.stopPropagation();
+                lastTap.current = null;
+                onEquip(index);
+              }}>
                 <img src={contentUrl('textures/EquipAccessory.png')} alt="" />
               </span>
             </button>
@@ -367,15 +397,15 @@ function ItemScreen({ kind, inventory, catalog, equipped, selection, onSelection
           const active = slot !== null;
           const selected = active && selection?.source === 'slot' && selection.index === slot;
           return (
-            <button
+            <HardpointButton
               key={visualIndex}
-              class={`loadout-socket${selected ? ' loadout-socket-selected' : ''}`}
-              type="button"
+              selected={selected}
               disabled={!active}
-              aria-label={active ? `${kind} mount ${slot + 1}: ${name}` : 'Unavailable mount'}
-              onClick={() => active && onSelection({ source: 'slot', index: slot })}
-              onDblClick={() => active && onDismount(slot)}
-            >{active && name !== EMPTY_SLOT && <img src={itemIcon(catalog[name])} alt="" />}</button>
+              label={active ? `${kind} mount ${slot + 1}: ${name}` : 'Unavailable mount'}
+              icon={active && name !== EMPTY_SLOT ? itemIcon(catalog[name]) : undefined}
+              onTap={() => active && tappedItem({ source: 'slot', index: slot })}
+              onDragOut={() => active && dismountItem(slot)}
+            />
           );
         })}
       </div>
