@@ -5,7 +5,7 @@ on:
     branches:
       - web-revival-poc
     paths:
-      - web-prototype/**
+      - web/**
       - .github/workflows/pages.yml
   workflow_dispatch:
 
@@ -23,7 +23,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: web-prototype
+        working-directory: web
     steps:
       - name: Check out repository
         uses: actions/checkout@v6
@@ -32,7 +32,7 @@ jobs:
         with:
           node-version: 24
           cache: npm
-          cache-dependency-path: web-prototype/package-lock.json
+          cache-dependency-path: web/package-lock.json
       - name: Install dependencies
         run: npm ci
       - name: Run tests
@@ -46,7 +46,7 @@ jobs:
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v5
         with:
-          path: web-prototype/dist
+          path: web/dist
 
   deploy:
     environment:
