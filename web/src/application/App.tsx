@@ -10,6 +10,9 @@ import { contentUrl, loadContentData, loadContentManifest } from '../content/man
 import { createBrowserPlayerStore } from '../player/browser.ts';
 import type { PlayerState } from '../player/model.ts';
 import { TitleScreen } from './TitleScreen.tsx';
+import { HyperspaceScreen } from '../hyperspace/HyperspaceScreen.tsx';
+import type { StageCatalog } from '../hyperspace/model.ts';
+import { musicForRoute, type AppRoute } from './routes.ts';
 
 const initialGate: CapabilityGate = {
   kind: 'checking',
@@ -23,9 +26,9 @@ export function App() {
   const playerStoreRef = useRef(createBrowserPlayerStore());
   const [gate, setGate] = useState<CapabilityGate>(initialGate);
   const [defaultPlayer, setDefaultPlayer] = useState<unknown>();
+  const [stages, setStages] = useState<StageCatalog>();
   const [contentError, setContentError] = useState<string>();
-  const [route, setRoute] = useState<'title' | 'hyperspace'>('title');
-  const [menuOpen, setMenuOpen] = useState(false);
+  const [route, setRoute] = useState<AppRoute>({ name: 'title' });
   const [player, setPlayer] = useState<PlayerState | null>(null);
   const [confirmNewGame, setConfirmNewGame] = useState(false);
 
@@ -62,8 +65,14 @@ export function App() {
 
   useEffect(() => {
     loadContentManifest()
-      .then((manifest) => loadContentData(manifest, 'newPlayer'))
-      .then(setDefaultPlayer)
+      .then(async (manifest) => {
+        const [nextDefaultPlayer, nextStages] = await Promise.all([
+          loadContentData(manifest, 'newPlayer'),
+          loadContentData<StageCatalog>(manifest, 'stages'),
+        ]);
+        setDefaultPlayer(nextDefaultPlayer);
+        setStages(nextStages);
+      })
       .catch((error: unknown) => {
         setContentError(error instanceof Error ? error.message : 'Unable to load game content');
       });
@@ -71,8 +80,7 @@ export function App() {
 
   const enterHyperspace = (nextPlayer: PlayerState) => {
     setPlayer(nextPlayer);
-    setMenuOpen(false);
-    setRoute('hyperspace');
+    setRoute({ name: 'hyperspace' });
   };
 
   const continueGame = () => {
@@ -91,8 +99,16 @@ export function App() {
     setConfirmNewGame(false);
   };
 
-  const titleMode = route === 'hyperspace' ? 'menu' : 'title';
-  const showTitle = route === 'title' || menuOpen;
+  const updatePlayer = (nextPlayer: PlayerState) => {
+    playerStoreRef.current.save(nextPlayer);
+    setPlayer(nextPlayer);
+  };
+
+  const launchStage = (stage: string) => {
+    if (!player) return;
+    updatePlayer({ ...player, currentStage: stage });
+    setRoute({ name: 'combat', stage });
+  };
   const frameStyle = {
     '--instructions-background': `url("${contentUrl('textures/Instructions.Background.png')}")`,
     '--level-track': `url("${contentUrl('textures/LevelTrack.png')}")`,
@@ -101,31 +117,29 @@ export function App() {
 
   return (
     <main class="safe-viewport app-shell">
-      <div class="game-frame" style={frameStyle}>
+      <div class="game-frame" style={frameStyle} data-music-track={musicForRoute(route) ?? undefined}>
         <canvas ref={canvasRef} class="game-canvas" aria-label="The VOID game view" />
 
-        {route === 'hyperspace' && !menuOpen && (
-          <section class="hyperspace-handoff" aria-label="Hyperspace">
-            <p class="handoff-eyebrow">Hyperspace</p>
-            <h1>{player?.currentStage}</h1>
-            <p>The galaxy map attaches here in the next porting slice.</p>
-            <button class="handoff-menu" type="button" onClick={() => setMenuOpen(true)}>Menu</button>
-          </section>
+        {route.name === 'hyperspace' && player && stages && (
+          <HyperspaceScreen player={player} stages={stages} onPlayerChange={updatePlayer} onLaunchStage={launchStage} onNewGame={startNewGame} />
         )}
 
-        {showTitle && (
+        {route.name === 'title' && (
           <TitleScreen
-            mode={titleMode}
+            mode="title"
             canContinue={playerStoreRef.current.hasContinue()}
             onContinue={continueGame}
             onNewGame={startNewGame}
           />
         )}
 
-        {route === 'hyperspace' && menuOpen && (
-          <button class="return-to-hyperspace" type="button" onClick={() => setMenuOpen(false)}>
-            Return to Hyperspace
-          </button>
+        {route.name === 'combat' && (
+          <section class="combat-handoff" aria-label={`Combat handoff for ${route.stage}`}>
+            <p class="handoff-eyebrow">Stage selected</p>
+            <h1>{route.stage}</h1>
+            <p>Combat attaches at this route boundary.</p>
+            <button type="button" onClick={() => setRoute({ name: 'hyperspace' })}>Return to Hyperspace</button>
+          </section>
         )}
 
         {confirmNewGame && (
@@ -142,7 +156,7 @@ export function App() {
         )}
       </div>
 
-      {(gate.kind !== 'ready' || !defaultPlayer || contentError) && (
+      {(gate.kind !== 'ready' || !defaultPlayer || !stages || contentError) && (
         <section class="absolute inset-0 grid place-items-center bg-slate-950/95 p-8 text-center">
           <div class="max-w-md">
             <p class="mb-3 text-xs font-semibold uppercase tracking-[0.35em] text-cyan-300">
