@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'preact/hooks';
 
-import { GameButton } from '../application/TitleScreen.tsx';
+import { GenericButton } from '../ui/GenericButton.tsx';
 import { contentUrl, type ContentManifest } from '../content/manifest.ts';
 import { EMPTY_SLOT, type PlayerState } from '../player/model.ts';
 import { ShipPreview } from './ShipPreview.tsx';
@@ -289,12 +289,12 @@ export function ShipyardScreen({ player, ships, manifest, onPlayerChange }: Stat
           </div>
 
           <div class="shipyard-actions">
-            {owned && !piloting && <GameButton class="loadout-action ship-sell" onClick={() => applyResult(sellShip(player, selectedName, ships), onPlayerChange, setNotice)}>Sell Ship</GameButton>}
+            {owned && !piloting && <GenericButton class="loadout-action ship-sell" onClick={() => applyResult(sellShip(player, selectedName, ships), onPlayerChange, setNotice)}>Sell Ship</GenericButton>}
             <div class={owned ? 'ship-price ship-price-owned' : 'ship-price'}>
               <strong>{owned ? 'Sell Value:' : 'Price:'}</strong>
               <span><img src={contentUrl('textures/MoneyIcon.png')} alt="" />{formatNumber(owned ? Math.trunc(ship.price * 0.75) : ship.price)}</span>
             </div>
-            <GameButton class="loadout-action ship-buy" disabled={piloting || (!owned && !canAfford)} onClick={purchase}>{owned ? 'Pilot Ship' : 'Buy Ship'}</GameButton>
+            <GenericButton class="loadout-action ship-buy" disabled={piloting || (!owned && !canAfford)} onClick={purchase}>{owned ? 'Pilot Ship' : 'Buy Ship'}</GenericButton>
           </div>
         </div>
       )}
@@ -337,8 +337,8 @@ function ItemScreen({ kind, inventory, catalog, equipped, selection, onSelection
     <section class={`item-screen item-screen-${kind}`} aria-label={kind === 'weapon' ? 'Weapons' : 'Equipment'} style={loadoutAssetStyle()}>
       <div class="item-inventory" role="listbox" aria-label={`${kind} inventory`}>
         <div class="item-actions">
-          <GameButton class="loadout-action" disabled={selection?.source !== 'inventory'} onClick={onSell}>Sell Item</GameButton>
-          <GameButton class="loadout-action buyback-action" disabled={!canBuyback} onClick={onBuyback}>Buyback</GameButton>
+          <GenericButton class="loadout-action" disabled={selection?.source !== 'inventory'} onClick={onSell}>Sell Item</GenericButton>
+          <GenericButton class="loadout-action buyback-action" disabled={!canBuyback} onClick={onBuyback}>Buyback</GenericButton>
         </div>
         <div class="item-list">
           {inventory.map((name, index) => (

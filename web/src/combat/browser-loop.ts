@@ -36,7 +36,8 @@ export class BrowserSimulationLoop {
     this.#previousTimestamp = timestamp;
     const { interpolation } = this.#clock.advance(elapsed, this.#update);
     this.#render(interpolation);
-    this.#handle = this.#scheduler.request(this.#frame);
+    // An update or render can pause combat or leave the flight screen.
+    if (this.#handle !== null) this.#handle = this.#scheduler.request(this.#frame);
   };
 }
 

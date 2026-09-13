@@ -117,7 +117,10 @@ export function wrapAngle(angle: number): number {
 }
 
 export function angleDifference(from: number, to: number): number {
-  return ((to - from + 540) % 360 + 360) % 360 - 180;
+  let difference = (to - from) % 360;
+  if (difference > 180) difference -= 360;
+  if (difference < -180) difference += 360;
+  return difference;
 }
 
 export function segmentDistance2D(start: Vector3Value, end: Vector3Value, point: Vector3Value): number {

@@ -1,5 +1,8 @@
 import { useEffect, useMemo, useRef, useState } from 'preact/hooks';
 
+import { Accelerometer } from './accelerometer.ts';
+import { GenericButton } from '../ui/GenericButton.tsx';
+
 import { contentUrl } from '../content/manifest.ts';
 import {
   createBrowserSettingsStore,
@@ -32,41 +35,21 @@ export function TitleScreen({ mode, canContinue, onContinue, onNewGame }: TitleS
       aria-label={mode === 'title' ? 'The VOID title menu' : 'The VOID game menu'}
     >
       {mode === 'title' && (
-        <GameButton class="title-continue" disabled={!canContinue} onClick={onContinue}>
+        <GenericButton class="title-continue" disabled={!canContinue} onClick={onContinue}>
           Continue
-        </GameButton>
+        </GenericButton>
       )}
-      <GameButton class="title-new-game" onClick={onNewGame}>New Game</GameButton>
-      <GameButton class="title-instructions" onClick={() => setUtility('instructions')}>
+      <GenericButton class="title-new-game" onClick={onNewGame}>New Game</GenericButton>
+      <GenericButton class="title-instructions" onClick={() => setUtility('instructions')}>
         Instructions
-      </GameButton>
-      <GameButton class="title-credits" onClick={() => setUtility('credits')}>Credits</GameButton>
-      <GameButton class="title-settings" onClick={() => setUtility('settings')}>Settings</GameButton>
+      </GenericButton>
+      <GenericButton class="title-credits" onClick={() => setUtility('credits')}>Credits</GenericButton>
+      <GenericButton class="title-settings" onClick={() => setUtility('settings')}>Settings</GenericButton>
 
       {utility === 'instructions' && <InstructionsScreen onClose={() => setUtility(null)} />}
       {utility === 'settings' && <SettingsScreen onClose={() => setUtility(null)} />}
       {utility === 'credits' && <CreditsScreen onClose={() => setUtility(null)} />}
     </section>
-  );
-}
-
-interface GameButtonProps {
-  readonly children: string;
-  readonly class?: string;
-  readonly disabled?: boolean;
-  readonly onClick: () => void;
-}
-
-export function GameButton({ children, class: className = '', disabled, onClick }: GameButtonProps) {
-  return (
-    <button
-      class={`game-button rounded-full border-2 border-cyan-100/90 bg-[linear-gradient(to_bottom,#8ec8f0_0%,#3b63c5_45%,#162c79_50%,#06133f_100%)] shadow-[inset_0_2px_1px_rgb(255_255_255_/_0.7),inset_0_-3px_6px_rgb(0_0_30_/_0.9),0_0_10px_rgb(56_189_248_/_0.75),0_3px_7px_rgb(0_0_0_/_0.8)] active:bg-[linear-gradient(to_bottom,#dbeafe_0%,#8296e1_45%,#4d5d9b_50%,#29345f_100%)] disabled:border-zinc-400/60 disabled:bg-[linear-gradient(to_bottom,#777_0%,#444_48%,#222_52%,#171717_100%)] disabled:text-zinc-300 disabled:shadow-[inset_0_1px_1px_rgb(255_255_255_/_0.2),0_2px_5px_rgb(0_0_0_/_0.7)] ${className}`}
-      type="button"
-      disabled={disabled}
-      onClick={onClick}
-    >
-      {children}
-    </button>
   );
 }
 
@@ -96,7 +79,7 @@ function InstructionsScreen({ onClose }: { readonly onClose: () => void }) {
           />
         ))}
       </div>
-      <GameButton class="utility-back" onClick={onClose}>Back</GameButton>
+      <GenericButton class="utility-back" onClick={onClose}>Back</GenericButton>
       <div class="page-control" aria-label={`Page ${page + 1} of ${INSTRUCTION_PAGES.length}`}>
         {INSTRUCTION_PAGES.map((_, index) => (
           <span class={index === page ? 'page-dot page-dot-current' : 'page-dot'} aria-hidden="true" />
@@ -111,15 +94,22 @@ function SettingsScreen({ onClose }: { readonly onClose: () => void }) {
   const [settings, setSettings] = useState<GameSettings>(() => store.load());
   const [tilt, setTilt] = useState(0);
 
+  const accelerometer = useRef<Accelerometer>();
+  const currentSettings = useRef(settings);
+  currentSettings.current = settings;
   useEffect(() => {
-    const updateTilt = (event: DeviceOrientationEvent) => {
-      if (event.gamma === null) return;
-      const scaled = Math.max(-1, Math.min(1, (event.gamma / 90) * settings.turnSensitivity));
-      setTilt((settings.invertSteering ? -1 : 1) * scaled);
-    };
-    window.addEventListener('deviceorientation', updateTilt);
-    return () => window.removeEventListener('deviceorientation', updateTilt);
-  }, [settings.invertSteering, settings.turnSensitivity]);
+    let lastTilt = 0;
+    const sensor = new Accelerometer((y) => {
+      const settings = currentSettings.current;
+      let currentTilt = Math.max(-1, Math.min(1, y * settings.turnSensitivity));
+      currentTilt = Math.abs(currentTilt) < 0.2 ? 0 : (currentTilt - Math.sign(currentTilt) * 0.2) / 0.8;
+      if (settings.invertSteering) currentTilt = -currentTilt;
+      lastTilt = lastTilt * 0.8 + currentTilt * 0.2;
+      setTilt(lastTilt);
+    });
+    accelerometer.current = sensor;
+    return () => { sensor.dispose(); accelerometer.current = undefined; };
+  }, []);
 
   const update = (next: GameSettings) => setSettings(store.save(next));
 
@@ -141,7 +131,7 @@ function SettingsScreen({ onClose }: { readonly onClose: () => void }) {
         class="steering-indicator"
         type="button"
         aria-label="Enable steering tilt preview"
-        onClick={requestOrientationPermission}
+        onClick={() => { void accelerometer.current?.requestPermission().catch(() => setTilt(0)); }}
       >
         <img
           src={contentUrl('textures/ShipyardTab.png')}
@@ -175,7 +165,7 @@ function SettingsScreen({ onClose }: { readonly onClose: () => void }) {
         <span />
       </button>
 
-      <GameButton class="settings-done" onClick={onClose}>Done</GameButton>
+      <GenericButton class="settings-done" onClick={onClose}>Done</GenericButton>
     </UtilityOverlay>
   );
 }
@@ -184,7 +174,7 @@ function CreditsScreen({ onClose }: { readonly onClose: () => void }) {
   return (
     <UtilityOverlay label="Credits" dim>
       <img class="credits-art" src={contentUrl('textures/Credits.png')} alt="The VOID credits" />
-      <GameButton class="credits-done" onClick={onClose}>Done</GameButton>
+      <GenericButton class="credits-done" onClick={onClose}>Done</GenericButton>
     </UtilityOverlay>
   );
 }
@@ -203,15 +193,4 @@ function UtilityOverlay({
       {children}
     </section>
   );
-}
-
-async function requestOrientationPermission() {
-  const orientationEvent = DeviceOrientationEvent as typeof DeviceOrientationEvent & {
-    requestPermission?: () => Promise<'granted' | 'denied'>;
-  };
-  try {
-    await orientationEvent.requestPermission?.();
-  } catch {
-    // The preview remains centered when motion access is unavailable or declined.
-  }
 }

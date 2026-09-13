@@ -16,9 +16,9 @@ export class FixedStepClock {
 
     let steps = 0;
     while (this.#accumulator + Number.EPSILON >= SIMULATION_STEP_MS) {
+      this.#accumulator -= SIMULATION_STEP_MS;
       update();
       steps += 1;
-      this.#accumulator -= SIMULATION_STEP_MS;
     }
 
     return { steps, interpolation: Math.max(0, this.#accumulator / SIMULATION_STEP_MS) };

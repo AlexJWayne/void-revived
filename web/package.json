@@ -4,7 +4,8 @@
   "version": "0.0.1",
   "type": "module",
   "scripts": {
-    "dev": "npm run assets && vite --host 0.0.0.0",
+    "cert": "sh scripts/generate-dev-cert.sh",
+    "dev": "npm run assets && npm run cert && VITE_DEV_HTTPS=true vite --host 0.0.0.0",
     "assets": "node scripts/build-content.mjs",
     "build": "npm run assets && tsc -b && vite build",
     "preview": "vite preview --host 0.0.0.0",

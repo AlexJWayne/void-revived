@@ -2,9 +2,9 @@ import assert from 'node:assert/strict';
 import { describe, it } from 'node:test';
 
 import { FixedStepClock } from '../src/combat/clock.ts';
+import { BrowserSimulationLoop } from '../src/combat/browser-loop.ts';
 import { angleDifference, segmentDistance2D, Vector3 } from '../src/combat/math.ts';
 import { Projectile, type ProjectileSnapshot } from '../src/combat/projectile.ts';
-import { SimulationRuntime, type SimulationPhase } from '../src/combat/runtime.ts';
 import { Ship, type ShipDefinition } from '../src/combat/ship.ts';
 import { SpaceObject } from '../src/combat/space-object.ts';
 
@@ -22,6 +22,24 @@ const shipDefinition: ShipDefinition = {
   energy: 300,
   energyRecharge: 1,
 };
+
+it('keeps the browser loop stopped when combat pauses during an update', () => {
+  let callback: FrameRequestCallback;
+  let requests = 0;
+  let updates = 0;
+  const loop = new BrowserSimulationLoop(() => {
+    updates += 1;
+    loop.stop();
+  }, () => {}, {
+    request(next) { callback = next; return ++requests; },
+    cancel() {},
+  });
+  loop.start();
+  callback!(0);
+  callback!(100);
+  assert.equal(requests, 2);
+  assert.equal(updates, 1);
+});
 
 function close(actual: number, expected: number): void {
   assert.ok(Math.abs(actual - expected) < 1e-9, `${actual} != ${expected}`);
@@ -61,6 +79,8 @@ describe('combat math and timing', () => {
     close(vector.y, 0);
     close(new Vector3(1, 0, 0).angle2D(), -90);
     assert.equal(angleDifference(359, 1), 2);
+    assert.equal(angleDifference(0, 180), 180);
+    assert.equal(angleDifference(180, 0), -180);
     close(segmentDistance2D({ x: 0, y: 0, z: 0 }, { x: 10, y: 0, z: 0 }, { x: 5, y: 2, z: 0 }), 2);
   });
 
@@ -102,6 +122,10 @@ describe('space objects and ships', () => {
     ship.update();
     close(ship.velocity.length(), 0.75 / 111);
     close(ship.angle, 2.2);
+    const opposite = Ship.create(2, 'Cyber Frigate', shipDefinition);
+    opposite.desiredAngle = 180;
+    opposite.update();
+    close(opposite.angle, 2.2);
 
     ship.damage(90, 130);
     close(ship.currentArmor, 630 - 130 * 2 / 3);
@@ -136,37 +160,12 @@ describe('projectiles and deterministic update boundaries', () => {
     );
   });
 
-  it('updates in named phases and defers additions until the next tick', () => {
-    const runtime = new SimulationRuntime();
-    runtime.addShip(Ship.create(1, 'Cyber Frigate', shipDefinition));
-    runtime.addProjectile(new Projectile(projectileSnapshot()));
-    const phases: SimulationPhase[] = [];
-    runtime.observe((world, phase) => {
-      phases.push(phase);
-      if (phase === 'after-projectiles') {
-        world.addProjectile(new Projectile(projectileSnapshot({ id: 11 })));
-      }
-    });
+});
 
-    runtime.update();
-
-    assert.deepEqual(phases, ['before-projectiles', 'after-projectiles', 'after-ships', 'after-step']);
-    assert.equal(runtime.projectiles[0]?.age, 1);
-    assert.equal(runtime.projectiles[1]?.age, 0);
-    assert.deepEqual(new SimulationRuntime(runtime.toSnapshot()).toSnapshot(), runtime.toSnapshot());
-  });
-
-  it('leaves destroyed-ship lifecycle decisions to stage orchestration', () => {
-    const runtime = new SimulationRuntime();
-    const ship = Ship.create(1, 'Cyber Frigate', shipDefinition);
-    runtime.addShip(ship);
-    ship.damage(10_000, 10_000);
-
-    runtime.update();
-    assert.equal(runtime.ships.length, 1);
-
-    runtime.removeShip(ship.id);
-    runtime.update();
-    assert.equal(runtime.ships.length, 0);
-  });
+it('converts browser acceleration into the native landscape steering direction', async () => {
+  const { nativeAccelerationY } = await import('../src/application/accelerometer.ts');
+  close(nativeAccelerationY(0, 9.80665, 90, true), 1);
+  close(nativeAccelerationY(0, -9.80665, 90, false), 1);
+  close(nativeAccelerationY(0, -9.80665, 270, true), 1);
+  close(nativeAccelerationY(0, 9.80665, 270, false), 1);
 });

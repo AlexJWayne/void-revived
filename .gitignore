@@ -7,6 +7,7 @@
 *.p12
 *.pfx
 *.mobileprovision
+web/.certs/
 build/*
 *.xcodeproj/*.pbxuser
 *.xcodeproj/*.perspectivev3

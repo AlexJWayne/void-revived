@@ -16,7 +16,14 @@ body,
   margin: 0;
   overflow: hidden;
   overscroll-behavior: none;
+  /* Lists still scroll; browser pinch and double-tap zoom do not belong to the game. */
+  touch-action: pan-x pan-y;
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-touch-callout: none;
 }
+
+img { -webkit-user-drag: none; }
 
 body {
   position: fixed;
@@ -61,6 +68,7 @@ input {
 }
 
 .game-frame {
+  container-type: size;
   position: relative;
   width: 100%;
   max-width: calc((100dvh - env(safe-area-inset-top, 0px) - env(safe-area-inset-bottom, 0px)) * 1.5);
@@ -69,6 +77,117 @@ input {
   overflow: hidden;
   background: black;
 }
+
+.flight-interface,
+.flight-surface,
+.flight-canvas,
+.flight-pause,
+.stage-summary {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.flight-interface { touch-action: none; }
+.flight-canvas { touch-action: none; }
+.flight-credits {
+  position: absolute;
+  left: 17.083333%;
+  top: 1.5625%;
+  width: 9.166667%;
+  height: 4.375%;
+  font: 3.75cqh Helvetica, Arial, sans-serif;
+  color: white;
+  pointer-events: none;
+}
+.flight-pause {
+  background: rgb(0 0 0 / 60%);
+  text-align: center;
+  animation: flight-pause-arrival 0.2s ease-out;
+}
+.flight-pause::before { content: ""; position: absolute; inset: 0; background: var(--pause-image) center / 100% 100%; opacity: 0.5; pointer-events: none; }
+.flight-pause h2 {
+  position: absolute;
+  top: 37.8125%;
+  width: 100%;
+  height: 13.75%;
+  margin: 0;
+  font-size: 11.25cqh;
+  line-height: 1.22;
+  font-weight: 700;
+  text-shadow: 0.3125cqh 0.3125cqh rgb(0 0 0 / 65%);
+}
+.pause-continue,
+.pause-caption {
+  position: absolute;
+  width: 100%;
+  margin: 0;
+  font-size: 3.75cqh;
+  line-height: 6.5625cqh;
+  color: #6ff;
+  text-shadow: 0 0.3125cqh rgb(0 0 0 / 65%);
+}
+.pause-continue { top: 49.6875%; }
+.pause-caption { top: 89.6875%; }
+.game-button.pause-abandon {
+  top: 75.9375%;
+  left: 27.708333%;
+  width: 43.958333%;
+
+}
+.flight-message {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  margin: 0;
+  padding: 2cqh;
+  background: #000;
+  color: #fff;
+  font-size: 4cqh;
+  text-align: center;
+  z-index: 30;
+}
+.stage-summary {
+  z-index: 15;
+  background: rgb(0 0 0 / 85%);
+  font-family: Helvetica, Arial, sans-serif;
+}
+.stage-summary h2 {
+  position: absolute;
+  top: 3.125%;
+  left: 4.166667%;
+  width: 91.666667%;
+  height: 8.4375%;
+  margin: 0;
+  color: rgb(58% 91% 100%);
+  font-size: 7.5cqh;
+  font-weight: 700;
+  line-height: 1.125;
+  text-align: center;
+}
+.stage-summary-results { position: absolute; top: 14.0625%; height: 67.8125%; width: 100%; overflow-y: auto; }
+.stage-summary-results h3 {
+  margin: 0;
+  padding-left: 1.5cqw;
+  height: 7.5cqh;
+  line-height: 7.5cqh;
+  font-size: 3.75cqh;
+  font-weight: 700;
+  background: rgb(25% 25% 25% / 50%);
+  color: #9cf;
+}
+.stage-summary-row { display: flex; align-items: center; gap: 2cqw; height: 13.75cqh; padding: 0 2cqw; font-size: 5.3125cqh; font-weight: 700; }
+.stage-summary-row img { width: 10cqh; height: 10cqh; object-fit: contain; }
+.game-button.stage-summary-continue {
+  top: 84.375%;
+  left: 21.875%;
+  width: 56.25%;
+
+}
+.stage-summary-leaving { animation: summary-dismissal 0.5s ease-in-out forwards; }
+@keyframes summary-dismissal { to { opacity: 0; transform: translateY(-100%); } }
+@keyframes flight-pause-arrival { from { opacity: 0; } to { opacity: 1; } }
 
 .game-canvas,
 .title-screen,
@@ -98,6 +217,21 @@ input {
   font-size: clamp(0.82rem, 3.6cqh, 1.08rem);
   font-weight: 800;
   text-shadow: 0 1px 2px #000, 0 0 4px #000;
+  border: 2px solid color-mix(in oklab, var(--color-cyan-100) 90%, transparent);
+  border-radius: 9999px;
+  background: linear-gradient(to bottom, #8ec8f0 0%, #3b63c5 45%, #162c79 50%, #06133f 100%);
+  box-shadow: inset 0 2px 1px rgb(255 255 255 / 70%), inset 0 -3px 6px rgb(0 0 30 / 90%),
+    0 0 10px rgb(56 189 248 / 75%), 0 3px 7px rgb(0 0 0 / 80%);
+}
+
+.game-button:active {
+  background: linear-gradient(to bottom, #dbeafe 0%, #8296e1 45%, #4d5d9b 50%, #29345f 100%);
+}
+.game-button:disabled {
+  border-color: color-mix(in oklab, var(--color-zinc-400) 60%, transparent);
+  background: linear-gradient(to bottom, #777 0%, #444 48%, #222 52%, #171717 100%);
+  color: var(--color-zinc-300);
+  box-shadow: inset 0 1px 1px rgb(255 255 255 / 20%), 0 2px 5px rgb(0 0 0 / 70%);
 }
 
 .title-continue,
@@ -511,8 +645,7 @@ input {
 .stage-zone-4 { color: #3380ff; }
 .stage-description { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
 .stage-actions { position: absolute; inset: 62.2% 4.7% 9.8%; display: grid; grid-template-columns: 1fr 1fr; gap: 8.7%; }
-.stage-actions button,
-.combat-handoff button { border: 1px solid #5084aa; border-radius: 0.35rem; background: linear-gradient(#2c6a97, #173b5b); color: white; font-weight: 700; }
+.stage-actions .game-button { position: static; height: 100%; font-size: 5.535cqh; }
 
 .hyperspace-help-button {
   position: absolute;
@@ -982,3 +1115,11 @@ input {
   .title-screen,
   .utility-overlay { animation: none; }
 }
+
+/* EAGLView.m: Default.png, rotated into landscape, and WhiteLarge activity indicator. */
+.flight-loading { position: absolute; inset: 0; overflow: hidden; background: black; }
+.flight-loading > img { position: absolute; top: 50%; left: 50%; width: 66.666667%; height: 150%; transform: translate(-50%, -50%) rotate(-90deg); }
+.flight-loading-spinner { position: absolute; left: 50%; top: 76.5625%; width: 11.5625cqh; height: 11.5625cqh; transform: translate(-50%, -50%); }
+.flight-loading-spinner span { position: absolute; inset: 0; animation: activity-indicator 1s linear infinite; }
+.flight-loading-spinner span::before { content: ""; position: absolute; top: 0; left: 46%; width: 8%; height: 26%; border-radius: 50%; background: white; }
+@keyframes activity-indicator { from { opacity: 1; } to { opacity: 0.15; } }

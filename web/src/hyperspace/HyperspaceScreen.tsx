@@ -1,3 +1,4 @@
+import { GenericButton } from '../ui/GenericButton.tsx';
 import { useEffect, useMemo, useState } from 'preact/hooks';
 
 import { contentUrl, type ContentManifest } from '../content/manifest.ts';
@@ -188,8 +189,8 @@ function GalaxyMap({ player, stages, onLaunchStage }: Pick<HyperspaceScreenProps
           <p class="stage-tier">{tierName(selectedStage)}</p>
           <p class="stage-description">{selectedStage.description}</p>
           <div class="stage-actions">
-            <button type="button" onClick={() => setSelected(null)}>Cancel</button>
-            <button type="button" onClick={play}>Play</button>
+            <GenericButton onClick={() => setSelected(null)}>Cancel</GenericButton>
+            <GenericButton onClick={play}>Play</GenericButton>
           </div>
         </section>
       )}

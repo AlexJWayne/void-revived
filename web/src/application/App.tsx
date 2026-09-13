@@ -14,6 +14,12 @@ import { HyperspaceScreen } from '../hyperspace/HyperspaceScreen.tsx';
 import type { StageCatalog } from '../hyperspace/model.ts';
 import type { EquipmentCatalog, ShipCatalog, WeaponCatalog } from '../loadout/model.ts';
 import { musicForRoute, type AppRoute } from './routes.ts';
+import { Game, type StageStats } from '../combat/game.ts';
+import type { CombatContent } from '../combat/content.ts';
+import { restoreGame } from '../combat/game-state.ts';
+import { FlightInterface } from '../combat/FlightInterface.tsx';
+import { StageSummary } from '../combat/StageSummary.tsx';
+import { createBrowserSettingsStore } from './settings.ts';
 
 const initialGate: CapabilityGate = {
   kind: 'checking',
@@ -36,6 +42,11 @@ export function App() {
   const [route, setRoute] = useState<AppRoute>({ name: 'title' });
   const [player, setPlayer] = useState<PlayerState | null>(null);
   const [confirmNewGame, setConfirmNewGame] = useState(false);
+  const [combatContent, setCombatContent] = useState<CombatContent>();
+  const [game, setGame] = useState<Game>();
+  const [restoredCombat, setRestoredCombat] = useState(false);
+  const [stageSummary, setStageSummary] = useState<StageStats>();
+  const [combatError, setCombatError] = useState<string>();
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -71,12 +82,14 @@ export function App() {
   useEffect(() => {
     loadContentManifest()
       .then(async (manifest) => {
-        const [nextDefaultPlayer, nextStages, nextWeapons, nextEquipment, nextShips] = await Promise.all([
+        const [nextDefaultPlayer, nextStages, nextWeapons, nextEquipment, nextShips, nextEnemies, nextLootTables] = await Promise.all([
           loadContentData(manifest, 'newPlayer'),
-          loadContentData<StageCatalog>(manifest, 'stages'),
-          loadContentData<WeaponCatalog>(manifest, 'weapons'),
+          loadContentData<CombatContent['stages']>(manifest, 'stages'),
+          loadContentData<CombatContent['weapons']>(manifest, 'weapons'),
           loadContentData<EquipmentCatalog>(manifest, 'equipment'),
-          loadContentData<ShipCatalog>(manifest, 'shipTypes'),
+          loadContentData<CombatContent['shipTypes']>(manifest, 'shipTypes'),
+          loadContentData<CombatContent['enemies']>(manifest, 'enemies'),
+          loadContentData<CombatContent['lootTables']>(manifest, 'lootTables'),
         ]);
         setManifest(manifest);
         setDefaultPlayer(nextDefaultPlayer);
@@ -84,6 +97,21 @@ export function App() {
         setWeapons(nextWeapons);
         setEquipment(nextEquipment);
         setShips(nextShips);
+        const content: CombatContent = { stages: nextStages, weapons: nextWeapons, equipment: nextEquipment,
+          shipTypes: nextShips, enemies: nextEnemies, lootTables: nextLootTables };
+        setCombatContent(content);
+        try {
+          const restored = playerStoreRef.current.takeCombatSnapshot((snapshot) =>
+            restoreGame(content, snapshot, Math.random, createBrowserSettingsStore().load()));
+          if (restored) {
+            setPlayer(restored.originalPlayer);
+            setGame(restored);
+            setRestoredCombat(true);
+            setRoute({ name: 'combat', stage: restored.stageName });
+          }
+        } catch {
+          setCombatError('The interrupted stage could not be restored. Your saved campaign is still available.');
+        }
       })
       .catch((error: unknown) => {
         setContentError(error instanceof Error ? error.message : 'Unable to load game content');
@@ -117,9 +145,32 @@ export function App() {
   };
 
   const launchStage = (stage: string) => {
-    if (!player) return;
-    updatePlayer({ ...player, currentStage: stage });
-    setRoute({ name: 'combat', stage });
+    if (!player || !combatContent) return;
+    try {
+      const nextPlayer = { ...player, currentStage: stage };
+      const nextGame = new Game(combatContent, nextPlayer, Math.random, createBrowserSettingsStore().load());
+      updatePlayer(nextPlayer);
+      setGame(nextGame);
+      setRestoredCombat(false);
+      setRoute({ name: 'combat', stage });
+    } catch (error) {
+      setCombatError(error instanceof Error ? error.message : 'Unable to start this stage.');
+    }
+  };
+
+  const finishCombat = (finishedGame: Game) => {
+    const nextPlayer = finishedGame.completedPlayer();
+    updatePlayer(nextPlayer);
+    playerStoreRef.current.discardCombatSnapshot();
+    if (finishedGame.ship.currentArmor > 0) setStageSummary(finishedGame.stats);
+    setGame(undefined);
+    setRoute({ name: 'hyperspace' });
+  };
+
+  const leaveCombat = () => {
+    playerStoreRef.current.discardCombatSnapshot();
+    setGame(undefined);
+    setRoute({ name: 'hyperspace' });
   };
   const frameStyle = {
     '--instructions-background': `url("${contentUrl('textures/Instructions.Background.png')}")`,
@@ -155,14 +206,23 @@ export function App() {
           />
         )}
 
-        {route.name === 'combat' && (
-          <section class="combat-handoff" aria-label={`Combat handoff for ${route.stage}`}>
-            <p class="handoff-eyebrow">Stage selected</p>
-            <h1>{route.stage}</h1>
-            <p>Combat attaches at this route boundary.</p>
-            <button type="button" onClick={() => setRoute({ name: 'hyperspace' })}>Return to Hyperspace</button>
-          </section>
+        {route.name === 'combat' && game && manifest && (
+          <FlightInterface game={game} manifest={manifest} playerStore={playerStoreRef.current}
+            restored={restoredCombat} onFinish={finishCombat} onLeave={leaveCombat} />
         )}
+
+        {stageSummary && player && combatContent && <StageSummary stats={stageSummary} player={player}
+          content={combatContent} onDismiss={() => setStageSummary(undefined)} />}
+
+        {combatError && <section class="confirmation-backdrop" role="alertdialog" aria-modal="true" aria-label="Flight unavailable">
+          <div class="confirmation-panel"><h2>Flight unavailable</h2><p>{combatError}</p>
+            <button type="button" onClick={() => {
+              playerStoreRef.current.discardCombatSnapshot();
+              setCombatError(undefined);
+              continueGame();
+            }}>Continue from Hyperspace</button>
+          </div>
+        </section>}
 
         {confirmNewGame && (
           <section class="confirmation-backdrop" role="alertdialog" aria-modal="true" aria-labelledby="new-game-title">
