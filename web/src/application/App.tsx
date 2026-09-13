@@ -6,12 +6,13 @@ import {
   type CapabilityGate,
 } from './capabilities.ts';
 import { createGraphicsDevice, type GraphicsDevice } from '../graphics/device.ts';
-import { contentUrl, loadContentData, loadContentManifest } from '../content/manifest.ts';
+import { contentUrl, loadContentData, loadContentManifest, type ContentManifest } from '../content/manifest.ts';
 import { createBrowserPlayerStore } from '../player/browser.ts';
 import type { PlayerState } from '../player/model.ts';
 import { TitleScreen } from './TitleScreen.tsx';
 import { HyperspaceScreen } from '../hyperspace/HyperspaceScreen.tsx';
 import type { StageCatalog } from '../hyperspace/model.ts';
+import type { EquipmentCatalog, ShipCatalog, WeaponCatalog } from '../loadout/model.ts';
 import { musicForRoute, type AppRoute } from './routes.ts';
 
 const initialGate: CapabilityGate = {
@@ -27,6 +28,10 @@ export function App() {
   const [gate, setGate] = useState<CapabilityGate>(initialGate);
   const [defaultPlayer, setDefaultPlayer] = useState<unknown>();
   const [stages, setStages] = useState<StageCatalog>();
+  const [weapons, setWeapons] = useState<WeaponCatalog>();
+  const [equipment, setEquipment] = useState<EquipmentCatalog>();
+  const [ships, setShips] = useState<ShipCatalog>();
+  const [manifest, setManifest] = useState<ContentManifest>();
   const [contentError, setContentError] = useState<string>();
   const [route, setRoute] = useState<AppRoute>({ name: 'title' });
   const [player, setPlayer] = useState<PlayerState | null>(null);
@@ -66,12 +71,19 @@ export function App() {
   useEffect(() => {
     loadContentManifest()
       .then(async (manifest) => {
-        const [nextDefaultPlayer, nextStages] = await Promise.all([
+        const [nextDefaultPlayer, nextStages, nextWeapons, nextEquipment, nextShips] = await Promise.all([
           loadContentData(manifest, 'newPlayer'),
           loadContentData<StageCatalog>(manifest, 'stages'),
+          loadContentData<WeaponCatalog>(manifest, 'weapons'),
+          loadContentData<EquipmentCatalog>(manifest, 'equipment'),
+          loadContentData<ShipCatalog>(manifest, 'shipTypes'),
         ]);
+        setManifest(manifest);
         setDefaultPlayer(nextDefaultPlayer);
         setStages(nextStages);
+        setWeapons(nextWeapons);
+        setEquipment(nextEquipment);
+        setShips(nextShips);
       })
       .catch((error: unknown) => {
         setContentError(error instanceof Error ? error.message : 'Unable to load game content');
@@ -120,8 +132,18 @@ export function App() {
       <div class="game-frame" style={frameStyle} data-music-track={musicForRoute(route) ?? undefined}>
         <canvas ref={canvasRef} class="game-canvas" aria-label="The VOID game view" />
 
-        {route.name === 'hyperspace' && player && stages && (
-          <HyperspaceScreen player={player} stages={stages} onPlayerChange={updatePlayer} onLaunchStage={launchStage} onNewGame={startNewGame} />
+        {route.name === 'hyperspace' && player && stages && weapons && equipment && ships && manifest && (
+          <HyperspaceScreen
+            player={player}
+            stages={stages}
+            weapons={weapons}
+            equipment={equipment}
+            ships={ships}
+            manifest={manifest}
+            onPlayerChange={updatePlayer}
+            onLaunchStage={launchStage}
+            onNewGame={startNewGame}
+          />
         )}
 
         {route.name === 'title' && (
@@ -156,7 +178,7 @@ export function App() {
         )}
       </div>
 
-      {(gate.kind !== 'ready' || !defaultPlayer || !stages || contentError) && (
+      {(gate.kind !== 'ready' || !defaultPlayer || !stages || !weapons || !equipment || !ships || !manifest || contentError) && (
         <section class="absolute inset-0 grid place-items-center bg-slate-950/95 p-8 text-center">
           <div class="max-w-md">
             <p class="mb-3 text-xs font-semibold uppercase tracking-[0.35em] text-cyan-300">

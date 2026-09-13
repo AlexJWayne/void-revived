@@ -1,7 +1,9 @@
 import { useEffect, useMemo, useState } from 'preact/hooks';
 
-import { contentUrl } from '../content/manifest.ts';
+import { contentUrl, type ContentManifest } from '../content/manifest.ts';
 import { markHelpSeen, type HelpScreen, type PlayerState } from '../player/model.ts';
+import { clearNewItemCount, type EquipmentCatalog, type ShipCatalog, type WeaponCatalog } from '../loadout/model.ts';
+import { EquipmentScreen, ShipyardScreen, WeaponsScreen } from '../loadout/LoadoutScreens.tsx';
 import { TitleScreen } from '../application/TitleScreen.tsx';
 import {
   HYPERSPACE_TABS,
@@ -54,12 +56,16 @@ function tabBadge(tab: HyperspaceTab, player: PlayerState): number {
 interface HyperspaceScreenProps {
   readonly player: PlayerState;
   readonly stages: StageCatalog;
+  readonly weapons: WeaponCatalog;
+  readonly equipment: EquipmentCatalog;
+  readonly ships: ShipCatalog;
+  readonly manifest: ContentManifest;
   readonly onPlayerChange: (player: PlayerState) => void;
   readonly onLaunchStage: (stageName: string) => void;
   readonly onNewGame: () => void;
 }
 
-export function HyperspaceScreen({ player, stages, onPlayerChange, onLaunchStage, onNewGame }: HyperspaceScreenProps) {
+export function HyperspaceScreen({ player, stages, weapons, equipment, ships, manifest, onPlayerChange, onLaunchStage, onNewGame }: HyperspaceScreenProps) {
   const [tab, setTab] = useState<HyperspaceTab>('Galaxy Map');
   const [help, setHelp] = useState<HelpScreen | null>(null);
 
@@ -73,22 +79,23 @@ export function HyperspaceScreen({ player, stages, onPlayerChange, onLaunchStage
   const changeTab = (next: HyperspaceTab) => {
     setHelp(null);
     setTab(next);
+    if (next === 'Weapons') onPlayerChange(clearNewItemCount(player, 'weapons'));
+    if (next === 'Equipment') onPlayerChange(clearNewItemCount(player, 'equipment'));
+    if (next === 'Shipyard') onPlayerChange(clearNewItemCount(player, 'ships'));
   };
+
+  const stationProps = { player, weapons, equipment, ships, manifest, onPlayerChange };
 
   return (
     <section class="hyperspace-shell" aria-label="Hyperspace" data-music-track="MusicHyperspace">
       <div class="hyperspace-content">
         {tab === 'Galaxy Map' && <GalaxyMap player={player} stages={stages} onLaunchStage={onLaunchStage} />}
+        {tab === 'Weapons' && <WeaponsScreen {...stationProps} />}
+        {tab === 'Equipment' && <EquipmentScreen {...stationProps} />}
+        {tab === 'Shipyard' && <ShipyardScreen {...stationProps} />}
         {tab === 'Menu' && (
           <TitleScreen mode="menu" canContinue={false} onContinue={() => undefined} onNewGame={onNewGame} />
         )}
-        {tab !== 'Galaxy Map' && tab !== 'Menu' && (
-          <section class="hyperspace-placeholder" aria-label={tab}>
-            <h1>{tab}</h1>
-            <p>This station is not available yet.</p>
-          </section>
-        )}
-
         {HELP_BY_TAB[tab] && (
           <button class="hyperspace-help-button" type="button" aria-label={`Show ${tab} help`} onClick={() => setHelp(HELP_BY_TAB[tab] ?? null)}>
             <img src={contentUrl('textures/HelpButton.png')} alt="" />
