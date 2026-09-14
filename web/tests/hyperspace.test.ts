@@ -46,3 +46,13 @@ describe('route music boundary', () => {
     assert.equal(musicForRoute({ name: 'combat', stage: 'Discipulus Minor' }), null);
   });
 });
+
+describe('hyperspace help overlay', () => {
+  it('preserves the alpha channel of the Original Game help artwork', async () => {
+    const css = await readFile(new URL('../src/styles/app.css', import.meta.url), 'utf8');
+    const overlayRule = css.match(/\.hyperspace-help \{[^}]+\}/s)?.[0];
+
+    assert(overlayRule);
+    assert.match(overlayRule, /background:\s*transparent/);
+  });
+});
