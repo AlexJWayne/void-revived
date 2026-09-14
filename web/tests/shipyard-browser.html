@@ -56,6 +56,13 @@ run.onclick = async () => {
   try {
     await reset({ credits: 100 });
     assert(rows().join(',') === 'Mover,Electrus,Fragilite,Cilium', 'first visit offers all four starting shuttles');
+    const selectedBackground = getComputedStyle(row('Mover')).backgroundImage;
+    for (const name of ['Electrus', 'Fragilite', 'Cilium']) {
+      await click(row(name));
+      assert(getComputedStyle(row(name)).backgroundImage === selectedBackground, `${name} receives the same selected background as Mover`);
+      assert(getComputedStyle(row('Mover')).backgroundImage !== selectedBackground, 'previous selection loses its highlight');
+    }
+    await click(row('Mover'));
     assert(!root.querySelector('[aria-label="Show Shipyard help"]') && !root.querySelector('[role="alertdialog"]'), 'shipyard has no help control or first-visit prompt');
     await click(root.querySelector('.shipyard-primary'));
     assert(player.ship.type === 'Cyber Shuttle' && player.credits === 0, 'direct Buy pilots the first ship and deducts its price');

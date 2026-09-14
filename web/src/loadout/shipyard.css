@@ -115,7 +115,7 @@
   text-align: left;
 }
 
-.shipyard-list li:nth-child(even) .shipyard-row { background: linear-gradient(#24333e, #1a2832); }
+.shipyard-list li:nth-child(even) .shipyard-row:not([aria-pressed="true"]) { background: linear-gradient(#24333e, #1a2832); }
 .shipyard-list .shipyard-row[aria-pressed="true"] {
   background: linear-gradient(#2b6489, #174a6c);
   box-shadow: inset calc(2 * var(--yard-unit)) 0 #b3f1ff, inset 0 1px #7cb4cc;
