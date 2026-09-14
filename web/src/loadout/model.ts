@@ -39,6 +39,7 @@ export interface ShipModelPart {
 export interface ShipDefinition {
   readonly armor: number;
   readonly brakeForce: number;
+  readonly class?: string;
   readonly energy: number;
   readonly energyRecharge: number;
   readonly equipmentSlots: number;
@@ -48,7 +49,9 @@ export interface ShipDefinition {
   readonly model: readonly ShipModelPart[];
   readonly name: string;
   readonly pilotable: boolean;
+  readonly powerRank?: number;
   readonly price: number;
+  readonly race?: string;
   readonly shieldRecharge: number;
   readonly shieldRechargeDelay: number;
   readonly shields: number;

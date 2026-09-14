@@ -21,6 +21,15 @@ test('generates the complete initial content graph', async () => {
   assert.equal(manifest.textures['Projectiles.png'].oneX.source, 'Assets/Images/Content/Weapons/Projectiles/Projectiles.png');
 });
 
+test('adds race, class, and power rank to pilotable ships', async () => {
+  const ships = JSON.parse(await readFile(new URL('../public/content/data/shipTypes.json', import.meta.url), 'utf8'));
+  assert.deepEqual(
+    { race: ships['Crystal Heavy Fighter'].race, class: ships['Crystal Heavy Fighter'].class, powerRank: ships['Crystal Heavy Fighter'].powerRank },
+    { race: 'Crystal', class: 'Heavy Fighter', powerRank: 3 },
+  );
+  assert.equal(ships['Cyber Crate'].race, undefined);
+});
+
 test('parses the production VMdl representation', () => {
   const mesh = parseVmdl('1\n0,1,2,3,4,5,6,7,8\n0,0,1,0,0,1,0,0,1\n0,0,1,0,1,1');
   assert.equal(mesh.faceCount, 1);

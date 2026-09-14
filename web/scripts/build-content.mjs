@@ -25,6 +25,31 @@ const TEXTURE_OVERRIDES = new Map([
   ['Projectiles.png', 'Assets/Images/Content/Weapons/Projectiles/Projectiles.png'],
 ]);
 
+const SHIP_CLASSES = [
+  'Shuttle',
+  'Light Fighter',
+  'Heavy Fighter',
+  'Gunboat',
+  'Frigate',
+  'Destroyer',
+  'Cruiser',
+  'Dreadnought',
+];
+
+function compileShipTypes(source) {
+  return Object.fromEntries(Object.entries(source).map(([name, ship]) => {
+    if (!ship.pilotable) return [name, ship];
+    const [race, ...classParts] = name.split(' ');
+    const shipClass = classParts.join(' ');
+    return [name, {
+      ...ship,
+      race,
+      class: shipClass,
+      powerRank: SHIP_CLASSES.indexOf(shipClass) + 1,
+    }];
+  }));
+}
+
 function sorted(value) {
   if (Array.isArray(value)) return value.map(sorted);
   if (value && typeof value === 'object') {
@@ -179,6 +204,7 @@ function validateGraph(data, textureNames, modelNames) {
 async function main() {
   const data = {};
   for (const [key, filename] of Object.entries(DATA_FILES)) data[key] = await readPlist(path.join(repositoryRoot, filename));
+  data.shipTypes = compileShipTypes(data.shipTypes);
   const editableStages = await compileStages();
   if (stableJson(editableStages) !== stableJson(data.stages)) throw new Error('Assets/Stages JSON does not compile to the authoritative Stages.plist');
   data.stages = editableStages;
