@@ -10,11 +10,13 @@ interface ShipPreviewProps {
   readonly ship: ShipDefinition;
 }
 
-/** GLShipPreview.m's fixed camera and rotating, unarmed ship. */
+/** Original ship art with the approved shipyard framing and slower showroom rotation. */
 export function ShipPreview({ manifest, ship }: ShipPreviewProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const rendererRef = useRef<Renderer | null>(null);
   const [error, setError] = useState('');
 
+  // Keep one context and its asset cache while browsing; release it on leaving the screen.
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -22,44 +24,51 @@ export function ShipPreview({ manifest, ship }: ShipPreviewProps) {
     try { renderer = new Renderer(canvas, manifest); }
     catch (error) { setError(String(error)); return; }
     renderer.lightDirection = [1, -0.5, 0.5];
-    renderer.projection = Matrix4.frustum(-1.85, 1.85, -1, 1, 3.5, 50)
-      .translate(0, 0, -5).rotateX(-45).scale(1 / ship.size);
+    rendererRef.current = renderer;
+    return () => { rendererRef.current = null; renderer.dispose(); };
+  }, [manifest]);
+
+  useEffect(() => {
+    const renderer = rendererRef.current;
+    if (!renderer) return;
     let disposed = false;
     let frame = 0;
-    let lastTime: number | undefined;
-    let elapsed = 0;
-    let angle = 0;
-    let pulsePhase = Math.random();
-    const drawView = () => {
-      renderer.resize();
-      renderer.clear();
-      renderer.depthTest(true);
-      const model = new Matrix4().rotateZ(angle).scale(ship.size);
-      renderShipParts(renderer, ship.model, model, pulsePhase);
-    };
+    let previousTime: number | undefined;
+    let seconds = 0;
+    let radius = 1;
+    renderer.clear();
+    setError('');
+
     const animate = (time: number) => {
       if (disposed) return;
-      elapsed += Math.min(100, lastTime === undefined ? 0 : time - lastTime);
-      lastTime = time;
-      // The native preview advances one degree per 1/60-second timer callback.
-      while (elapsed >= 1000 / 60) {
-        elapsed -= 1000 / 60;
-        angle -= 1;
-        pulsePhase = (pulsePhase + 0.01) % 1;
-      }
-      drawView();
+      // Avoid a rotation jump when a backgrounded browser resumes.
+      seconds += previousTime === undefined ? 0 : Math.min(100, time - previousTime) / 1000;
+      previousTime = time;
+      renderer.resize();
+      const aspect = renderer.canvas.clientWidth / Math.max(1, renderer.canvas.clientHeight);
+      const extent = Math.max(1.3, 1.34 / aspect);
+      renderer.projection = Matrix4.frustum(-extent * aspect, extent * aspect, -extent, extent, 3.5, 50)
+        .translate(0, 0, -5).rotateX(-45);
+      renderer.clear();
+      renderer.depthTest(true);
+      renderShipParts(renderer, ship.model, new Matrix4().rotateZ(-35 - seconds * 18).scale(1 / radius), (seconds * 0.6) % 1);
       frame = requestAnimationFrame(animate);
     };
-    const requests = ship.model.flatMap((part) => [renderer.loadModel(part.modelName), renderer.loadTexture(part.texture)]);
-    setError('');
+
+    const requests = ship.model.flatMap(part => [renderer.loadModel(part.modelName), renderer.loadTexture(part.texture)]);
     void Promise.all(requests).then(() => {
-      if (!disposed) frame = requestAnimationFrame(animate);
+      if (disposed) return;
+      // Transparent energy-field quads have large invisible margins. Fit the opaque hull.
+      const hull = ship.model.filter(part => part.style === 'opaque');
+      radius = Math.max(0.01, ...(hull.length ? hull : ship.model).map(part => renderer.modelRadius(part.modelName)));
+      frame = requestAnimationFrame(animate);
     }).catch((error: unknown) => { if (!disposed) setError(String(error)); });
-    return () => { disposed = true; cancelAnimationFrame(frame); renderer.dispose(); };
+
+    return () => { disposed = true; cancelAnimationFrame(frame); };
   }, [manifest, ship]);
 
   return <>
-    <canvas ref={canvasRef} class="ship-preview" aria-label="Rotating ship preview" />
+    <canvas ref={canvasRef} class="ship-preview" aria-label={`Rotating view of ${ship.name}`} />
     {error && <p class="flight-message" role="alert">{error}</p>}
   </>;
 }

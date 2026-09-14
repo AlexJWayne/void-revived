@@ -37,6 +37,14 @@ The GitHub Pages workflow installs FFmpeg on its Ubuntu runner before running te
 
 See [`src/README.md`](src/README.md) for the source organization.
 
+## Shipyard
+
+The production shipyard uses the approved Race catalogue layout inside the unchanged 480 × 320 game frame. `src/loadout/ShipyardScreen.tsx` owns browsing and presentation; `src/loadout/model.ts` retains the authoritative transactions and progression rules. `src/ui/ActionButton.tsx` supplies the reusable scan-line button with primary and muted appearances. Its content and placement belong to the caller; no shared weapons/equipment layout is assumed.
+
+The completed design exploration is preserved on `codex/prototype-shipyard-layouts` at `232e27a`, with the implementation tracked in [VOI-11](https://linear.app/alexwayne/issue/VOI-11/choose-and-implement-an-improved-shipyard-layout). Prototype routes, variants, and sample-player controls are not part of the production app. The shipyard no longer has a help screen or first-visit prompt; saved help flags remain readable for compatibility.
+
+With a development server running, `/tests/shipyard-browser.html` exercises the real Preact screen with in-memory player fixtures: first purchases, trade-in cancellation/confirmation, gear transfers, sales, filters, and details visibility. It never touches campaign saves. `npm test` covers catalogue ordering/availability and the corresponding economy rules. The browser fixture is a development test entry and is absent from the production bundle.
+
 ## Physical-phone combat validation
 
 The combat slice is implemented; phone validation remains open. Browser checks cover rendering, movement and equipped weapon fire, pause/reload, portrait interruption, and abandonment. The automated stage test exercises destruction, pickups, surviving gate exit, reward persistence, and defeat without rewards. These checks do not establish physical sensor direction, multitouch feel, or device performance.

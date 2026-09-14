@@ -5,6 +5,15 @@ export interface VmdlMesh {
   readonly textureCoordinates: Float32Array;
 }
 
+/** Radius about the model origin, suitable for fitting a rotating mesh. */
+export function vmdlRadius(mesh: VmdlMesh): number {
+  let radius = 0;
+  for (let i = 0; i < mesh.positions.length; i += 3) {
+    radius = Math.max(radius, Math.hypot(mesh.positions[i]!, mesh.positions[i + 1]!, mesh.positions[i + 2]!));
+  }
+  return radius;
+}
+
 function components(line: string, expected: number, label: string): Float32Array {
   const values = Float32Array.from(line.split(','), Number);
   if (values.length !== expected || values.some((value) => !Number.isFinite(value))) {

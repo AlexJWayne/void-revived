@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The VOID shipyard checks</title>
+<link rel="stylesheet" href="../src/styles/app.css">
+<style>
+  body { overflow: auto; padding: 1rem; font: 14px system-ui; }
+  #fixture { width: 585px; max-width: 100%; aspect-ratio: 3 / 2; position: relative; margin: 1rem 0; }
+  #fixture .safe-viewport { position: absolute; inset: 0; width: 100%; height: 100%; min-height: 0; }
+  #run { padding: .75rem; border: 1px solid #789; background: #123; color: white; }
+  #results { white-space: pre-wrap; }
+</style>
+<h1>Shipyard integration checks</h1>
+<p>Runs the production screen and transaction logic with in-memory fixtures. Does not read or write game saves.</p>
+<button id="run" disabled>Run shipyard checks</button>
+<div id="fixture"></div>
+<pre id="results" role="status"></pre>
+<script type="module">
+import { h, render } from 'preact';
+import { HyperspaceScreen } from '../src/hyperspace/HyperspaceScreen.tsx';
+import { createPlayerState } from '../src/player/model.ts';
+import { loadContentManifest, loadContentData } from '../src/content/manifest.ts';
+
+const root = document.querySelector('#fixture');
+const results = document.querySelector('#results');
+const run = document.querySelector('#run');
+const manifest = await loadContentManifest();
+const [source, ships, weapons, equipment, stages] = await Promise.all(
+  ['newPlayer', 'shipTypes', 'weapons', 'equipment', 'stages'].map(name => loadContentData(manifest, name))
+);
+let player;
+const settle = () => new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve)));
+const waitForTransition = () => new Promise(resolve => setTimeout(resolve, 280));
+const assert = (condition, message) => {
+  if (!condition) throw new Error(message);
+  results.textContent += `PASS: ${message}\n`;
+};
+const draw = () => render(h('main', { class: 'safe-viewport app-shell' }, h('div', { class: 'game-frame' },
+  h(HyperspaceScreen, { player, ships, weapons, equipment, stages, manifest,
+    onPlayerChange: next => { player = next; draw(); }, onLaunchStage: () => {}, onNewGame: () => {} })
+)), root);
+const button = label => [...root.querySelectorAll('button')].find(b => b.getAttribute('aria-label') === label || b.textContent.trim() === label);
+const click = async element => { if (!element || element.disabled) throw new Error('Missing or disabled control'); element.click(); await settle(); };
+const row = name => [...root.querySelectorAll('.shipyard-row')].find(b => b.querySelector('strong').textContent === name);
+const rows = () => [...root.querySelectorAll('.shipyard-row strong')].map(e => e.textContent);
+const reset = async changes => {
+  render(null, root);
+  player = createPlayerState({ ...source, seenHelp: { GalaxyMap: true, Weapons: true, Equipment: true }, ...changes });
+  draw(); await settle(); await click(button('Shipyard'));
+};
+run.disabled = false;
+run.onclick = async () => {
+  run.disabled = true;
+  results.textContent = '';
+  try {
+    await reset({ credits: 100 });
+    assert(rows().join(',') === 'Mover,Electrus,Fragilite,Cilium', 'first visit offers all four starting shuttles');
+    assert(!root.querySelector('[aria-label="Show Shipyard help"]') && !root.querySelector('[role="alertdialog"]'), 'shipyard has no help control or first-visit prompt');
+    await click(root.querySelector('.shipyard-primary'));
+    assert(player.ship.type === 'Cyber Shuttle' && player.credits === 0, 'direct Buy pilots the first ship and deducts its price');
+    assert(player.inventory.weapons.includes('Genjuro Blaster'), 'first purchase provides the original starter weapon');
+    assert(!root.querySelector('[role="alertdialog"]'), 'ordinary purchase adds no confirmation');
+
+    await reset({ credits: 25, ownedShips: ['Cyber Shuttle'], ship: {
+      type: 'Cyber Shuttle', guns: ['Genjuro Blaster'], equipment: ['Alpha Plating'], weaponGroups: [[0], [0], [0]],
+    } });
+    await click(row('Electrus'));
+    await click(root.querySelector('.shipyard-primary'));
+    assert(root.querySelector('[role="alertdialog"] h2')?.textContent === 'Trade In', 'insufficient cash offers the original Trade In dialog when the fleet covers the price');
+    await click(button('Cancel'));
+    assert(player.credits === 25 && player.ship.type === 'Cyber Shuttle', 'cancelling trade-in preserves the player');
+    await click(root.querySelector('.shipyard-primary'));
+    await click(button('Buy Ship'));
+    assert(player.credits === 0 && player.ownedShips.join(',') === 'Energy Shuttle', 'confirmed trade-in replaces the fleet and settles the balance');
+    assert(player.inventory.weapons.includes('Genjuro Blaster') && player.inventory.equipment.includes('Alpha Plating'), 'trade-in returns mounted weapons and equipment');
+
+    await reset({ credits: 1000, ownedShips: ['Cyber Shuttle', 'Energy Shuttle'], ship: {
+      type: 'Cyber Shuttle', guns: ['Genjuro Blaster'], equipment: ['Alpha Plating'], weaponGroups: [[0], [0], [0]],
+    } });
+    await click([...root.querySelectorAll('.shipyard-filter')].find(b => b.getAttribute('aria-label')?.startsWith('Wrethk,')));
+    assert(rows().join(',') === 'Cilium', 'race filter shows that race');
+    await click(button('Owned ships'));
+    assert(rows().join(',') === 'Mover,Electrus', 'Owned ships clears the race filter and shows the whole fleet');
+    await click(row('Electrus'));
+    await click(root.querySelector('.shipyard-primary'));
+    assert(player.credits === 1000 && player.ship.type === 'Energy Shuttle', 'Pilot changes ships without charging');
+    assert(player.inventory.weapons.includes('Genjuro Blaster') && player.inventory.equipment.includes('Alpha Plating'), 'Pilot returns installed gear to inventory');
+    assert(root.querySelectorAll('.shipyard-row .shipyard-rank-bright').length === 1, 'only the piloted row has a bright rank badge');
+    await click(row('Mover'));
+    await click(root.querySelector('.shipyard-sell'));
+    assert(player.credits === 1075 && rows().join(',') === 'Electrus', 'Sell immediately credits 75 percent and removes the ship from the owned view');
+    assert(root.querySelector('.shipyard-sell').disabled, 'piloted ship cannot be sold');
+    await click(button('Show ship details')); await waitForTransition();
+    assert(root.querySelectorAll('.shipyard-details dd').length === 12, 'details reveal all twelve statistics');
+    const action = root.querySelector('.shipyard-primary');
+    assert(action.hasAttribute('inert') && getComputedStyle(action).visibility === 'hidden', 'details conceal and deactivate the primary action');
+    await click(button('Hide ship details')); await waitForTransition();
+    assert(!action.hasAttribute('inert') && getComputedStyle(action).opacity === '1', 'dismissing details restores the primary action');
+    await click(button('Weapons'));
+    assert(root.querySelector('.item-screen-weapon'), 'existing weapons screen still mounts after feedback extraction');
+    await click(button('Equipment'));
+    assert(root.querySelector('.item-screen-equipment'), 'existing equipment screen still mounts after feedback extraction');
+
+    await reset({ credits: 12500, completedStages: Object.keys(stages) });
+    assert(rows().length === 32 && rows().slice(0, 4).join(',') === 'Titan,Luminar,Diamonthos,Collossi', 'unlocked catalogue starts at highest rank in alphabetical race order');
+    const canvas = root.querySelector('.ship-preview');
+    await click(row('Electrus'));
+    assert(root.querySelector('.ship-preview') === canvas, 'browsing reuses the preview canvas');
+    await click(row('Luminar'));
+    await click(button('Show ship details')); await waitForTransition();
+    const stats = root.querySelector('.shipyard-stats');
+    assert(stats.scrollHeight === stats.clientHeight, 'dreadnought statistics fit the production layout');
+    results.textContent += '\nAll shipyard checks passed.\n';
+  } catch (error) {
+    results.textContent += `FAIL: ${error.stack}\n`;
+  } finally { run.disabled = false; }
+};
+</script>
+</html>

@@ -4,7 +4,8 @@ import { useEffect, useMemo, useState } from 'preact/hooks';
 import { contentUrl, type ContentManifest } from '../content/manifest.ts';
 import { markHelpSeen, type HelpScreen, type PlayerState } from '../player/model.ts';
 import { clearNewItemCount, type EquipmentCatalog, type ShipCatalog, type WeaponCatalog } from '../loadout/model.ts';
-import { EquipmentScreen, ShipyardScreen, WeaponsScreen } from '../loadout/LoadoutScreens.tsx';
+import { EquipmentScreen, WeaponsScreen } from '../loadout/LoadoutScreens.tsx';
+import { ShipyardScreen } from '../loadout/ShipyardScreen.tsx';
 import { TitleScreen } from '../application/TitleScreen.tsx';
 import { SoundEffect } from '../audio/sound-effect.ts';
 import {
@@ -31,7 +32,6 @@ const HELP_BY_TAB: Partial<Record<HyperspaceTab, HelpScreen>> = {
   'Galaxy Map': 'GalaxyMap',
   Weapons: 'Weapons',
   Equipment: 'Equipment',
-  Shipyard: 'Shipyard',
 };
 
 const ZONE_COLORS = [

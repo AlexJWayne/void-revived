@@ -4,25 +4,19 @@ import { SoundEffect } from '../audio/sound-effect.ts';
 import { GenericButton } from '../ui/GenericButton.tsx';
 import { contentUrl, type ContentManifest } from '../content/manifest.ts';
 import { EMPTY_SLOT, type PlayerState } from '../player/model.ts';
-import { ShipPreview } from './ShipPreview.tsx';
+import { FAILURE_COPY, LoadoutNotice, applyResult, useSelectSound, type Notice } from './LoadoutFeedback.tsx';
 import { HardpointButton } from './HardpointButton.tsx';
 import {
-  availableShips,
   buyBackItems,
   dismountEquipment,
   dismountWeapon,
   mountEquipment,
   mountWeapon,
-  purchaseOrPilotShip,
   sellItems,
-  sellShip,
-  shipTradeInValue,
   sortEquipment,
   toggleWeaponGroup,
   type EquipmentCatalog,
   type EquipmentDefinition,
-  type LoadoutFailure,
-  type PlayerActionResult,
   type ShipCatalog,
   type WeaponCatalog,
   type WeaponDefinition,
@@ -39,28 +33,6 @@ interface StationProps {
 
 type ItemSelection = { readonly source: 'inventory' | 'slot'; readonly index: number } | null;
 type ItemCatalog = WeaponCatalog | EquipmentCatalog;
-
-const FAILURE_COPY: Readonly<Record<LoadoutFailure, { readonly title: string; readonly message: string }>> = {
-  'no-ship': { title: 'No Ship', message: 'Go to the shipyard to purchase your first ship.' },
-  'invalid-hardpoint': { title: 'Invalid Mount', message: 'That item socket is not available on this ship.' },
-  'occupied-hardpoint': { title: 'Item Mount Occupied', message: 'Double tap an equipped item to clear its socket first.' },
-  'item-not-owned': { title: 'Item Not Available', message: 'That item is no longer in your inventory.' },
-  'unknown-item': { title: 'Unknown Item', message: 'The selected item could not be found in the game data.' },
-  'not-enough-energy': { title: 'Not enough energy', message: 'Your ship does not have enough weapon energy for this item.' },
-  'duplicate-equipment-group': { title: 'Duplicate Equipment Type', message: 'You may only have one item from an equipment group at a time. Dequip the installed item first.' },
-  'nothing-to-buy-back': { title: 'Nothing to Buy Back', message: 'There is no previous sale to buy back.' },
-  'ship-unavailable': { title: 'Ship Unavailable', message: 'That ship is not yet available.' },
-  'not-enough-credits': { title: 'Not Enough Credits', message: 'You do not have enough credits to buy that ship.' },
-  'ship-not-owned': { title: 'Ship Not Owned', message: 'You do not own that ship.' },
-  'cannot-sell-piloted-ship': { title: 'Ship In Use', message: 'You cannot sell the ship you are currently piloting.' },
-};
-
-const RACE_NAMES: Readonly<Record<string, string>> = {
-  Cyber: 'Cykan',
-  Crystal: 'Orthos',
-  Organic: 'Wrethk',
-  Energy: 'Lanaar',
-};
 
 const EFFECT_NAMES: Readonly<Record<string, string>> = {
   mass: 'Mass',
@@ -228,113 +200,6 @@ export function EquipmentScreen({ player, equipment, onPlayerChange }: StationPr
   );
 }
 
-export function ShipyardScreen({ player, ships, manifest, onPlayerChange }: StationProps) {
-  const playSelectSound = useSelectSound();
-  const shipNames = useMemo(() => availableShips(player, ships), [player, ships]);
-  const [selectedName, setSelectedName] = useState(() => shipNames.includes(player.ship.type) ? player.ship.type : shipNames[0] ?? '');
-  const [notice, setNotice] = useState<Notice>(() => player.ship.type === EMPTY_SLOT
-    ? { title: 'You need a ship', message: 'You should have just enough credits for a small shuttle. Buy one here in the shipyard.' }
-    : null);
-  const [tradeIn, setTradeIn] = useState(false);
-  const ship = ships[selectedName];
-  const owned = player.ownedShips.includes(selectedName);
-  const piloting = player.ship.type === selectedName;
-  const canAfford = Boolean(ship && (player.credits >= ship.price || player.credits + shipTradeInValue(player, ships) >= ship.price));
-
-  useEffect(() => {
-    if (!shipNames.includes(selectedName)) setSelectedName(shipNames.includes(player.ship.type) ? player.ship.type : shipNames[0] ?? '');
-  }, [shipNames, selectedName, player.ship.type]);
-
-  const purchase = () => {
-    if (!ship) return;
-    if (!owned && player.credits < ship.price) {
-      if (canAfford) setTradeIn(true);
-      return;
-    }
-    applyResult(purchaseOrPilotShip(player, selectedName, ships), onPlayerChange, setNotice, 'BuyShip');
-  };
-
-  const race = RACE_NAMES[selectedName.split(' ')[0] ?? ''] ?? selectedName.split(' ')[0] ?? '';
-  const loadoutStyle = loadoutAssetStyle();
-
-  return (
-    <section class="shipyard-screen" aria-label="Shipyard" style={loadoutStyle}>
-      <div class="ship-list" role="listbox" aria-label="Available ships">
-        {shipNames.map((name) => {
-          const definition = ships[name];
-          const isOwned = player.ownedShips.includes(name);
-          const isPiloted = player.ship.type === name;
-          return (
-            <button
-              key={name}
-              class={name === selectedName ? 'loadout-row ship-row loadout-row-selected' : 'loadout-row ship-row'}
-              type="button"
-              role="option"
-              aria-selected={name === selectedName}
-              onClick={() => { playSelectSound(); setSelectedName(name); }}
-              onDblClick={() => {
-                setSelectedName(name);
-                if (isOwned && !isPiloted) applyResult(purchaseOrPilotShip(player, name, ships), onPlayerChange, setNotice, 'BuyShip');
-              }}
-            >
-              <img src={contentUrl(`textures/${isPiloted ? 'CheckmarkAccessory.png' : isOwned ? 'ShipOwnedAccessory.png' : 'ShipUnownedAccessory.png'}`)} alt="" />
-              <span>{definition?.name ?? name}</span>
-            </button>
-          );
-        })}
-      </div>
-
-      {ship && (
-        <div class="shipyard-detail">
-          <div class="ship-preview-region">
-            <ShipPreview manifest={manifest} ship={ship} />
-            <h1>{race} {ship.name}</h1>
-            <div class="ship-credits"><img src={contentUrl('textures/MoneyIcon.png')} alt="Credits" /><span>{formatNumber(player.credits)}</span></div>
-          </div>
-
-          <div class="ship-stats" aria-label="Ship statistics">
-            <ShipStat label="" icon="HyperspaceIcon.Shields.png" value={ship.shields} />
-            <ShipStat label="" icon="HyperspaceIcon.Energy.png" value={ship.energy} />
-            <ShipStat label="Max Speed:" value={Math.trunc(ship.maxSpeed * 40)} />
-            <ShipStat label="" icon="HyperspaceIcon.Armor.png" value={ship.armor} />
-            <ShipStat label="Regen:" icon="HyperspaceIcon.Energy.png" value={Math.trunc(ship.energyRecharge * 40)} />
-            <ShipStat label="Accel:" value={Math.trunc(ship.thrusterForce * 1000)} />
-            <ShipStat label="Regen:" icon="HyperspaceIcon.Shields.png" value={Math.trunc(ship.shieldRecharge * 40)} />
-            <ShipStat label="Mounts:" icon="HyperspaceIcon.Gun.png" value={ship.gunHardpoints.length} />
-            <ShipStat label="Braking:" value={Math.trunc(ship.brakeForce * 1000)} />
-            <ShipStat label="Mass:" value={ship.mass} />
-            <ShipStat label="Mounts:" icon="HyperspaceIcon.Equipment.png" value={ship.equipmentSlots} />
-            <ShipStat label="Turn Speed:" value={Math.trunc(ship.turnSpeed * 40)} />
-          </div>
-
-          <div class="shipyard-actions">
-            {owned && !piloting && <GenericButton class="loadout-action ship-sell" onClick={() => applyResult(sellShip(player, selectedName, ships), onPlayerChange, setNotice, 'Sell')}>Sell Ship</GenericButton>}
-            <div class={owned ? 'ship-price ship-price-owned' : 'ship-price'}>
-              <strong>{owned ? 'Sell Value:' : 'Price:'}</strong>
-              <span><img src={contentUrl('textures/MoneyIcon.png')} alt="" />{formatNumber(owned ? Math.trunc(ship.price * 0.75) : ship.price)}</span>
-            </div>
-            <GenericButton class="loadout-action ship-buy" disabled={piloting || (!owned && !canAfford)} onClick={purchase}>{owned ? 'Pilot Ship' : 'Buy Ship'}</GenericButton>
-          </div>
-        </div>
-      )}
-
-      {tradeIn && (
-        <LoadoutNotice
-          title="Trade In"
-          message="You must trade in your owned ships to have enough credits to buy this ship. Do you want to trade in all ships now?"
-          onClose={() => setTradeIn(false)}
-          confirmLabel="Buy Ship"
-          onConfirm={() => {
-            setTradeIn(false);
-            applyResult(purchaseOrPilotShip(player, selectedName, ships, true), onPlayerChange, setNotice, 'BuyShip');
-          }}
-        />
-      )}
-      {notice && <LoadoutNotice {...notice} onClose={() => setNotice(null)} />}
-    </section>
-  );
-}
-
 interface ItemScreenProps {
   readonly kind: 'weapon' | 'equipment';
   readonly inventory: readonly string[];
@@ -483,33 +348,6 @@ function ItemStat({ label, icon, value }: { readonly label: string; readonly ico
   return <div class="item-stat"><span>{icon && <img src={contentUrl(`textures/${icon}`)} alt="" />}{label}</span><strong>{formatNumber(value)}</strong></div>;
 }
 
-function ShipStat({ label, icon, value }: { readonly label: string; readonly icon?: string; readonly value: number }) {
-  return <div class="ship-stat"><span>{label}{icon && <img src={contentUrl(`textures/${icon}`)} alt="" />}</span><strong>{formatNumber(value)}</strong></div>;
-}
-
-type Notice = { readonly title: string; readonly message: string } | null;
-
-function LoadoutNotice({ title, message, onClose, confirmLabel, onConfirm }: {
-  readonly title: string;
-  readonly message: string;
-  readonly onClose: () => void;
-  readonly confirmLabel?: string;
-  readonly onConfirm?: () => void;
-}) {
-  return (
-    <section class="confirmation-backdrop loadout-notice" role="alertdialog" aria-modal="true" aria-labelledby="loadout-notice-title">
-      <div class="confirmation-panel">
-        <h2 id="loadout-notice-title">{title}</h2>
-        <p>{message}</p>
-        <div class={onConfirm ? 'confirmation-actions' : 'confirmation-actions confirmation-actions-single'}>
-          <button type="button" onClick={onClose}>{onConfirm ? 'Cancel' : 'OK'}</button>
-          {onConfirm && <button type="button" onClick={onConfirm}>{confirmLabel ?? 'Confirm'}</button>}
-        </div>
-      </div>
-    </section>
-  );
-}
-
 function slotsByVisualPosition(count: number): readonly (number | null)[] {
   const result: (number | null)[] = [null, null, null, null, null];
   const positions: Readonly<Record<number, readonly number[]>> = {
@@ -550,17 +388,6 @@ function noShipNotice(player: PlayerState): Notice {
   return player.ship.type === EMPTY_SLOT ? FAILURE_COPY['no-ship'] : null;
 }
 
-function applyResult(
-  result: PlayerActionResult,
-  onPlayerChange: (player: PlayerState) => void,
-  setNotice: (notice: Notice) => void,
-  soundName: string,
-) {
-  SoundEffect.effectNamed(result.ok ? soundName : 'Error').play();
-  if (result.ok) onPlayerChange(result.player);
-  else setNotice(FAILURE_COPY[result.reason]);
-}
-
 function formatNumber(value: string | number): string {
   return typeof value === 'number' ? value.toLocaleString('en-US') : value;
 }
@@ -575,15 +402,4 @@ function loadoutAssetStyle(): preact.JSX.CSSProperties {
     '--socket-selected': `url("${contentUrl('textures/EmptyHardpointSelected.png')}")`,
     '--socket-disabled': `url("${contentUrl('textures/DisabledHardpoint.png')}")`,
   } as preact.JSX.CSSProperties;
-}
-
-/** ItemController and ShipyardController rotate three selection players for quick taps. */
-function useSelectSound(): () => void {
-  const sounds = useMemo(() => Array.from({ length: 3 }, () => new SoundEffect('Select')), []);
-  const index = useRef(0);
-  useEffect(() => () => { for (const sound of sounds) sound.stop(); }, [sounds]);
-  return () => {
-    sounds[index.current]?.play();
-    index.current = (index.current + 1) % sounds.length;
-  };
 }

@@ -1,4 +1,4 @@
-import { parseVmdl, type VmdlMesh } from '../assets/vmdl.ts';
+import { parseVmdl, vmdlRadius, type VmdlMesh } from '../assets/vmdl.ts';
 import { chooseTexture, contentUrl, resolveModelAsset, resolveTextureAsset, type ContentManifest } from '../content/manifest.ts';
 import { Matrix4 } from './matrix.ts';
 
@@ -9,6 +9,7 @@ export type Blend = 'alpha' | 'add' | 'light';
 interface Model3D {
   readonly vertexArray: WebGLVertexArrayObject;
   readonly count: number;
+  readonly radius: number;
 }
 
 const vertexSource = `#version 300 es
@@ -155,6 +156,12 @@ export class Renderer {
     });
   }
 
+  modelRadius(name: string): number {
+    const model = this.models.get(name);
+    if (!model) throw new Error(`Model was not loaded: ${name}`);
+    return model.radius;
+  }
+
   private loadOnce(key: string, load: () => Promise<void>): Promise<void> {
     let pending = this.pending.get(key);
     if (!pending) { pending = load(); this.pending.set(key, pending); }
@@ -237,7 +244,7 @@ export class Renderer {
       gl.vertexAttribPointer(location, location === 2 ? 2 : 3, gl.FLOAT, false, 0, 0);
     });
     gl.bindVertexArray(null);
-    return { vertexArray, count };
+    return { vertexArray, count, radius: vmdlRadius(mesh) };
   }
 
   private createBuffer(data: Float32Array): WebGLBuffer {
