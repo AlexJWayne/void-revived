@@ -1,8 +1,9 @@
-import { useEffect, useRef, useState } from 'preact/hooks';
+import { useEffect, useMemo, useRef, useState } from 'preact/hooks';
 import type { ContentManifest } from '../content/manifest.ts';
 import { Matrix4 } from '../graphics/matrix.ts';
 import { Renderer } from '../graphics/renderer.ts';
 import { renderShipParts } from '../combat/combat-renderer.ts';
+import { StarField } from '../combat/star-field.ts';
 import type { ShipDefinition } from './model.ts';
 
 interface ShipPreviewProps {
@@ -14,6 +15,7 @@ interface ShipPreviewProps {
 export function ShipPreview({ manifest, ship }: ShipPreviewProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const rendererRef = useRef<Renderer | null>(null);
+  const starField = useMemo(() => new StarField(), []);
   const [error, setError] = useState('');
 
   // Keep one context and its asset cache while browsing; release it on leaving the screen.
@@ -50,6 +52,8 @@ export function ShipPreview({ manifest, ship }: ShipPreviewProps) {
       renderer.projection = Matrix4.frustum(-extent * aspect, extent * aspect, -extent, extent, 3.5, 50)
         .translate(0, 0, -5).rotateX(-45);
       renderer.clear();
+      renderer.depthTest(false);
+      starField.render(renderer);
       renderer.depthTest(true);
       renderShipParts(renderer, ship.model, new Matrix4().rotateZ(-35 - seconds * 18).scale(1 / radius), (seconds * 0.6) % 1);
       frame = requestAnimationFrame(animate);
@@ -65,7 +69,7 @@ export function ShipPreview({ manifest, ship }: ShipPreviewProps) {
     }).catch((error: unknown) => { if (!disposed) setError(String(error)); });
 
     return () => { disposed = true; cancelAnimationFrame(frame); };
-  }, [manifest, ship]);
+  }, [manifest, ship, starField]);
 
   return <>
     <canvas ref={canvasRef} class="ship-preview" aria-label={`Rotating view of ${ship.name}`} />
