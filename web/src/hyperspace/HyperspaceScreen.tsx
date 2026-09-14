@@ -113,17 +113,21 @@ export function HyperspaceScreen({ player, stages, weapons, equipment, ships, ma
       </div>
 
       <nav class="hyperspace-tabs" aria-label="Hyperspace screens">
-        {HYPERSPACE_TABS.map((item) => (
-          <button key={item} class={item === tab ? 'hyperspace-tab hyperspace-tab-selected' : 'hyperspace-tab'} type="button" aria-label={item} aria-current={item === tab ? 'page' : undefined} onClick={() => changeTab(item)}>
-            <span
-              class="hyperspace-tab-icon"
-              style={tabIconStyle(contentUrl(`textures/${TAB_ICONS[item]}`))}
-              aria-hidden="true"
-            />
-            <span class="hyperspace-tab-label">{item}</span>
-            {tabBadge(item, player) > 0 && <span class="hyperspace-tab-badge">{tabBadge(item, player)}</span>}
-          </button>
-        ))}
+        {HYPERSPACE_TABS.map((item, index) => {
+          const selected = item === tab;
+          const badge = tabBadge(item, player);
+          return (
+            <button key={item} class={selected ? 'hyperspace-tab hyperspace-tab-selected' : 'hyperspace-tab'}
+              type="button" aria-label={item} aria-current={selected ? 'page' : undefined} onClick={() => changeTab(item)}>
+              <span class="hyperspace-tab-index" aria-hidden="true">0{index + 1}</span>
+              <span class="hyperspace-tab-content">
+                <span class="hyperspace-tab-icon" style={tabIconStyle(contentUrl(`textures/${TAB_ICONS[item]}`))} aria-hidden="true" />
+                <span class="hyperspace-tab-label">{item}</span>
+              </span>
+              {badge > 0 && <span class="hyperspace-tab-badge">{badge}</span>}
+            </button>
+          );
+        })}
       </nav>
     </section>
   );
