@@ -111,6 +111,9 @@ export class Projectile extends SpaceObject {
 
   findSeekTarget(targets: ReadonlyMap<number, ProjectileTarget>): void {
     if (this.definition.seekLockAngle <= 0) return;
+    // At launch, inherited ship drift should not redirect an accelerating missile's aim.
+    const seekDirection = this.age === 0 && this.acceleration.length() > 0
+      ? this.acceleration : this.velocity;
     let priority = 1000;
     let targetId: number | null = null;
 
@@ -118,7 +121,7 @@ export class Projectile extends SpaceObject {
       const target = targets.get(id);
       if (!target || target.currentArmor <= 0) continue;
       const distance = Vector3.from(target.position).subtract(this.position);
-      const difference = angleDifference(this.velocity.angle2D(), distance.angle2D());
+      const difference = angleDifference(seekDirection.angle2D(), distance.angle2D());
       const candidatePriority = distance.length() * (1 + Math.abs(difference) / 180) ** 4;
       if (Math.abs(difference) <= this.definition.seekLockAngle / 2 && candidatePriority < priority) {
         priority = candidatePriority;

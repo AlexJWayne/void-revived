@@ -5,6 +5,8 @@ import { createPlayerState } from '../src/player/model.ts';
 import type { CombatContent } from '../src/combat/content.ts';
 import { Game } from '../src/combat/game.ts';
 import { captureGame, restoreGame } from '../src/combat/game-state.ts';
+import { Vector3 } from '../src/combat/math.ts';
+import { Weapon } from '../src/combat/weapon.ts';
 
 function data(name: string) {
   return JSON.parse(readFileSync(new URL(`../public/content/data/${name}.json`, import.meta.url), 'utf8'));
@@ -19,6 +21,27 @@ function player() {
   return createPlayerState({ ...data('newPlayer'), ownedShips: ['Cyber Shuttle'],
     ship: { type: 'Cyber Shuttle', guns: ['Genjuro Blaster'], equipment: ['<Empty>'], weaponGroups: [[0], [], []] } });
 }
+
+it('launches a drifting ship’s missile toward the nearby enemy ahead, then reacquires along its travel direction', () => {
+  const game = new Game(content, player(), () => 0.4);
+  game.ship.position.set(new Vector3());
+  game.ship.velocity.set(new Vector3(0.2, 0));
+  game.ship.angle = 0;
+  game.enemies.splice(2);
+  const [near, far] = game.enemies;
+  near!.position.set(new Vector3(0, 10));
+  far!.position.set(new Vector3(20, 10));
+  const weapon = new Weapon('Dart', new Vector3(), game.ship, {}, game);
+  weapon.updateWithShip();
+  assert.equal(weapon.fire(), true);
+  const missile = game.projectiles[0]!;
+  assert.equal(missile.seekTargetId, near!.id);
+  assert.ok(missile.velocity.x > 0.19, 'the missile still inherits sideways momentum');
+
+  near!.currentArmor = 0;
+  missile.updateWithTargets(new Map(game.enemies.map((enemy) => [enemy.id, enemy])));
+  assert.equal(missile.seekTargetId, far!.id, 'mid-flight acquisition still follows velocity');
+});
 
 it('plays the Original Game first stage through weapons, pickups, and surviving gate exit', () => {
   const game = new Game(content, player(), () => 0.4);
